@@ -35,5 +35,4 @@ Get project with "git clone https://github.com/rredbird/sparked-frontend.git".
 Run "npm install" to auto install packages.
 ... ... ...
 Run "ng serve" to run the project. (See top of this document)
-Open project with "localhost:4200".
 
