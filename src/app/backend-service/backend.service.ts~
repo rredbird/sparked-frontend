@@ -14,4 +14,14 @@ export class BackendService {
   public greeting() {
     return this.http.get<Greeting>('http://localhost:8080/greeting');
   }
+  /*  
+  public postFile(fileToUpload: File) {
+    const endpoint = 'localhost:8080/upload';
+    const formData: FormData = new FormData();
+    formData.append('fileKey', fileToUpload, fileToUpload.name);
+      
+    return this.http
+      .post(endpoint, formData, { headers: null })
+  } 
+  */
 }
