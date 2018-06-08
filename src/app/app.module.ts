@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { BackendService } from './backend-service/backend.service';
 import { HttpClient } from 'selenium-webdriver/http';
+import { CsvUploadComponent } from './csv-upload/csv-upload.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AppNavbarComponent
+    AppNavbarComponent,
+    CsvUploadComponent
   ],
   imports: [
     BrowserModule,
