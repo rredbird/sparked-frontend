@@ -16,11 +16,10 @@ export class BackendService {
   }
 
   public postFile(fileToUpload: File) {
-    const endpoint = 'localhost:8080/upload';
+    const endpoint = 'http://localhost:8080/upload';
     const formData: FormData = new FormData();
-    formData.append('fileKey', fileToUpload, fileToUpload.name);
+    formData.append('file', fileToUpload, fileToUpload.name);
       
-    return this.http
-      .post(endpoint, formData, { headers: null })
+    return this.http.post(endpoint, formData);
   } 
 }
