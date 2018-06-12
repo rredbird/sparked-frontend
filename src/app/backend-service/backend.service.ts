@@ -22,4 +22,7 @@ export class BackendService {
       
     return this.http.post(endpoint, formData);
   } 
+  public testKafka() {
+    return this.http.get<string>('http://localhost:8080/kafkaTest');
+  }
 }

@@ -19,4 +19,13 @@ export class AppComponent {
   }
   title = 'app';
   greeting : string = "No greeting received";
+
+  public testKafka() {
+    this.backendService.testKafka().subscribe(
+      data => { 
+      },
+      err => { console.error(err) },
+      () => console.log('greeting loaded...')
+      );
+  }
 }
