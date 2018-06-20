@@ -9,6 +9,13 @@ import { BackendService } from './backend-service/backend.service';
 import { HttpClient } from 'selenium-webdriver/http';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { OrdersComponent } from './orders/orders.component';
+import { OrderComponent } from './order/order.component';
+import { TaskComponent } from './task/task.component';
+import { ClassifiersComponent } from './classifiers/classifiers.component';
+import { ClassifierComponent } from './classifier/classifier.component';
+import { MetricComponent } from './metric/metric.component';
+import { DatasetComponent } from './dataset/dataset.component';
+import { ValidationMethodComponent } from './validation-method/validation-method.component';
 
 
 
@@ -18,6 +25,13 @@ import { OrdersComponent } from './orders/orders.component';
     AppNavbarComponent,
     FileUploadComponent,
     OrdersComponent,
+    OrderComponent,
+    TaskComponent,
+    ClassifiersComponent,
+    ClassifierComponent,
+    MetricComponent,
+    DatasetComponent,
+    ValidationMethodComponent,
   ],
   imports: [
     BrowserModule,
