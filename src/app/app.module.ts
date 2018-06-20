@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { BackendService } from './backend-service/backend.service';
+import { AppService } from './app.service';
 import { HttpClient } from 'selenium-webdriver/http';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { OrdersComponent } from './orders/orders.component';
@@ -37,7 +38,7 @@ import { ValidationMethodComponent } from './validation-method/validation-method
     BrowserModule,
     HttpClientModule
   ],
-  providers: [BackendService],
+  providers: [BackendService, AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

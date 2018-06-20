@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Greeting } from '../shared/dto/Greeting';
+import { Order } from '../shared/dto/Order';
 
 @Injectable()
 export class BackendService {
@@ -22,4 +23,13 @@ export class BackendService {
       
     return this.http.post(endpoint, formData);
   } 
+
+
+    public orders() {
+        return this.http.get<Order>('http://localhost:8080/orders');
+    }
+
+    public order(id : string) {
+        return this.http.get<Order>('http://localhost:8080/orders/' + id);
+    }
 }
