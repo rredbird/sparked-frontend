@@ -16,5 +16,10 @@ export class AppNavbarComponent implements OnInit {
 
   public openOrders() {
     this.appService.view = "orders";
+    
+  }
+
+  public openOrderGenerator() {
+    this.appService.view = "orderGenerator";
   }
 }

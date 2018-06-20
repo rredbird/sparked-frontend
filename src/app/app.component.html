@@ -1,6 +1,7 @@
 <app-navbar></app-navbar>
 <div class="container">
-  <app-orders></app-orders>
+  <app-orders *ngIf="this.appService.view=='orders'"></app-orders>
+  <app-order-generator *ngIf="this.appService.view=='orderGenerator'"></app-order-generator>
   <div class="starter-template" [hidden]="true">
       <h1>Bootstrap starter template</h1>
       <h3>{{this.backendService.mockValue()}}</h3>

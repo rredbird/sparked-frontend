@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { BackendService } from '../app/backend-service/backend.service';
+import { AppService } from '../app/app.service';
 
 @Component({
     selector: 'app-root',
@@ -7,7 +8,7 @@ import { BackendService } from '../app/backend-service/backend.service';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    constructor(private backendService: BackendService) { 
+    constructor(private backendService: BackendService, public appService: AppService) { 
         backendService.greeting().subscribe(
             data => { 
                 this.greeting = data.content + " this is greeting number " + data.id 

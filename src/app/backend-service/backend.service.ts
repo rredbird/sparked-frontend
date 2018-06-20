@@ -24,12 +24,15 @@ export class BackendService {
     return this.http.post(endpoint, formData);
   } 
 
-
     public orders() {
-        return this.http.get<Order>('http://localhost:8080/orders');
+        return this.http.get<Order[]>('http://localhost:8080/orders');
     }
 
     public order(id : string) {
         return this.http.get<Order>('http://localhost:8080/orders/' + id);
+    }
+
+    public createOrder() {
+        return this.http.post<Order>('http://localhost:8080/orders/');
     }
 }

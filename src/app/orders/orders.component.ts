@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BackendService } from '../backend-service/backend.service';
 
 @Component({
   selector: 'app-orders',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrdersComponent implements OnInit {
 
-  constructor() { }
+constructor(private backendService:BackendService) { 
+    this.loadOrders();
+}
+
+private loadOrders() {
+console.log("loading orders...");
+    this.backendService.orders().subscribe(
+        data => { 
+            this.orders = data;
+        },
+        err => { console.error(err) },
+        () => console.log('orders loaded...')
+        );
+}
 
   ngOnInit() {
   }
 
+  public orders : Order[];
 }

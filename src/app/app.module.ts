@@ -11,6 +11,7 @@ import { HttpClient } from 'selenium-webdriver/http';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { OrdersComponent } from './orders/orders.component';
 import { OrderComponent } from './order/order.component';
+import { OrderGeneratorComponent } from './order-generator/order.generator.component';
 import { TaskComponent } from './task/task.component';
 import { ClassifiersComponent } from './classifiers/classifiers.component';
 import { ClassifierComponent } from './classifier/classifier.component';
@@ -27,6 +28,7 @@ import { ValidationMethodComponent } from './validation-method/validation-method
     FileUploadComponent,
     OrdersComponent,
     OrderComponent,
+    OrderGeneratorComponent,
     TaskComponent,
     ClassifiersComponent,
     ClassifierComponent,
