@@ -8,6 +8,7 @@ import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { BackendService } from './backend-service/backend.service';
 import { HttpClient } from 'selenium-webdriver/http';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import { OrdersComponent } from './orders/orders.component';
 
 
 
@@ -16,6 +17,7 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     AppComponent,
     AppNavbarComponent,
     FileUploadComponent,
+    OrdersComponent,
   ],
   imports: [
     BrowserModule,
