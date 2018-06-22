@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { MetricDto } from '../shared/dto/metricdto.type';
 
 @Component({
   selector: 'app-metric',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./metric.component.css']
 })
 export class MetricComponent implements OnInit {
+    @Input() metric : MetricDto;
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 }

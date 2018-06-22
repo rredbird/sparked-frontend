@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Greeting } from '../shared/dto/Greeting';
-import { Order } from '../shared/dto/Order';
+import { Greeting } from '../shared/dto/greeting.type';
+import { OrderDto } from '../shared/dto/orderdto.type';
+import { MetricDto } from '../shared/dto/metricdto.type';
+import { ClassifierDto } from '../shared/dto/classifierdto.type';
+import { DatasetDto } from '../shared/dto/datasetdto.type';
+import { ValidationMethodDto } from '../shared/dto/validationmethoddto.type';
 
 @Injectable()
 export class BackendService {
 
   constructor(private http:HttpClient) { }
-
-  public mockValue() : string {
-    return "Hello Mock Value!"
-  }
 
   public greeting() {
     return this.http.get<Greeting>('http://localhost:8080/greeting');
@@ -25,14 +25,30 @@ export class BackendService {
   } 
 
     public orders() {
-        return this.http.get<Order[]>('http://localhost:8080/orders');
+        return this.http.get<OrderDto[]>('http://localhost:8080/orders');
     }
 
     public order(id : string) {
-        return this.http.get<Order>('http://localhost:8080/orders/' + id);
+        return this.http.get<OrderDto>('http://localhost:8080/orders/' + id);
     }
 
-    public createOrder() {
-        return this.http.post<Order>('http://localhost:8080/orders/');
+    public createOrder(order : OrderDto) {
+        return this.http.post<OrderDto>('http://localhost:8080/orders/', order);
+    }
+
+    public classifiers() {
+        return this.http.get<ClassifierDto[]>('http://localhost:8080/classifiers');
+    }
+
+    public metrics() {
+        return this.http.get<MetricDto[]>('http://localhost:8080/evaluationmetrics');
+    }
+
+    public datasets() {
+        return this.http.get<DatasetDto[]>('http://localhost:8080/datasets');
+    }
+
+    public validationmethods() {
+        return this.http.get<DatasetDto[]>('http://localhost:8080/validationmethods');
     }
 }

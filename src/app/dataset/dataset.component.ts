@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { DatasetDto } from '../shared/dto/datasetdto.type'
 
 @Component({
   selector: 'app-dataset',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dataset.component.css']
 })
 export class DatasetComponent implements OnInit {
+    @Input() dataset : DatasetDto;
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 }

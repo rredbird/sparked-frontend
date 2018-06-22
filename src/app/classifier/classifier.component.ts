@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ClassifierDto } from '../shared/dto/classifierdto.type';
 
 @Component({
   selector: 'app-classifier',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./classifier.component.css']
 })
 export class ClassifierComponent implements OnInit {
+    @Input() classifier : ClassifierDto;
+    
+    constructor() { }
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 }

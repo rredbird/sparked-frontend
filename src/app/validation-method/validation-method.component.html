@@ -1,3 +1,5 @@
-<p>
-  validation-method works!
-</p>
+<h3>{{validationMethod.name}}</h3>
+
+<div>
+<app-parameter *ngFor="let p of validationMethod.parameters" [parameter]="p"></app-parameter>
+</div>

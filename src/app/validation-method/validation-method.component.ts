@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, Input } from '@angular/core';
+import { ValidationMethodDto } from '../shared/dto/validationmethoddto.type'
 @Component({
   selector: 'app-validation-method',
   templateUrl: './validation-method.component.html',
@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ValidationMethodComponent implements OnInit {
 
-  constructor() { }
+    @Input() validationMethod : ValidationMethodDto;
+    
+    constructor() { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 }

@@ -2,3 +2,21 @@ New Order...
 <div>
 {{order.id}}
 </div>
+
+<div>
+    <input type="text" value="{{order.name}}">
+</div>
+
+<div>
+    <app-classifiers></app-classifiers>
+</div>
+
+<div>
+<app-metric *ngFor="let m of metrics" [metric]="m"></app-metric>
+</div>
+<div>
+<app-dataset *ngFor="let d of datasets" [dataset]="d"></app-dataset>
+</div>
+<div>
+<app-validation-method *ngFor="let v of validationMethods" [validationMethod]="v"></app-validation-method>
+</div>

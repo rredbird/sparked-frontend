@@ -18,7 +18,7 @@ import { ClassifierComponent } from './classifier/classifier.component';
 import { MetricComponent } from './metric/metric.component';
 import { DatasetComponent } from './dataset/dataset.component';
 import { ValidationMethodComponent } from './validation-method/validation-method.component';
-
+import { ParameterComponent } from './parameter/parameter.component';
 
 
 @NgModule({
@@ -30,6 +30,7 @@ import { ValidationMethodComponent } from './validation-method/validation-method
     OrderComponent,
     OrderGeneratorComponent,
     TaskComponent,
+    ParameterComponent,
     ClassifiersComponent,
     ClassifierComponent,
     MetricComponent,

@@ -1,3 +1,5 @@
-<p>
-  classifier works!
-</p>
+<h3>{{classifier.name}}</h3>
+
+<div>
+<app-parameter *ngFor="let p of classifier.parameters" [parameter]="p"></app-parameter>
+</div>

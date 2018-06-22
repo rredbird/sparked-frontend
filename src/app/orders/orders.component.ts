@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../backend-service/backend.service';
+import { OrderDto } from '../shared/dto/orderdto.type';
 
 @Component({
   selector: 'app-orders',
@@ -26,5 +27,5 @@ console.log("loading orders...");
   ngOnInit() {
   }
 
-  public orders : Order[];
+  public orders : OrderDto[];
 }
