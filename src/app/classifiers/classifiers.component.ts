@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { BackendService } from '../backend-service/backend.service';
 import { ClassifierDto } from '../shared/dto/classifierdto.type'
 
@@ -9,18 +9,17 @@ import { ClassifierDto } from '../shared/dto/classifierdto.type'
 })
 export class ClassifiersComponent implements OnInit {
 
-    constructor(public backendService : BackendService) { 
-        this.backendService.classifiers().subscribe(
-        data => { 
-            this.classifiers = data;
-        },
-        err => { console.error(err) },
-        () => console.log('orders loaded...')
-        );
+    constructor() { 
+        this.selectedClassifier = "";
+        this.hidden = true;
     }
 
     ngOnInit() {
     }
 
-    public classifiers : ClassifierDto[];
+    @Input() public classifiers : ClassifierDto[];
+
+    public selectedClassifier : String;
+
+    public hidden : Boolean;
 }

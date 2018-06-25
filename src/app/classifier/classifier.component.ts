@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ClassifierDto } from '../shared/dto/classifierdto.type';
+import { LocalizationService } from '../localization-service/localization.service';
 
 @Component({
   selector: 'app-classifier',
@@ -9,9 +10,21 @@ import { ClassifierDto } from '../shared/dto/classifierdto.type';
 export class ClassifierComponent implements OnInit {
     @Input() classifier : ClassifierDto;
     
-    constructor() { }
-
-    ngOnInit() {
+    constructor(public localize : LocalizationService) { 
+        this.expanded = false;
+        this.selected = false;
     }
 
+    ngOnInit() {
+
+    }
+
+    public toggleSelected() {
+        this.selected = !this.selected; 
+        this.expanded = this.selected;
+        this.classifier.selected = this.selected;
+    }
+
+    public expanded : Boolean;
+    public selected : Boolean;
 }
