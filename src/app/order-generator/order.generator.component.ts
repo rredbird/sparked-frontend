@@ -16,6 +16,7 @@ export class OrderGeneratorComponent implements OnInit {
     constructor(private backendService:BackendService) {
         this.order = new OrderDto();
         this.order.id = "NEWID";
+        this.order.name = ""
 
         this.backendService.classifiers().subscribe(
         data => { 
@@ -63,6 +64,10 @@ export class OrderGeneratorComponent implements OnInit {
     }
 
     private createOrder() {
+        if(this.order.name === "") {
+            alert("name is empty");
+            return;
+        }
         this.backendService.createOrder(this.order).subscribe(
         data => { 
             this.order = data;

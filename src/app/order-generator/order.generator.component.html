@@ -3,7 +3,7 @@
 
     <h2>Neue Order erstellen</h2>
 
-    <input type="text" value="{{order.name}}">
+    <input type="form-control" value="{{order.name}}">
 
 
     <div>
@@ -25,5 +25,5 @@
         <app-validation-method *ngFor="let v of validationMethods" [validationMethod]="v"></app-validation-method>
     </div>
 
-    <input type="button" (click)="create()" value="erstellen">
+    <input type="button" (click)="createOrder()" value="erstellen">
 </div>
