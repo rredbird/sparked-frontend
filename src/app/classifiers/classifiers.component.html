@@ -1,6 +1,0 @@
-
-<h3 (click)="hidden = ! hidden">Classifiers</h3>
-
-<div *ngIf="!hidden">
-    <app-classifier *ngFor="let c of classifiers" [classifier]="c"></app-classifier>
-</div>

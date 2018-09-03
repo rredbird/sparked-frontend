@@ -17,6 +17,7 @@ export class OrderGeneratorComponent implements OnInit {
         this.order = new OrderDto();
         this.order.id = "NEWID";
         this.order.name = ""
+        this.order.orderStatus = "WAINTING"
 
         this.backendService.classifiers().subscribe(
         data => { 
@@ -51,6 +52,7 @@ export class OrderGeneratorComponent implements OnInit {
         () => console.log('validation methods loaded...')
         );
 
+        this.classifierHidden = true;
         this.metricsHidden = true;
         this.datasetsHidden = true;
         this.validatorsHidden = true;
@@ -83,6 +85,7 @@ export class OrderGeneratorComponent implements OnInit {
     public datasets : DatasetDto[];
     public validationMethods : ValidationMethodDto[];
 
+    public classifierHidden : Boolean;
     public metricsHidden : Boolean;
     public datasetsHidden : Boolean;
     public validatorsHidden : Boolean;
