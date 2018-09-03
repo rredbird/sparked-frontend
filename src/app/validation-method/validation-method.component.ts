@@ -9,9 +9,16 @@ export class ValidationMethodComponent implements OnInit {
 
     @Input() validationMethod : ValidationMethodDto;
     
-    constructor() { }
+    constructor() { 
+        this.selected = false;
+    }
 
     ngOnInit() {
     }
 
+    public selected : Boolean;
+    
+    public toggleSelected() {
+        
+    }
 }
