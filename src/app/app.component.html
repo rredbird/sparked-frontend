@@ -1,10 +1,12 @@
 <app-navbar></app-navbar>
 
-<div class="container">
-  <app-orders *ngIf="this.appService.view=='orders'"></app-orders>
-  <app-order-generator *ngIf="this.appService.view=='orderGenerator'"></app-order-generator>
-  <div class="starter-template" [hidden]="true">
-      <h1>Bootstrap starter template</h1>
-      <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
-  </div>
-</div>
+<div class="image"></div>
+
+<div class="left-box box background"></div>
+
+<div *ngIf="this.appService.view!='orderGenerator'" class="right-box box background"></div>
+
+<app-orders *ngIf="this.appService.view=='orders'"></app-orders>
+<app-order-generator *ngIf="this.appService.view=='orderGenerator'"></app-order-generator>
+
+<div *ngIf="this.appService.view=='orderGenerator'" class="paper box background"></div>
