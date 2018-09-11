@@ -89,4 +89,6 @@ export class OrderGeneratorComponent implements OnInit {
     public metricsHidden : Boolean;
     public datasetsHidden : Boolean;
     public validatorsHidden : Boolean;
+
+    public step : Number = 0;
 }

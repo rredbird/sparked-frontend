@@ -10,33 +10,48 @@ body {
     height: $box-height;
     width: $box-width;
     top: $box-top;
+
+    &.left {
+        //left: $left-box-left;
+        right: $box-side-distance;
+    }
+
+    &.right {
+        left: $box-side-distance;
+    }
+
+    &.background {
+        opacity: $box-opacity;
+        background-color: white;
+    }
+
+    &.container {
+        color: $text-color;
+        font: 100% $text-font;
+    }
 }
 
 .container {
-    color: $text-color;
-    font: 100% $text-font;
     padding: $container-padding;
-}
-
-.background {
-    opacity: $opacity;
-    background-color: white;
-}
-
-.left-box {
-    left: $left-box-left;
-}
-
-.right-box {
-    right: $right-box-right;
+    z-index: 10;
+    
 }
 
 .paper {
+    position: $paper-position;
     top: $paper-top;
     height: $paper-height;
     width: $paper-width;
-    right: $paper-right;
-    opacity: $paper-opacity;
+    left: $box-side-distance;
+
+    &.background {
+        opacity: $paper-opacity;
+        //right: $paper-right;
+    }
+
+    // &.container {
+    //     right: CalculateRightWithPadding($paper-right, $container-padding);
+    // }
 }
 
 .image {
@@ -50,4 +65,23 @@ body {
     background-size: cover;
     
     box-shadow:inset 2em -2em 4em 1em $background-color;
+}
+
+.menu {
+    border-radius: 2em;
+    background-color: orange;
+    width: 30em;
+    height: 3em;
+
+    position: fixed;
+    right: 0em;
+    top: 3em;
+
+    z-index: 100;
+
+    transform: rotate($menu-rotation);
+
+    &.selected {
+        height: 5em;
+    }
 }

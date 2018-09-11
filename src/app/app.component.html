@@ -2,9 +2,9 @@
 
 <div class="image"></div>
 
-<div class="left-box box background"></div>
+<div class="box left background"></div>
 
-<div *ngIf="this.appService.view!='orderGenerator'" class="right-box box background"></div>
+<!-- <div *ngIf="this.appService.view!='orderGenerator'" class="box right background"></div> -->
 
 <app-orders *ngIf="this.appService.view=='orders'"></app-orders>
 <app-order-generator *ngIf="this.appService.view=='orderGenerator'"></app-order-generator>

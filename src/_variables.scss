@@ -6,31 +6,38 @@ $caption-color: lightgray;
 
 $background-color: #003556;
 
-$opacity: 0.4;
+$box-opacity: 0.4;
 
 $left-box-left: 13em;
+$box-side-distance: calc(50vw + 5em);
 
 $right-box-right: 2em;
-
-$paper-right: 2em;
-$paper-top: 24em;
-$paper-height: 40em;
-$paper-width: 44em;
-$paper-opacity: 0.9;
 
 $box-top: 14em;
 $box-width: 22em;
 $box-height: 34em;
 $box-position: absolute;
 
+$paper-position: absolute;
+$paper-right: 2em;
+$paper-top: 24em;
+$paper-height: 40em;
+$paper-width: 44em;
+$paper-opacity: 0.9;
+
 $container-padding: 1em;
 
 $image-right: 0em;
 $image-top: 0em;
 $image-source: './assets/data-and-connections.jpg';
-$image-width: 60em;
-$image-height: 40em;
+$image-width: 1086px;
+$image-height: 725px;
 
+// @function CalculateDistanceWithPadding($distance, $padding){
+//     @return $distance - (2 * $padding)
+// }
+
+$menu-rotation: -45deg;
 
 // $gradients: () !default;
 // $gradients: map-merge((

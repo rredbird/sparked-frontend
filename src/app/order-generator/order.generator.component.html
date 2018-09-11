@@ -1,4 +1,4 @@
-<div class="box left-box container">
+<div *ngIf="this.step == 0" class="box left container">
     <h2>Neue Order erstellen</h2>
 
     <label for="orderName">Titel</label><br>
@@ -7,7 +7,7 @@
     <input type="button" (click)="createOrder()" value="erstellen">
 </div>
 
-<!-- <div class="box left-box container">
+<div *ngIf="this.step == 1" class="box left container">
     <div class="boxtitle">
         <h3 (click)="classifierHidden = ! classifierHidden">Classifiers</h3>
     </div>
@@ -15,7 +15,7 @@
         <app-classifier *ngFor="let c of classifiers" [classifier]="c"></app-classifier>
     </div>
 </div>
-<div class="box right-box container">
+<div *ngIf="this.step == 2" class="box left container">
     <div class="boxtitle">
         <h3 (click)="metricsHidden = ! metricsHidden">Metrics</h3>
     </div>
@@ -23,7 +23,7 @@
         <app-metric *ngFor="let m of metrics" [metric]="m"></app-metric>
     </div>
 </div>
-<div class="box right-box container">
+<div *ngIf="this.step == 3" class="box left container">
     <div class="boxtitle">
         <h3 (click)="datasetsHidden = ! datasetsHidden">Testdaten</h3>
     </div>
@@ -31,11 +31,14 @@
         <app-dataset *ngFor="let d of datasets" [dataset]="d"></app-dataset>
     </div>
 </div>
-<div class="box right-box container">
+<div *ngIf="this.step == 4" class="box left container">
     <div class="boxtitle">
         <h3 (click)="validatorsHidden = ! validatorsHidden">Validatoren</h3>
     </div>
     <div *ngIf="! validatorsHidden" class="boxdata">
         <app-validation-method *ngFor="let v of validationMethods" [validationMethod]="v"></app-validation-method>
     </div>
-</div> -->
+</div>
+<div class="paper container">
+    Hallo
+</div>
