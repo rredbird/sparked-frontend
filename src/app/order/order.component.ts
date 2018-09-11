@@ -4,7 +4,7 @@ import { OrderDto } from '../shared/dto/orderdto.type';
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
-  styleUrls: ['./order.component.css']
+  styleUrls: ['./order.component.scss']
 })
 export class OrderComponent implements OnInit {
     @Input() order : OrderDto;

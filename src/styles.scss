@@ -1,0 +1,53 @@
+@import 'variables';
+
+body {
+    background-color: $background-color;
+    margin:0px;
+}
+
+.box {
+    position: $box-position;
+    height: $box-height;
+    width: $box-width;
+    top: $box-top;
+}
+
+.container {
+    color: $text-color;
+    font: 100% $text-font;
+    padding: $container-padding;
+}
+
+.background {
+    opacity: $opacity;
+    background-color: white;
+}
+
+.left-box {
+    left: $left-box-left;
+}
+
+.right-box {
+    right: $right-box-right;
+}
+
+.paper {
+    top: $paper-top;
+    height: $paper-height;
+    width: $paper-width;
+    right: $paper-right;
+    opacity: $paper-opacity;
+}
+
+.image {
+    position: absolute;
+    right: $image-right;
+    top: $image-top;
+    width: $image-width;
+    height: $image-height;
+
+    background: url($image-source) no-repeat center center fixed; 
+    background-size: cover;
+    
+    box-shadow:inset 2em -2em 4em 1em $background-color;
+}

@@ -5,8 +5,9 @@ import { AppService } from '../app/app.service';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css']
+    styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent {
     constructor(private backendService: BackendService, public appService: AppService) { 
         backendService.greeting().subscribe(

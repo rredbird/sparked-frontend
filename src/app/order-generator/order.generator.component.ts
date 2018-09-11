@@ -9,7 +9,7 @@ import { ValidationMethodDto } from '../shared/dto/validationmethoddto.type';
 @Component({
   selector: 'app-order-generator',
   templateUrl: './order.generator.component.html',
-  styleUrls: ['./order.generator.component.css']
+  styleUrls: ['./order.generator.component.scss']
 })
 export class OrderGeneratorComponent implements OnInit {
     

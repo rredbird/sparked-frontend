@@ -1,5 +1,10 @@
-<h3>{{validationMethod.name}}</h3>
+<div>
+<h5>{{validationMethod.name}}</h5>
+<input type="button" (click)="toggleSelected()" value="auswählen">
+</div>
 
+<!--
 <div>
 <app-parameter *ngFor="let p of validationMethod.parameters" [parameter]="p"></app-parameter>
 </div>
+-->

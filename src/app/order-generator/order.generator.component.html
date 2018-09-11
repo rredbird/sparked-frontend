@@ -1,48 +1,41 @@
+<div class="box left-box container">
+    <h2>Neue Order erstellen</h2>
 
-<div>
+    <label for="orderName">Titel</label><br>
+    <input id="orderName" type="text" [(ngModel)]="this.order.name">
 
-    <div class="container">
-        <div class="widebox">
-            <h2>Neue Order erstellen</h2>
+    <input type="button" (click)="createOrder()" value="erstellen">
+</div>
 
-            <label for="orderName">Titel</label><br>
-            <input id="orderName" type="text" [(ngModel)]="this.order.name">
-
-            <input type="button" (click)="createOrder()" value="erstellen">
-        </div>
-        <div class="vertivalScroll">
-            <div class="box">
-                <div class="boxtitle">
-                    <h3 (click)="classifierHidden = ! classifierHidden">Classifiers</h3>
-                </div>
-                <div *ngIf="! classifierHidden" class="boxdata">
-                    <app-classifier *ngFor="let c of classifiers" [classifier]="c"></app-classifier>
-                </div>
-            </div>
-            <div class="box">
-                <div class="boxtitle">
-                    <h3 (click)="metricsHidden = ! metricsHidden">Metrics</h3>
-                </div>
-                <div *ngIf="! metricsHidden" class="boxdata">
-                    <app-metric *ngFor="let m of metrics" [metric]="m"></app-metric>
-                </div>
-            </div>
-            <div class="box">
-                <div class="boxtitle">
-                    <h3 (click)="datasetsHidden = ! datasetsHidden">Testdaten</h3>
-                </div>
-                <div *ngIf="! datasetsHidden" class="boxdata">
-                    <app-dataset *ngFor="let d of datasets" [dataset]="d"></app-dataset>
-                </div>
-            </div>
-            <div class="box">
-                <div class="boxtitle">
-                    <h3 (click)="validatorsHidden = ! validatorsHidden">Validatoren</h3>
-                </div>
-                <div *ngIf="! validatorsHidden" class="boxdata">
-                    <app-validation-method *ngFor="let v of validationMethods" [validationMethod]="v"></app-validation-method>
-                </div>
-            </div>
-        </div>
+<!-- <div class="box left-box container">
+    <div class="boxtitle">
+        <h3 (click)="classifierHidden = ! classifierHidden">Classifiers</h3>
+    </div>
+    <div *ngIf="! classifierHidden" class="boxdata">
+        <app-classifier *ngFor="let c of classifiers" [classifier]="c"></app-classifier>
     </div>
 </div>
+<div class="box right-box container">
+    <div class="boxtitle">
+        <h3 (click)="metricsHidden = ! metricsHidden">Metrics</h3>
+    </div>
+    <div *ngIf="! metricsHidden" class="boxdata">
+        <app-metric *ngFor="let m of metrics" [metric]="m"></app-metric>
+    </div>
+</div>
+<div class="box right-box container">
+    <div class="boxtitle">
+        <h3 (click)="datasetsHidden = ! datasetsHidden">Testdaten</h3>
+    </div>
+    <div *ngIf="! datasetsHidden" class="boxdata">
+        <app-dataset *ngFor="let d of datasets" [dataset]="d"></app-dataset>
+    </div>
+</div>
+<div class="box right-box container">
+    <div class="boxtitle">
+        <h3 (click)="validatorsHidden = ! validatorsHidden">Validatoren</h3>
+    </div>
+    <div *ngIf="! validatorsHidden" class="boxdata">
+        <app-validation-method *ngFor="let v of validationMethods" [validationMethod]="v"></app-validation-method>
+    </div>
+</div> -->
