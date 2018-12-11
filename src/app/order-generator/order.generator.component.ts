@@ -12,43 +12,47 @@ import { ValidationMethodDto } from '../shared/dto/validationmethoddto.type';
   styleUrls: ['./order.generator.component.scss']
 })
 export class OrderGeneratorComponent implements OnInit {
-    
-    constructor(private backendService:BackendService) {
+    public classifiers: ClassifierDto[];
+    public order: OrderDto;
+    public metrics: MetricDto[];
+    public datasets: DatasetDto[];
+    public validationMethods: ValidationMethodDto[];
+
+    public classifierHidden: Boolean;
+    public metricsHidden: Boolean;
+    public datasetsHidden: Boolean;
+    public validatorsHidden: Boolean;
+
+    public step: Number = 0;
+
+    constructor(private backendService: BackendService) {
         this.order = new OrderDto();
-        this.order.id = "NEWID";
-        this.order.name = ""
-        this.order.orderStatus = "WAINTING"
+        this.order.id = 'NEW_ID';
+        this.order.name = '';
+        this.order.orderStatus = 'WAITING';
 
         this.backendService.classifiers().subscribe(
-        data => { 
-            this.classifiers = data;
-        },
-        err => { console.error(err) },
+        data => this.classifiers = data,
+        err => console.error(err),
         () => console.log('orders loaded...')
         );
 
 
         this.backendService.metrics().subscribe(
-        data => { 
-            this.metrics = data;
-        },
-        err => { console.error(err) },
+        data => this.metrics = data,
+        err => console.error(err),
         () => console.log('metrics loaded...')
         );
 
         this.backendService.datasets().subscribe(
-        data => { 
-            this.datasets = data;
-        },
-        err => { console.error(err) },
+        data => this.datasets = data,
+        err => console.error(err),
         () => console.log('metrics loaded...')
         );
 
         this.backendService.validationmethods().subscribe(
-        data => { 
-            this.validationMethods = data;
-        },
-        err => { console.error(err) },
+        data => this.validationMethods = data,
+        err => console.error(err),
         () => console.log('validation methods loaded...')
         );
 
@@ -62,33 +66,17 @@ export class OrderGeneratorComponent implements OnInit {
     }
 
     public erstellen() {
-        
     }
 
     private createOrder() {
-        if(this.order.name === "") {
-            alert("name is empty");
+        if (this.order.name === '') {
+            alert('name is empty');
             return;
         }
         this.backendService.createOrder(this.order).subscribe(
-        data => { 
-            this.order = data;
-        },
-        err => { console.error(err) },
+        data => this.order = data,
+        err => console.error(err),
         () => console.log('order created...')
         );
     }
-
-    public classifiers : ClassifierDto[];
-    public order : OrderDto;
-    public metrics : MetricDto[];
-    public datasets : DatasetDto[];
-    public validationMethods : ValidationMethodDto[];
-
-    public classifierHidden : Boolean;
-    public metricsHidden : Boolean;
-    public datasetsHidden : Boolean;
-    public validatorsHidden : Boolean;
-
-    public step : Number = 0;
 }

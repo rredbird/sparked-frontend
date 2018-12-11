@@ -18,6 +18,7 @@ import { MetricComponent } from './metric/metric.component';
 import { DatasetComponent } from './dataset/dataset.component';
 import { ValidationMethodComponent } from './validation-method/validation-method.component';
 import { ParameterComponent } from './parameter/parameter.component';
+import { NavigatorService } from './navigator-service/navigator.service';
 
 
 @NgModule({
@@ -40,7 +41,7 @@ import { ParameterComponent } from './parameter/parameter.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [BackendService, AppService, LocalizationService],
+  providers: [BackendService, AppService, LocalizationService, NavigatorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

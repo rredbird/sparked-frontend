@@ -10,7 +10,7 @@ import { ValidationMethodDto } from '../shared/dto/validationmethoddto.type';
 @Injectable()
 export class BackendService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   public greeting() {
     return this.http.get<Greeting>('http://localhost:8080/greeting');
@@ -20,19 +20,18 @@ export class BackendService {
     const endpoint = 'http://localhost:8080/upload';
     const formData: FormData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
-      
     return this.http.post(endpoint, formData);
-  } 
+  }
 
     public orders() {
         return this.http.get<OrderDto[]>('http://localhost:8080/orders');
     }
 
-    public order(id : string) {
+    public order(id: string) {
         return this.http.get<OrderDto>('http://localhost:8080/orders/' + id);
     }
 
-    public createOrder(order : OrderDto) {
+    public createOrder(order: OrderDto) {
         return this.http.post<OrderDto>('http://localhost:8080/orders/', order);
     }
 

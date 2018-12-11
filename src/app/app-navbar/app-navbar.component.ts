@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppService } from '../app.service';
+import { NavigatorService } from '../navigator-service/navigator.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,17 +9,16 @@ import { AppService } from '../app.service';
 
 export class AppNavbarComponent implements OnInit {
 
-  constructor(private appService:AppService) { }
+  constructor(private navigatorService: NavigatorService) { }
 
   ngOnInit() {
   }
 
   public openOrders() {
-    this.appService.view = "orders";
-    
+    this.navigatorService.view = 'orders';
   }
 
   public openOrderGenerator() {
-    this.appService.view = "orderGenerator";
+    this.navigatorService.view = 'orderGenerator';
   }
 }
