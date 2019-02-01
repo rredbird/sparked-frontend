@@ -4,45 +4,6 @@ $caption-font: Arial;
 $text-color: lightgray;
 $caption-color: lightgray;
 
-$background-color: #003556;
-
-$box-opacity: 0.4;
-
-$left-box-left: 13em;
-$box-side-distance: calc(50vw + 5em);
-
-$right-box-right: 2em;
-
-$box-top: 14em;
-$box-width: 22em;
-$box-height: 34em;
-$box-position: absolute;
-
-$paper-position: absolute;
-$paper-right: 2em;
-$paper-top: 24em;
-$paper-height: 40em;
-$paper-width: 44em;
-$paper-opacity: 0.9;
-
-$container-padding: 1em;
-
-$image-right: 0em;
-$image-top: 0em;
-$image-source: './assets/data-and-connections.jpg';
-$image-width: 1086px;
-$image-height: 725px;
-
-// @function CalculateDistanceWithPadding($distance, $padding){
-//     @return $distance - (2 * $padding)
-// }
-
-$menu-rotation: -45deg;
-
-// $gradients: () !default;
-// $gradients: map-merge((
-//     chill: linear-gradient(135deg, #09e485 0%,#0291e3 100%),
-//     warm: linear-gradient(135deg, #F2CD48 0%,#FD803F 100%),
-//     hot: linear-gradient(135deg, #F9445A 0%,#FD803F 100%),
-//     cold: linear-gradient(135deg, #8019C6 0%,#2F93CC 100%)
-// ), $gradients);
+$color-light: #eef;
+$color-medium: #dde;
+$color-dark: #bbc;

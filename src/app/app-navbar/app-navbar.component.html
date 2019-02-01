@@ -1,25 +1,32 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-  <a class="navbar-brand" href="#">
+  <a class="coda-logo" href="#">
     <img src="assets/logo_coda_88px.png" height="44" width="44" alt="Coda" />
   </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+  <div style="background-color: transparent; position:absolute; left:-600px; top:-600px; width: 1024px; height: 1024px; border-radius: 512px; border-color:#707070; border-width: 1px; border-style: solid;" >
+  </div>
+  <div style="position:absolute; left:450px;">
+    <input type="text" style="width:800px; height: 30px; margin-top:20px;" />
+  </div>
+  <div style="visibility:collapse; position: absolute; left: 450px; ">
+  </div>
+  
+  <a href="#" (click)="openOrders()" style="position:relative; left:340px; top: 150px;">Orders</a>
+  <a href="#" (click)="openOrderGenerator()" style="position:relative; left:240px; top: 220px;">New</a>
+
+  <div class="align-right" style="visibility:collapse;">
+    <ul class="menu">
+      <li>
+        <a class="active" href="#">Home</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#" (click)="openOrders()">Orders</a>
+      <li>
+        <a href="#" (click)="openOrders()">Orders</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#" (click)="openOrderGenerator()">Create Order</a>
+      <li>
+        <a href="#" (click)="openOrderGenerator()">Create Order</a>
       </li>
     </ul>
   </div>
-
-  <div class="menu" (click)="openOrderGenerator()">
-    
+  <div class="line">
+    &nbsp;
   </div>
 </nav>

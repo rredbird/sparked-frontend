@@ -19,6 +19,7 @@ import { DatasetComponent } from './dataset/dataset.component';
 import { ValidationMethodComponent } from './validation-method/validation-method.component';
 import { ParameterComponent } from './parameter/parameter.component';
 import { NavigatorService } from './navigator-service/navigator.service';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { NavigatorService } from './navigator-service/navigator.service';
     MetricComponent,
     DatasetComponent,
     ValidationMethodComponent,
+    LandingPageComponent,
   ],
   imports: [
     BrowserModule,

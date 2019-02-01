@@ -3,8 +3,6 @@
 
     <label for="orderName">Titel</label><br>
     <input id="orderName" type="text" [(ngModel)]="this.order.name">
-
-    <input type="button" (click)="createOrder()" value="erstellen">
 </div>
 
 <div *ngIf="this.step == 1" class="box left container">
@@ -39,6 +37,11 @@
         <app-validation-method *ngFor="let v of validationMethods" [validationMethod]="v"></app-validation-method>
     </div>
 </div>
+<input type="button" (click)="next()" value="next">
 <div class="paper container">
-    Hallo
+    <p>
+        Das hier ist eine Zusammenfassung der Order...
+    </p>
+    <p>{{this.order.name}}&nbsp;</p>
+    <input type="button" (click)="createOrder()" value="erstellen">
 </div>

@@ -1,87 +1,62 @@
 @import 'variables';
 
 body {
-    background-color: $background-color;
+    //background-color: $color-medium;
     margin:0px;
 }
 
-.box {
-    position: $box-position;
-    height: $box-height;
-    width: $box-width;
-    top: $box-top;
-
-    &.left {
-        //left: $left-box-left;
-        right: $box-side-distance;
-    }
-
-    &.right {
-        left: $box-side-distance;
-    }
-
-    &.background {
-        opacity: $box-opacity;
-        background-color: white;
-    }
-
-    &.container {
-        color: $text-color;
-        font: 100% $text-font;
-    }
-}
-
-.container {
-    padding: $container-padding;
-    z-index: 10;
-    
-}
-
-.paper {
-    position: $paper-position;
-    top: $paper-top;
-    height: $paper-height;
-    width: $paper-width;
-    left: $box-side-distance;
-
-    &.background {
-        opacity: $paper-opacity;
-        //right: $paper-right;
-    }
-
-    // &.container {
-    //     right: CalculateRightWithPadding($paper-right, $container-padding);
-    // }
-}
-
-.image {
-    position: absolute;
-    right: $image-right;
-    top: $image-top;
-    width: $image-width;
-    height: $image-height;
-
-    background: url($image-source) no-repeat center center fixed; 
-    background-size: cover;
-    
-    box-shadow:inset 2em -2em 4em 1em $background-color;
+.coda-logo{
+    position: fixed;
+    left: 20px;
+    top: 10px;
 }
 
 .menu {
-    border-radius: 2em;
-    background-color: orange;
-    width: 30em;
-    height: 3em;
+    margin: 0px;
+    margin-top:0px;
+    padding-top: 20px;
+    padding-bottom: 22px;
+    padding-right:30vw;
+    list-style-type: none;
+    background-color: $color-light;
+    
+    li {
+        display: inline;
+        margin-left:20px;
+        a {
+            padding: 20px; 
+            cursor:pointer;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+        a:hover {
+            background-color: $color-dark;
+        }
 
-    position: fixed;
-    right: 0em;
-    top: 3em;
+        a.active {
+            background-color: $color-medium;
+        }
 
-    z-index: 100;
-
-    transform: rotate($menu-rotation);
-
-    &.selected {
-        height: 5em;
+        a.active:hover {
+            background-color: $color-dark;
+        }
     }
+    menu.active {
+        background-color: $color-dark;
+    }
+}
+
+a {
+    text-decoration: none;
+}
+
+.line {
+    background-color: $color-dark;
+    height: 2px;
+}
+
+.align-right {
+    text-align: right;
+    width: 100vw;
+    margin:0px;
 }

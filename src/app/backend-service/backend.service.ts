@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Greeting } from '../shared/dto/greeting.type';
 import { OrderDto } from '../shared/dto/orderdto.type';
 import { MetricDto } from '../shared/dto/metricdto.type';
 import { ClassifierDto } from '../shared/dto/classifierdto.type';
@@ -10,18 +9,14 @@ import { ValidationMethodDto } from '../shared/dto/validationmethoddto.type';
 @Injectable()
 export class BackendService {
 
-  constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) { }
 
-  public greeting() {
-    return this.http.get<Greeting>('http://localhost:8080/greeting');
-  }
-
-  public postFile(fileToUpload: File) {
-    const endpoint = 'http://localhost:8080/upload';
-    const formData: FormData = new FormData();
-    formData.append('file', fileToUpload, fileToUpload.name);
-    return this.http.post(endpoint, formData);
-  }
+    public postFile(fileToUpload: File) {
+        const endpoint = 'http://localhost:8080/upload';
+        const formData: FormData = new FormData();
+        formData.append('file', fileToUpload, fileToUpload.name);
+        return this.http.post(endpoint, formData);
+    }
 
     public orders() {
         return this.http.get<OrderDto[]>('http://localhost:8080/orders');
@@ -31,8 +26,12 @@ export class BackendService {
         return this.http.get<OrderDto>('http://localhost:8080/orders/' + id);
     }
 
-    public createOrder(order: OrderDto) {
-        return this.http.post<OrderDto>('http://localhost:8080/orders/', order);
+    public saveOrder(order: OrderDto){
+        return this.http.post<OrderDto>('http://localhost:8080/orders/save', order);
+    }
+
+    public createOrder() {
+        return this.http.get<OrderDto>('http://localhost:8080/orders/new');
     }
 
     public classifiers() {

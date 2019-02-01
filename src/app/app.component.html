@@ -1,12 +1,12 @@
-<app-navbar></app-navbar>
+<app-navbar>Display navbar here.</app-navbar>
 
-<div class="image"></div>
+<div style="left:400px; position:absolute;">
+    <app-landing-page *ngIf="this.navigatorService.view=='start'">loading landing page...</app-landing-page>
 
-<div class="box left background"></div>
+    <!-- <div *ngIf="this.navigatorService.view!='orderGenerator'" class="box right background"></div> -->
 
-<!-- <div *ngIf="this.appService.view!='orderGenerator'" class="box right background"></div> -->
+    <app-orders *ngIf="this.navigatorService.view=='orders'"></app-orders>
+    <app-order-generator *ngIf="this.navigatorService.view=='orderGenerator'"></app-order-generator>
 
-<app-orders *ngIf="this.appService.view=='orders'"></app-orders>
-<app-order-generator *ngIf="this.appService.view=='orderGenerator'"></app-order-generator>
-
-<div *ngIf="this.appService.view=='orderGenerator'" class="paper box background"></div>
+    <div *ngIf="this.navigatorService.view=='orderGenerator'" ></div>
+</div>

@@ -23,13 +23,19 @@ export class OrderGeneratorComponent implements OnInit {
     public datasetsHidden: Boolean;
     public validatorsHidden: Boolean;
 
-    public step: Number = 0;
+    private step: Number = 0;
 
     constructor(private backendService: BackendService) {
         this.order = new OrderDto();
         this.order.id = 'NEW_ID';
         this.order.name = '';
         this.order.orderStatus = 'WAITING';
+
+        this.backendService.createOrder().subscribe(
+            data => this.order = data,
+            err => console.error(err),
+            () => console.log('order created')
+        );
 
         this.backendService.classifiers().subscribe(
         data => this.classifiers = data,
@@ -73,10 +79,14 @@ export class OrderGeneratorComponent implements OnInit {
             alert('name is empty');
             return;
         }
-        this.backendService.createOrder(this.order).subscribe(
+        this.backendService.saveOrder(this.order).subscribe(
         data => this.order = data,
         err => console.error(err),
         () => console.log('order created...')
         );
+    }
+
+    private next() {
+        this.step = +this.step + +1;
     }
 }
