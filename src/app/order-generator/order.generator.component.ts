@@ -71,14 +71,14 @@ export class OrderGeneratorComponent implements OnInit {
     ngOnInit() {
     }
 
-    public erstellen() {
-    }
-
     private createOrder() {
         if (this.order.name === '') {
             alert('name is empty');
             return;
         }
+        this.order.classifiers = this.classifiers.filter(function (classifier) {
+            return classifier.selected == true;
+        });
         this.backendService.saveOrder(this.order).subscribe(
         data => this.order = data,
         err => console.error(err),
@@ -88,5 +88,8 @@ export class OrderGeneratorComponent implements OnInit {
 
     private next() {
         this.step = +this.step + +1;
+    }
+    private previous() {
+        this.step = +this.step - 1;
     }
 }

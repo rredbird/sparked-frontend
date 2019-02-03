@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ClassifierDto } from '../shared/dto/classifierdto.type';
 import { LocalizationService } from '../localization-service/localization.service';
+import { OrderDto } from '../shared/dto/orderdto.type';
 
 @Component({
   selector: 'app-classifier',
