@@ -4,7 +4,7 @@ import { NavigatorService } from '../navigator-service/navigator.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './app-navbar.component.html',
-  styleUrls: ['./app-navbar.component.css']
+  styleUrls: ['./app-navbar.component.scss']
 })
 
 export class AppNavbarComponent implements OnInit {
@@ -12,6 +12,10 @@ export class AppNavbarComponent implements OnInit {
   constructor(private navigatorService: NavigatorService) { }
 
   ngOnInit() {
+  }
+
+  public openLandingPage() {
+    this.navigatorService.view = "start";
   }
 
   public openOrders() {

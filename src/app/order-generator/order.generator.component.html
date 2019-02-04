@@ -7,9 +7,9 @@
 
 <div *ngIf="this.step == 1" class="box left container">
     <div class="boxtitle">
-        <h3 (click)="classifierHidden = ! classifierHidden">Classifiers</h3>
+        <h3>Classifiers</h3>
     </div>
-    <div *ngIf="! classifierHidden" class="boxdata">
+    <div class="boxdata">
         <app-classifier *ngFor="let c of classifiers" [classifier]="c"></app-classifier>
     </div>
 </div>

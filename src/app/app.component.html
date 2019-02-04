@@ -1,6 +1,4 @@
-<app-navbar>Display navbar here.</app-navbar>
-
-<div style="left:400px; position:absolute;">
+<content>
     <app-landing-page *ngIf="this.navigatorService.view=='start'">loading landing page...</app-landing-page>
 
     <!-- <div *ngIf="this.navigatorService.view!='orderGenerator'" class="box right background"></div> -->
@@ -9,4 +7,5 @@
     <app-order-generator *ngIf="this.navigatorService.view=='orderGenerator'"></app-order-generator>
 
     <div *ngIf="this.navigatorService.view=='orderGenerator'" ></div>
-</div>
+</content>
+<app-navbar>Display navbar here.</app-navbar>

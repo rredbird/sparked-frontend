@@ -18,7 +18,6 @@ export class OrderGeneratorComponent implements OnInit {
     public datasets: DatasetDto[];
     public validationMethods: ValidationMethodDto[];
 
-    public classifierHidden: Boolean;
     public metricsHidden: Boolean;
     public datasetsHidden: Boolean;
     public validatorsHidden: Boolean;

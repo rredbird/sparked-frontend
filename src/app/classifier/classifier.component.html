@@ -1,6 +1,6 @@
 
 
-<div class="clickexpand" [ngClass]="{'selected': selected, 'select': selected }">
+<div class="classifier clickexpand" [ngClass]="{'selected': selected, 'select': selected }">
     <h5 (click)="expanded = !expanded">{{classifier.name}}</h5>
 
     <div *ngIf="expanded">

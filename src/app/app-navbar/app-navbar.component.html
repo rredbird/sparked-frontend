@@ -1,32 +1,19 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+<nav id="navbar">
   <a class="coda-logo" href="#">
     <img src="assets/logo_coda_88px.png" height="44" width="44" alt="Coda" />
   </a>
-  <div style="background-color: transparent; position:absolute; left:-600px; top:-600px; width: 1024px; height: 1024px; border-radius: 512px; border-color:#707070; border-width: 1px; border-style: solid;" >
+  <div id="searchbar">
+    <input type="text" />
   </div>
-  <div style="position:absolute; left:450px;">
-    <input type="text" style="width:800px; height: 30px; margin-top:20px;" />
-  </div>
-  <div style="visibility:collapse; position: absolute; left: 450px; ">
-  </div>
-  
-  <a href="#" (click)="openOrders()" style="position:relative; left:340px; top: 150px;">Orders</a>
-  <a href="#" (click)="openOrderGenerator()" style="position:relative; left:240px; top: 220px;">New</a>
-
-  <div class="align-right" style="visibility:collapse;">
-    <ul class="menu">
-      <li>
-        <a class="active" href="#">Home</a>
-      </li>
-      <li>
-        <a href="#" (click)="openOrders()">Orders</a>
-      </li>
-      <li>
-        <a href="#" (click)="openOrderGenerator()">Create Order</a>
-      </li>
-    </ul>
-  </div>
-  <div class="line">
-    &nbsp;
-  </div>
+  <ul id="menu">
+    <li>
+      <a class="active" href="#" (click)="openLandingPage()">Home</a>
+    </li>
+    <li>
+      <a href="#" (click)="openOrders()">Orders</a>
+    </li>
+    <li>
+      <a href="#" (click)="openOrderGenerator()">Create Order</a>
+    </li>
+  </ul>
 </nav>

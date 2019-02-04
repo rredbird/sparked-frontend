@@ -6,7 +6,7 @@ import { OrderDto } from '../shared/dto/orderdto.type';
 @Component({
   selector: 'app-classifier',
   templateUrl: './classifier.component.html',
-  styleUrls: ['./classifier.component.css']
+  styleUrls: ['./classifier.component.scss']
 })
 export class ClassifierComponent implements OnInit {
     @Input() classifier : ClassifierDto;

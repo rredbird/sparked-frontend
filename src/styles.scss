@@ -6,20 +6,56 @@ body {
 }
 
 .coda-logo{
-    position: fixed;
-    left: 20px;
-    top: 10px;
+    //position: fixed;
+    margin-left: 20px;
+    margin-top: 10px;
 }
 
-.menu {
-    margin: 0px;
-    margin-top:0px;
+#searchbar {
+    position: fixed;
+    left:200px;
+    top: 17px;
+
+    input {
+        height: 20px;
+        width: 400px;
+    }
+}
+#navbar {
+    border-bottom-color: $color-dark;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: $navbarHeight;
+    width:100vw;
+}
+
+content {
+    position: fixed;
+    top: $navbarHeight;
+    margin-top: 2px;
+    padding-top: 60px;
+    left: 20vw;
+    overflow-y: auto;
+    width: 80vw;
+    height: 90vh;
+}
+
+#menu {
+    position: fixed;
+    top: $navbarHeight;
     padding-top: 20px;
     padding-bottom: 22px;
     padding-right:30vw;
     list-style-type: none;
-    background-color: $color-light;
+    background-color: transparent;
     
+    text-align: right;
+    margin:0px;
+    margin-top:2px;
+
     li {
         display: inline;
         margin-left:20px;
@@ -28,6 +64,7 @@ body {
             cursor:pointer;
             border-bottom-left-radius: 8px;
             border-bottom-right-radius: 8px;
+            background-color: $color-light;
         }
         a:hover {
             background-color: $color-dark;
@@ -48,15 +85,4 @@ body {
 
 a {
     text-decoration: none;
-}
-
-.line {
-    background-color: $color-dark;
-    height: 2px;
-}
-
-.align-right {
-    text-align: right;
-    width: 100vw;
-    margin:0px;
 }
