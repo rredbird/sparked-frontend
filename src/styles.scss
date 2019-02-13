@@ -5,84 +5,15 @@ body {
     margin:0px;
 }
 
-.coda-logo{
-    //position: fixed;
-    margin-left: 20px;
-    margin-top: 10px;
-}
-
-#searchbar {
-    position: fixed;
-    left:200px;
-    top: 17px;
-
-    input {
-        height: 20px;
-        width: 400px;
-    }
-}
-#navbar {
-    border-bottom-color: $color-dark;
-    border-bottom-width: 2px;
-    border-bottom-style: solid;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    height: $navbarHeight;
-    width:100vw;
-}
-
-content {
-    position: fixed;
-    top: $navbarHeight;
-    margin-top: 2px;
-    padding-top: 60px;
-    left: 20vw;
-    overflow-y: auto;
-    width: 80vw;
-    height: 90vh;
-}
-
-#menu {
-    position: fixed;
-    top: $navbarHeight;
-    padding-top: 20px;
-    padding-bottom: 22px;
-    padding-right:30vw;
-    list-style-type: none;
-    background-color: transparent;
-    
-    text-align: right;
-    margin:0px;
-    margin-top:2px;
-
-    li {
-        display: inline;
-        margin-left:20px;
-        a {
-            padding: 20px; 
-            cursor:pointer;
-            border-bottom-left-radius: 8px;
-            border-bottom-right-radius: 8px;
-            background-color: $color-light;
-        }
-        a:hover {
-            background-color: $color-dark;
-        }
-
-        a.active {
-            background-color: $color-medium;
-        }
-
-        a.active:hover {
-            background-color: $color-dark;
-        }
-    }
-    menu.active {
-        background-color: $color-dark;
-    }
-}
-
 a {
     text-decoration: none;
+}
+
+p.rotate {
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }

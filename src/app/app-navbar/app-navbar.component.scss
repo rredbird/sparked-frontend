@@ -1,0 +1,85 @@
+@import '../../variables';
+
+#coda-logo {
+    margin-left: 1em;
+    margin-top: 1em;
+    height: $logoHeight; 
+    width:3.5em;
+}
+
+.coda-menu {
+    float: left;
+    width: $menuWidth;
+    height: $navbarHeight;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+#searchbar {
+    position: fixed;
+    left: 20vw;
+    width: 60vw;
+    top: 1em;
+    box-shadow: none;
+
+    input {
+        height: 1.5em;
+        width: 100%;
+        border-color: transparent;
+        border-bottom-color: darkgray;
+        border-bottom-width: 1px;
+
+        &:focus {
+            outline: none;
+        }
+    }
+}
+#navbar {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: $navbarHeight;
+    width:100vw;
+    background: linear-gradient(to top, transparent, white 60%);
+}
+
+#menu {
+    position: fixed;
+    top: $navbarHeight;
+    list-style-type: none;
+    width: $menuWidth;
+    margin-block-start: 0px;
+    margin-block-end: 0px; 
+    padding-inline-start: 0px;
+
+    li {
+        padding: $menuItemHeight;
+        a { 
+            font: $menuFont;
+            cursor:pointer;
+            padding: $menuItemHeight;
+        }
+        a:hover {
+            background-color: $color-dark;
+        }
+
+        a.active {
+            background-color: $color-medium;
+        }
+
+        a.active:hover {
+            background-color: $color-dark;
+        }
+    }
+}
+
+.bottom-fadeout {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width:100vw;
+    height: 2em;
+    background: linear-gradient(to bottom, transparent, white 60%);
+}

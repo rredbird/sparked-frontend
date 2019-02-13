@@ -1,11 +1,8 @@
 
+<li (click)="expanded = !expanded">{{classifier.name}}</li>
 
-<div class="classifier clickexpand" [ngClass]="{'selected': selected, 'select': selected }">
-    <h5 (click)="expanded = !expanded">{{classifier.name}}</h5>
-
-    <div *ngIf="expanded">
+<div *ngIf="expanded" class="classifierDetail">
+    <div>
         <app-parameter *ngFor="let p of classifier.parameters" [parameter]="p"></app-parameter>
     </div>
-
-    <input type="button" (click)="toggleSelected()" value="{{selected ? 'entfernen' : 'auswählen'}}">
 </div>

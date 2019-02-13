@@ -8,45 +8,45 @@ import { ValidationMethodDto } from '../shared/dto/validationmethoddto.type';
 
 @Injectable()
 export class BackendService {
+    private endpoint  : String = 'http://localhost:8080/';
 
     constructor(private http: HttpClient) { }
 
     public postFile(fileToUpload: File) {
-        const endpoint = 'http://localhost:8080/upload';
         const formData: FormData = new FormData();
         formData.append('file', fileToUpload, fileToUpload.name);
-        return this.http.post(endpoint, formData);
+        return this.http.post(this.endpoint + '/upload', formData);
     }
 
     public orders() {
-        return this.http.get<OrderDto[]>('http://localhost:8080/orders');
+        return this.http.get<OrderDto[]>(this.endpoint + 'orders');
     }
 
     public order(id: string) {
-        return this.http.get<OrderDto>('http://localhost:8080/orders/' + id);
+        return this.http.get<OrderDto>(this.endpoint + 'orders/' + id);
     }
 
     public saveOrder(order: OrderDto){
-        return this.http.post<OrderDto>('http://localhost:8080/orders/save', order);
+        return this.http.post<OrderDto>(this.endpoint + 'orders/save', order);
     }
 
     public createOrder() {
-        return this.http.get<OrderDto>('http://localhost:8080/orders/new');
+        return this.http.get<OrderDto>(this.endpoint + 'orders/new');
     }
 
     public classifiers() {
-        return this.http.get<ClassifierDto[]>('http://localhost:8080/classifiers');
+        return this.http.get<ClassifierDto[]>(this.endpoint + 'classifiers');
     }
 
     public metrics() {
-        return this.http.get<MetricDto[]>('http://localhost:8080/evaluationmetrics');
+        return this.http.get<MetricDto[]>(this.endpoint + 'evaluationmetrics');
     }
 
     public datasets() {
-        return this.http.get<DatasetDto[]>('http://localhost:8080/datasets');
+        return this.http.get<DatasetDto[]>(this.endpoint + 'datasets');
     }
 
     public validationmethods() {
-        return this.http.get<ValidationMethodDto[]>('http://localhost:8080/validationmethods');
+        return this.http.get<ValidationMethodDto[]>(this.endpoint + 'validationmethods');
     }
 }

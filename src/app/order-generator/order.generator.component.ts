@@ -5,6 +5,7 @@ import { MetricDto } from '../shared/dto/metricdto.type';
 import { DatasetDto } from '../shared/dto/datasetdto.type';
 import { ClassifierDto } from '../shared/dto/classifierdto.type';
 import { ValidationMethodDto } from '../shared/dto/validationmethoddto.type';
+import { NavigatorService } from '../navigator-service/navigator.service';
 
 @Component({
   selector: 'app-order-generator',
@@ -24,11 +25,15 @@ export class OrderGeneratorComponent implements OnInit {
 
     private step: Number = 0;
 
-    constructor(private backendService: BackendService) {
+    public alert;
+
+    constructor(private backendService: BackendService, private navigatorService: NavigatorService) {
+        this.alert = window.alert;
         this.order = new OrderDto();
         this.order.id = 'NEW_ID';
         this.order.name = '';
         this.order.orderStatus = 'WAITING';
+        this.navigatorService.subtitle = 'Title';
 
         this.backendService.createOrder().subscribe(
             data => this.order = data,
@@ -61,7 +66,6 @@ export class OrderGeneratorComponent implements OnInit {
         () => console.log('validation methods loaded...')
         );
 
-        this.classifierHidden = true;
         this.metricsHidden = true;
         this.datasetsHidden = true;
         this.validatorsHidden = true;
@@ -86,7 +90,24 @@ export class OrderGeneratorComponent implements OnInit {
     }
 
     private next() {
-        this.step = +this.step + +1;
+        switch(this.step) {
+            case 0: 
+                this.step = 1;
+                this.navigatorService.subtitle = 'Classifier';
+                break;
+            case 1: 
+                this.step = 2;
+                this.navigatorService.subtitle = 'Metric';
+                break;
+            case 2: 
+                this.step = 3
+                this.navigatorService.subtitle = 'Dataset';
+                break;
+            default: 
+                this.step = 0;
+                this.navigatorService.subtitle = '';
+                break;
+        }
     }
     private previous() {
         this.step = +this.step - 1;

@@ -1,19 +1,23 @@
 <nav id="navbar">
-  <a class="coda-logo" href="#">
-    <img src="assets/logo_coda_88px.png" height="44" width="44" alt="Coda" />
-  </a>
+  <div class="coda-menu" href="#" (mouseenter)="showMenu()" (mouseleave)="hideMenu()">
+    <img id="coda-logo" src="assets/logo_coda_88px.png" alt="Coda"/>
+    <ul id="menu" [ngClass]="menuVisible ? '' : 'hide'">
+      <li>
+        <a class="active" href="#" (click)="openLandingPage()">Home</a>
+      </li>
+      <li>
+        <a href="#" (click)="openOrders()">Orders</a>
+      </li>
+      <li>
+        <a href="#" (click)="openOrderGenerator()">Create Order</a>
+      </li>
+    </ul>
+  </div>
   <div id="searchbar">
     <input type="text" />
   </div>
-  <ul id="menu">
-    <li>
-      <a class="active" href="#" (click)="openLandingPage()">Home</a>
-    </li>
-    <li>
-      <a href="#" (click)="openOrders()">Orders</a>
-    </li>
-    <li>
-      <a href="#" (click)="openOrderGenerator()">Create Order</a>
-    </li>
-  </ul>
 </nav>
+
+<div class="bottom-fadeout">
+
+</div>
