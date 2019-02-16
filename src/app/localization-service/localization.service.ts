@@ -5,10 +5,7 @@ export class LocalizationService {
 
     constructor() { }
 
-    /*    public localize(key: String) {
-        return "";
-        }*/
-    public localize(key: String, inverse: Boolean) {
+    public localize(key: String) : String {
         return "";
     }
 }

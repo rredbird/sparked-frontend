@@ -3,6 +3,7 @@
 body {
     //background-color: $color-medium;
     margin:0px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 a {
@@ -16,4 +17,14 @@ p.rotate {
     -ms-transform: rotate(-90deg);
     -o-transform: rotate(-90deg);
     filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
+input {
+    border-color: transparent;
+    border-bottom-color: darkgray;
+    border-bottom-width: 1px;
+    box-shadow: none;
+    &:focus {
+        outline: none;
+    }
 }

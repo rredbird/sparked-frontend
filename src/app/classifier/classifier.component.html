@@ -1,8 +1,8 @@
 
-<li (click)="expanded = !expanded">{{classifier.name}}</li>
+<li (click)="toggleSelected()" [ngClass]="classifier.selected ? 'selected' : ''">{{classifier.name}}</li>
 
-<div *ngIf="expanded" class="classifierDetail">
+<!-- <div *ngIf="expanded" class="classifierDetail">
     <div>
         <app-parameter *ngFor="let p of classifier.parameters" [parameter]="p"></app-parameter>
     </div>
-</div>
+</div> -->

@@ -1,5 +1,1 @@
-
-<div>
-    <h5>{{metric.id}}</h5>
-    <!-- input type="checkbox" disabled readonly checked="{{metric.highValueBetter}}" -->
-</div>
+<li (click)="toggleSelected()" [ngClass]="metric.selected ? 'selected' : ''">{{metric.id}}</li>

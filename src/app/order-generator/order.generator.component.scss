@@ -1,0 +1,42 @@
+@import '../../variables';
+
+.create-order-title-page {
+    
+    margin-right: 30vw;
+    input {
+        width: 30vw;
+    }
+
+    textarea {
+        width: 30vw;
+        height: 5em;
+    }
+
+    div {
+        margin-top: 3em;
+    }
+}
+
+label {
+    display: inline-block;
+    width: 31vw;
+    text-align: left;
+}
+
+.create-order-page {
+    text-align: center;
+    ul {
+        text-align: left;
+        //margin: auto;
+        width: 60vw;
+        padding: 0px;
+        list-style-type: none;
+    }
+}
+
+.order-summary {
+    position: fixed;
+    left:2.5vw;
+    width: 17.5vw;
+    top: $navbarHeight;
+}

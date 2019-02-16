@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ClassifierDto } from '../shared/dto/classifierdto.type';
 import { LocalizationService } from '../localization-service/localization.service';
-import { OrderDto } from '../shared/dto/orderdto.type';
+import { OrderGeneratorService } from '../order-generator-service/order.generator.service';
 
 @Component({
   selector: 'app-classifier',
@@ -11,9 +11,7 @@ import { OrderDto } from '../shared/dto/orderdto.type';
 export class ClassifierComponent implements OnInit {
     @Input() classifier : ClassifierDto;
     
-    constructor(public localize : LocalizationService) { 
-        this.expanded = false;
-        this.selected = false;
+    constructor(private localize : LocalizationService, public orderGeneratorService : OrderGeneratorService) { 
     }
 
     ngOnInit() {
@@ -21,11 +19,10 @@ export class ClassifierComponent implements OnInit {
     }
 
     public toggleSelected() {
-        this.selected = !this.selected; 
-        this.expanded = this.selected;
-        this.classifier.selected = this.selected;
-    }
+        if(!this.classifier.selected) {
+            this.orderGeneratorService.deselectAll(this.orderGeneratorService.classifiers);
+        }
 
-    public expanded : Boolean;
-    public selected : Boolean;
+        this.classifier.selected = !this.classifier.selected; 
+    }
 }

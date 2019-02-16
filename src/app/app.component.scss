@@ -1,31 +1,15 @@
 @import '../variables';
 
-p#title {
-    position: fixed;
-    top: 50vh;
-    left: 7vw;
-    width: 240px;
-
-    font-size:38px;
-    font-weight: bold;
-}
-
-p#subtitle {
-    position: fixed;
-    top: 30vh;
-    left: 10vw;
-    width: 240px;
-
-    font-size:28px;
-}
-
 content {
     position: fixed;
     top: 0px;
-    //margin-top: 2px;
     padding-top: $navbarHeight;
-    left: $menuWidth;
+    left: calc(100vw / 4);
+    right: 0px;
     overflow-y: auto;
-    width: 80vw;
     height: 88vh;
+    border-left-width: 1px; 
+    border-left-style: solid; 
+    border-left-color: darkgray; 
+    padding-left: 5vw;
 }

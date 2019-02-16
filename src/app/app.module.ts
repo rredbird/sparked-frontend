@@ -20,6 +20,7 @@ import { ValidationMethodComponent } from './validation-method/validation-method
 import { ParameterComponent } from './parameter/parameter.component';
 import { NavigatorService } from './navigator-service/navigator.service';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { OrderGeneratorService } from './order-generator-service/order.generator.service';
 
 
 @NgModule({
@@ -43,7 +44,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [BackendService, AppService, LocalizationService, NavigatorService],
+  providers: [BackendService, AppService, LocalizationService, NavigatorService, OrderGeneratorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

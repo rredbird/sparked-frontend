@@ -22,18 +22,10 @@
     left: 20vw;
     width: 60vw;
     top: 1em;
-    box-shadow: none;
-
+    
     input {
         height: 1.5em;
         width: 100%;
-        border-color: transparent;
-        border-bottom-color: darkgray;
-        border-bottom-width: 1px;
-
-        &:focus {
-            outline: none;
-        }
     }
 }
 #navbar {
