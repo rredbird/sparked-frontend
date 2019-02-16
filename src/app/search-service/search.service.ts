@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class SearchServiceService {
+@Injectable()
+export class SearchService {
   public searchText : String;
 
   constructor() { }

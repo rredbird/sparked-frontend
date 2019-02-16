@@ -3,13 +3,13 @@
     <img id="coda-logo" src="assets/logo_coda_88px.png" alt="Coda"/>
     <ul id="menu" [ngClass]="menuVisible ? '' : 'hide'">
       <li>
-        <a class="active" href="#" (click)="openLandingPage()">Home</a>
+        <a class="active" href="#" (click)="openLandingPage()">{{ 'MenuHome' | translate }}</a>
       </li>
       <li>
-        <a href="#" (click)="openOrders()">Orders</a>
+        <a href="#" (click)="openOrders()">{{ 'MenuOrders' | translate }}</a>
       </li>
       <li>
-        <a href="#" (click)="openOrderGenerator()">Create Order</a>
+        <a href="#" (click)="openOrderGenerator()">{{ 'MenuCreate' | translate }}</a>
       </li>
     </ul>
   </div>
