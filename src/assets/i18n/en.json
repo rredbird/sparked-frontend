@@ -3,5 +3,6 @@
     "ButtonOK" : "OK",
     "MenuCreate" : "Create Order",
     "MenuOrders" : "Orders",
-    "MenuHome" : "Home"
+    "MenuHome" : "Home",
+    "GenerateOrderSummary" : "Das hier ist eine Zusammen&shy;fassung der Order..."
 }

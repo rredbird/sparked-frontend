@@ -36,13 +36,11 @@
 <input type="button" (click)="next()" value="next">
 <div class="order-summary">
     <ul>
-        <li>Das hier ist eine Zusammen&shy;fassung der Order...</li>
+        <li innerHTML="{{ 'GenerateOrderSummary' | translate }}"></li>
+        <li>{{this.orderGeneratorService.order.name}}&nbsp;</li>
+        <li>{{this.orderGeneratorService.nameOfSelected(orderGeneratorService.classifiers) | translate }}</li>
+        <li>{{this.orderGeneratorService.idOfSelected(orderGeneratorService.metrics)}}</li>
     </ul>
-    <p>
-        
-    </p>
-    <p>{{this.orderGeneratorService.order.name}}&nbsp;</p>
-    <p>{{this.orderGeneratorService.nameOfSelected(orderGeneratorService.classifiers)}}</p>
-    <p>{{this.orderGeneratorService.idOfSelected(orderGeneratorService.metrics)}}</p>
+    
     <input type="button" (click)="createOrder()" value="erstellen">
 </div>
