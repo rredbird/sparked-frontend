@@ -1,7 +1,4 @@
-<div>
-<h5>{{validationMethod.name}}</h5>
-<input type="button" (click)="toggleSelected()" value="auswählen">
-</div>
+<li (click)="toggleSelected()" [ngClass]="validationMethod.selected ? 'selected' : ''">{{validationMethod.name}}</li>
 
 <!--
 <div>

@@ -53,6 +53,16 @@ export class OrderGeneratorService {
     return "";
   }
 
+  public namesOfSelected<T extends { selected : Boolean, name : String }>(list : Array<T>) : Array<String> {
+    var selected = new Array<String>();
+    for(var i = 0; i < list.length; ++i) {
+      if(list[i].selected) {
+        selected.push(list[i].name);
+      }
+    }
+    return selected;
+  }
+
   private selected<T extends { selected : Boolean }>(list : Array<T>) : T {
     for(var i = 0; i < list.length; ++i) {
       if(list[i].selected) {

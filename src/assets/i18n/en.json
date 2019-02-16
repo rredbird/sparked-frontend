@@ -4,5 +4,7 @@
     "MenuCreate" : "Create Order",
     "MenuOrders" : "Orders",
     "MenuHome" : "Home",
-    "GenerateOrderSummary" : "Das hier ist eine Zusammen&shy;fassung der Order..."
+    "GenerateOrderSummary" : "Das hier ist eine Zusammen&shy;fassung der Order...",
+    "SelectedClassifiers" : "Selected Classifiers",
+    "SelectedMetric" : "Selected Metric"
 }

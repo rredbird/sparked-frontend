@@ -6,7 +6,7 @@
     </div>
     <div>
         <label for="orderDescription">Description</label><br>
-        <textarea id="orderDescription"></textarea>
+        <textarea id="orderDescription" [(ngModel)]="this.orderGeneratorService.order.description"></textarea>
     </div>
     <div>
         <label for="orderLabel">Label</label><br>
@@ -24,22 +24,50 @@
     </ul>
 </div>
 <div *ngIf="this.orderGeneratorService.step == 3" class="">
-    <div class="">
+    <ul>
         <app-dataset *ngFor="let d of this.orderGeneratorService.datasets" [dataset]="d"></app-dataset>
-    </div>
+    </ul>
 </div>
 <div *ngIf="this.orderGeneratorService.step == 4" class="">
-    <div class="">
+    <ul>
         <app-validation-method *ngFor="let v of this.orderGeneratorService.validationMethods" [validationMethod]="v"></app-validation-method>
-    </div>
+    </ul>
 </div>
-<input type="button" (click)="next()" value="next">
+
 <div class="order-summary">
     <ul>
-        <li innerHTML="{{ 'GenerateOrderSummary' | translate }}"></li>
-        <li>{{this.orderGeneratorService.order.name}}&nbsp;</li>
-        <li>{{this.orderGeneratorService.nameOfSelected(orderGeneratorService.classifiers) | translate }}</li>
-        <li>{{this.orderGeneratorService.idOfSelected(orderGeneratorService.metrics)}}</li>
+        <li [ngClass]="this.orderGeneratorService.step == 0 ? 'selected' : ''" class="clickable" (click)="this.orderGeneratorService.step = 0">
+            <div innerHTML="{{ 'GenerateOrderSummary' | translate }}"></div>
+            <ul>
+                <li>{{this.orderGeneratorService.order.name}}&nbsp;</li>
+                <li>{{this.orderGeneratorService.order.description}}&nbsp;</li>
+                <li *ngFor="let label of this.orderGeneratorService.order.labels">{{label}}&nbsp;</li>
+            </ul>
+        </li>
+        <li [ngClass]="this.orderGeneratorService.step == 1 ? 'selected' : ''" class="clickable" (click)="this.orderGeneratorService.step = 1">
+            {{ 'SelectedClassifiers' | translate }}:
+            <ul>
+                <li *ngFor="let selectedClassifier of this.orderGeneratorService.namesOfSelected(orderGeneratorService.classifiers)">{{selectedClassifier}}</li>
+            </ul>
+        </li>
+        <li [ngClass]="this.orderGeneratorService.step == 2 ? 'selected' : ''" class="clickable" (click)="this.orderGeneratorService.step = 2">
+            {{ 'SelectedMetric' | translate }}:
+            <ul>
+                <li>{{this.orderGeneratorService.idOfSelected(orderGeneratorService.metrics)}}</li>
+            </ul>
+        </li>
+        <li [ngClass]="this.orderGeneratorService.step == 4 ? 'selected' : ''" class="clickable" (click)="this.orderGeneratorService.step = 4">
+            {{ 'SelectedValidator' | translate }}:
+            <ul>
+                <li>{{this.orderGeneratorService.nameOfSelected(orderGeneratorService.validationMethods)}}</li>
+            </ul>
+        </li>
+        <li [ngClass]="this.orderGeneratorService.step == 3 ? 'selected' : ''" class="clickable" (click)="this.orderGeneratorService.step = 3">
+            {{ 'SelectedDataset' | translate }}:
+            <ul>
+                <li>{{this.orderGeneratorService.idOfSelected(orderGeneratorService.datasets)}}</li>
+            </ul>
+        </li>
     </ul>
     
     <input type="button" (click)="createOrder()" value="erstellen">
