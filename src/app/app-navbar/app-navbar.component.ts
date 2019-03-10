@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigatorService } from '../navigator-service/navigator.service';
+import { SearchService } from '../search-service/search.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,8 +10,8 @@ import { NavigatorService } from '../navigator-service/navigator.service';
 
 export class AppNavbarComponent implements OnInit {
   private menuVisible : Boolean;
-
-  constructor(private navigatorService: NavigatorService) { }
+  
+  constructor(private navigatorService: NavigatorService, private searchService : SearchService) { }
 
   ngOnInit() {
     this.menuVisible = false;
@@ -37,5 +38,19 @@ export class AppNavbarComponent implements OnInit {
   public openOrderGenerator() {
     this.navigatorService.view = 'orderGenerator';
     this.navigatorService.title = 'Create Order';
+  }
+
+  private onKeydown(event) : void {
+    if (event.which == 38) { // up arrow
+      this.searchService.up();
+      return;
+    }
+    if (event.which == 40) { // dowm arrow
+      this.searchService.down();
+      return;
+    }
+    if(this.searchService.searchText) {
+      this.searchService.search();
+    }
   }
 }

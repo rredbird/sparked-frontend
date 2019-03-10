@@ -1,0 +1,26 @@
+.menu {
+    position: fixed;
+    top: 5em;
+    left:0px;
+    width: 10em;
+
+    span {
+        display: block;
+        margin: 1em;
+
+        .selected {
+            background-color: orange;
+        }
+    }
+}
+
+.details {
+    margin:auto;
+    width: 30em;
+}
+
+header {
+    height: 4em;
+    border-bottom: 1px solid black;
+    box-shadow: 0px 10px 30px 0px #bbb;
+}

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { OrderDto } from '../shared/dto/orderdto.type';
+import { NavigatorService } from '../navigator-service/navigator.service';
 
 @Component({
   selector: 'app-order',
@@ -7,11 +8,18 @@ import { OrderDto } from '../shared/dto/orderdto.type';
   styleUrls: ['./order.component.scss']
 })
 export class OrderComponent implements OnInit {
-    @Input() order : OrderDto;
+  order : OrderDto;
 
-    constructor() { }
+  constructor(private navigatorService : NavigatorService) { 
+    this.order = navigatorService.order;
+  }
 
-    ngOnInit() {
-    }
+  ngOnInit() {
+  }
+
+  private clone() {
+    this.navigatorService.view = "create";
+    this.navigatorService.order = this.order;
+  }
 }
 

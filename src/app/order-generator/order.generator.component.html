@@ -1,74 +1,52 @@
-<div *ngIf="this.orderGeneratorService.step == 0" class="create-order-page create-order-title-page">
-    <h1>Create a new Order</h1>
-    <div>
-        <label for="orderName">Titel</label><br>
-        <input id="orderName" type="text" [(ngModel)]="this.orderGeneratorService.order.name">
-    </div>
-    <div>
-        <label for="orderDescription">Description</label><br>
-        <textarea id="orderDescription" [(ngModel)]="this.orderGeneratorService.order.description"></textarea>
-    </div>
-    <div>
-        <label for="orderLabel">Label</label><br>
-        <input id="orderLabel" type="text">
-    </div>
-</div>
-<div *ngIf="this.orderGeneratorService.step == 1" class="create-order-page create-order-classifier-page">
-    <ul>
-        <app-classifier *ngFor="let c of this.orderGeneratorService.classifiers" [classifier]="c"></app-classifier>    
-    </ul>    
-</div>
-<div *ngIf="this.orderGeneratorService.step == 2" class="create-order-page create-order-metric-page">
-    <ul>
-        <app-metric *ngFor="let m of this.orderGeneratorService.metrics" [metric]="m"></app-metric>
-    </ul>
-</div>
-<div *ngIf="this.orderGeneratorService.step == 3" class="">
-    <ul>
-        <app-dataset *ngFor="let d of this.orderGeneratorService.datasets" [dataset]="d"></app-dataset>
-    </ul>
-</div>
-<div *ngIf="this.orderGeneratorService.step == 4" class="">
-    <ul>
-        <app-validation-method *ngFor="let v of this.orderGeneratorService.validationMethods" [validationMethod]="v"></app-validation-method>
-    </ul>
-</div>
+<!-- <header>
+    <label for="name">Name your order</label>
+    <input id="name" type="text" />
 
-<div class="order-summary">
-    <ul>
-        <li [ngClass]="this.orderGeneratorService.step == 0 ? 'selected' : ''" class="clickable" (click)="this.orderGeneratorService.step = 0">
-            <div innerHTML="{{ 'GenerateOrderSummary' | translate }}"></div>
-            <ul>
-                <li>{{this.orderGeneratorService.order.name}}&nbsp;</li>
-                <li>{{this.orderGeneratorService.order.description}}&nbsp;</li>
-                <li *ngFor="let label of this.orderGeneratorService.order.labels">{{label}}&nbsp;</li>
-            </ul>
-        </li>
-        <li [ngClass]="this.orderGeneratorService.step == 1 ? 'selected' : ''" class="clickable" (click)="this.orderGeneratorService.step = 1">
-            {{ 'SelectedClassifiers' | translate }}:
-            <ul>
-                <li *ngFor="let selectedClassifier of this.orderGeneratorService.namesOfSelected(orderGeneratorService.classifiers)">{{selectedClassifier}}</li>
-            </ul>
-        </li>
-        <li [ngClass]="this.orderGeneratorService.step == 2 ? 'selected' : ''" class="clickable" (click)="this.orderGeneratorService.step = 2">
-            {{ 'SelectedMetric' | translate }}:
-            <ul>
-                <li>{{this.orderGeneratorService.idOfSelected(orderGeneratorService.metrics)}}</li>
-            </ul>
-        </li>
-        <li [ngClass]="this.orderGeneratorService.step == 4 ? 'selected' : ''" class="clickable" (click)="this.orderGeneratorService.step = 4">
-            {{ 'SelectedValidator' | translate }}:
-            <ul>
-                <li>{{this.orderGeneratorService.nameOfSelected(orderGeneratorService.validationMethods)}}</li>
-            </ul>
-        </li>
-        <li [ngClass]="this.orderGeneratorService.step == 3 ? 'selected' : ''" class="clickable" (click)="this.orderGeneratorService.step = 3">
-            {{ 'SelectedDataset' | translate }}:
-            <ul>
-                <li>{{this.orderGeneratorService.idOfSelected(orderGeneratorService.datasets)}}</li>
-            </ul>
-        </li>
-    </ul>
-    
-    <input type="button" (click)="createOrder()" value="erstellen">
+    <label for="tag">Tag your order</label>
+    <input id="tag" type="text" />
+
+    <input type="button" value="Cancel" (click)="cancel()" />
+    <input type="button" value="Create" /> <!--Show a popup with infos and ask to start the order... -->
+<!-- </header>
+
+<content>
+    LOLCATS
+    Please give your order a name... -->
+    <!-- <div id=text>
+        <span>Please give your order a name.</span>
+        <span>You may tag all your orders, to find them later on.</span>
+        <span>An order consists of a dataset, one or more classifier, a metric and an evaluation method.</span>
+    </div>
+    <div class="menu">Dataset</div>
+    <div class="menu">Classifiers</div>
+    <div class="menu">Metric</div>
+    <div class="menu">Evaluation Method</div> -->
+<!-- </content> -->
+
+<header>
+    <div>
+        <label for="name">Name your order</label>
+        <input id="name" type="text" />
+    </div>
+    <div>
+        <label for="tag">Tag your order</label>
+        <input id="tag" type="text" />
+    </div>
+    <div>
+        <input type="button" value="Cancel" (click)="cancel()" />
+        <input type="button" value="Create" /> <!--Show a popup with infos and ask to start the order... -->
+    </div>
+</header>
+
+<div class="details">
+    <div id=text>
+        <span>Please give your order a name.</span>
+        <span>You may tag all your orders, to find them later on.</span>
+        <span>An order consists of a dataset, one or more classifier, a metric and an evaluation method.</span>
+    </div>
+
+    <div class="menu">Dataset</div>
+    <div class="menu" (click)="this.navigatorService.floating='classifiers'">Classifiers</div>
+    <div class="menu">Metric</div>
+    <div class="menu">Evaluation Method</div>
 </div>

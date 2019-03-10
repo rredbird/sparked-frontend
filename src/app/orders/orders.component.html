@@ -1,7 +1,13 @@
-<h1>
-    Orders
-</h1>
+<content>
+    <mat-table #table [dataSource]="this.orders">
+        <ng-container matColumnDef="Title">
+            <th mat-header-cell *matHeaderCellDef>Title</th>
+            <td class="cell" mat-cell *matCellDef="let element" (click)="open(element)">{{element.name}}</td>
+        </ng-container>
 
-<hr>
-
-<app-order *ngFor="let o of orders" [order]="o"></app-order>
+        <mat-header-row *matHeaderRowDef="['Title']"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: ['Title']">
+        </mat-row>
+    </mat-table>
+</content>
+    

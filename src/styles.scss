@@ -1,22 +1,14 @@
 @import 'variables';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 body {
-    //background-color: $color-medium;
     margin:0px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: white;
 }
 
 a {
     text-decoration: none;
-}
-
-p.rotate {
-    transform: rotate(-90deg);
-    -webkit-transform: rotate(-90deg);
-    -moz-transform: rotate(-90deg);
-    -ms-transform: rotate(-90deg);
-    -o-transform: rotate(-90deg);
-    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
 
 input {

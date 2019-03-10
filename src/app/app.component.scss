@@ -1,15 +1,68 @@
 @import '../variables';
 
-content {
+#left {
     position: fixed;
-    top: 0px;
-    padding-top: $navbarHeight;
-    left: calc(100vw / 4);
-    right: 0px;
-    overflow-y: auto;
-    height: 88vh;
-    border-left-width: 1px; 
-    border-left-style: solid; 
-    border-left-color: darkgray; 
-    padding-left: 5vw;
+    left:0px;
+    width:38.2vw;
+    top:20vh;
+    background-color: white;
+    height:79.9vh;
+    overflow-y: none;
+    overflow-x: hidden;
+}
+
+.smallsize {
+    position: fixed;
+    right:0px;
+    width:61.8vw;
+    top:20vh;
+    background-color: white;
+    height:79.9vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.fullsize {
+    position: fixed;
+    right:0px;
+    left:0px;
+    width:100vw;
+    top:0px;
+    background-color: white;
+    height:100vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+#header {
+    position: fixed;
+    top:0px;
+    left: 0px;
+    right:0px;
+    height: 19.9vh;
+    background-color: white;
+    overflow:hidden;
+
+    .tab {
+        display: inline-block;
+        max-width: 20em;
+        width:20vw;
+        background-color: whitesmoke;
+        height:2em;
+        text-align: center;
+    }
+}
+.selected {
+    background-color: red;
+}
+
+#floating {
+    position: fixed;
+    left:30vw;
+    right:30vw;
+    top:10vh;
+    bottom:10vh;
+    background-color: white;
+    box-shadow: 0px 10px 30px 0px #bbb;
+    border: 1px solid black;
 }

@@ -8,21 +8,13 @@ import { OrderGeneratorService } from '../order-generator-service/order.generato
   styleUrls: ['./classifier.component.scss']
 })
 export class ClassifierComponent implements OnInit {
-    @Input() classifier : ClassifierDto;
+    private data : ClassifierDto[];
     
     constructor(public orderGeneratorService : OrderGeneratorService) { 
+      this.data = orderGeneratorService.classifiers;
     }
 
     ngOnInit() {
 
-    }
-
-    public toggleSelected() {
-        // multiple selection is allowed!
-        // if(!this.classifier.selected) {
-        //     this.orderGeneratorService.deselectAll(this.orderGeneratorService.classifiers);
-        // }
-
-        this.classifier.selected = !this.classifier.selected; 
     }
 }

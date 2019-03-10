@@ -1,5 +1,15 @@
-<div class="left-box box container">
-<h3>{{order.name}}</h3>
-{{order.orderStatus}}
+<header>
+    <h3>{{order.name}}</h3>
+    {{order.orderStatus}}
+    <input type="button" value="edit" />
+    <input type="button" value="clone" (click)="clone()" />
+</header>
+
+<div class="menu">
+    <span>Configuration</span>
+    <span class="selected">Evaluation</span>
 </div>
-<hr>
+
+<div class="details">
+    Hier kommt die Auswertung hin...
+</div>

@@ -1,65 +1,24 @@
-@import '../../variables';
-
-.create-order-title-page {
-    
-    margin-right: 30vw;
-    input {
-        width: 30vw;
-    }
-
-    textarea {
-        width: 30vw;
-        height: 5em;
-    }
-
-    div {
-        margin-top: 3em;
-    }
-}
-
-label {
-    display: inline-block;
-    width: 31vw;
-    text-align: left;
-}
-
-.create-order-page {
+.details {
+    margin:auto;
+    width: 66vw;
     text-align: center;
-    ul {
-        text-align: left;
-        //margin: auto;
-        width: 60vw;
-        padding: 0px;
-    }
 }
 
-.order-summary {
-    position: fixed;
-    left:2.5vw;
-    width: 17.5vw;
-    top: $navbarHeight;
+header {
+    height: 20vh;
+    min-height: 6em;
+    border-bottom: 1px solid black;
+    box-shadow: 0px 10px 30px 0px #bbb;
+    margin-bottom: 4em;
 }
 
-ul {
-    padding: 0;
-    &>li {
-        padding-bottom: 1em;
-        ul {
-            padding-left: 1em;
-            li {
-                padding-bottom: 0;
-            }
-        }
-    }
-}
-
-.selected {
-    background-color: yellow;
-}
-
-.clickable {
-    cursor: pointer;
-    &:hover {
-        background-color: orange;
-    }
+.menu {
+    display: inline-block;
+    width: 12vw;
+    height: 10vh;
+    min-width: 8em;
+    min-height: 4em;
+    margin:2vw;
+    border: 1px solid black;
+    box-shadow: 0px 10px 30px 0px #bbb;
 }

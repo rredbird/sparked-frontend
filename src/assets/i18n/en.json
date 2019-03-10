@@ -6,5 +6,8 @@
     "MenuHome" : "Home",
     "GenerateOrderSummary" : "Das hier ist eine Zusammen&shy;fassung der Order...",
     "SelectedClassifiers" : "Selected Classifiers",
-    "SelectedMetric" : "Selected Metric"
+    "SelectedMetric" : "Selected Metric",
+    "SelectedValidator" : "Selected Validator",
+    "SelectedDataset" : "Selected Dataset",
+    "GenerateOrderCreateButton" : "Create"
 }

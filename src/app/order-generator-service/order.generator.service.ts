@@ -5,6 +5,7 @@ import { MetricDto } from '../shared/dto/metricdto.type';
 import { DatasetDto } from '../shared/dto/datasetdto.type';
 import { ValidationMethodDto } from '../shared/dto/validationmethoddto.type';
 import { BackendService } from '../backend-service/backend.service';
+import { SearchService } from '../search-service/search.service';
 
 @Injectable()
 export class OrderGeneratorService {
@@ -14,7 +15,7 @@ export class OrderGeneratorService {
   public datasets: DatasetDto[];
   public validationMethods: ValidationMethodDto[];
 
-  constructor(private backendService: BackendService) {
+  constructor(private backendService: BackendService, private searchService: SearchService) {
     this.classifiers = new Array<ClassifierDto>();
     this.metrics = new Array<MetricDto>();
     this.datasets = new Array<DatasetDto>();
@@ -30,11 +31,13 @@ export class OrderGeneratorService {
     this.loadData();
   }
 
-  public newOrder() {
+  public newOrder() : OrderDto {
     this.order = new OrderDto();
     this.order.id = 'NEW_ID';
     this.order.name = '';
     this.order.orderStatus = 'WAITING';
+
+    return this.order;
   }
 
   public idOfSelected<T extends { selected : Boolean, id : String }>(list : Array<T>) : String {
@@ -100,7 +103,12 @@ export class OrderGeneratorService {
 
   private loadData() {
     this.backendService.classifiers().subscribe(
-      data => this.classifiers = data,
+      data => {
+        data.forEach(element => {
+          this.searchService.registerValue({'key': element.name, 'value': element});
+        });
+        this.classifiers = data;
+      },
       err => console.error(err),
       () => console.log('orders loaded...')
       );

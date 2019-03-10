@@ -1,12 +1,12 @@
-<content>
-    <app-landing-page *ngIf="this.navigatorService.view=='start'">loading landing page...</app-landing-page>
 
-    <!-- <div *ngIf="this.navigatorService.view!='orderGenerator'" class="box right background"></div> -->
+<app-landing-page *ngIf="this.navigatorService.view=='start'">loading landing page...</app-landing-page>
 
-    <app-orders *ngIf="this.navigatorService.view=='orders'"></app-orders>
-    <app-order-generator *ngIf="this.navigatorService.view=='orderGenerator'"></app-order-generator>
+<app-orders *ngIf="this.navigatorService.view=='orders'">view all orders</app-orders>
 
-    <div *ngIf="this.navigatorService.view=='orderGenerator'" ></div>
+<app-order *ngIf="this.navigatorService.view=='order'">view specific order</app-order>
 
-</content>
-<app-navbar>Display navbar here.</app-navbar>
+<app-order-generator *ngIf="this.navigatorService.view=='create'">view specific order</app-order-generator>
+
+<div id="floating" *ngIf="this.navigatorService.floating!='none'">
+    <app-classifier *ngIf="this.navigatorService.floating=='classifiers'">view classifiers</app-classifier>
+</div>

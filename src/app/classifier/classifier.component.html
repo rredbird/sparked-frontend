@@ -1,8 +1,20 @@
-
-<li (click)="toggleSelected()" [ngClass]="classifier.selected ? 'selected' : ''" class="table">{{classifier.name}}</li>
-
-<!-- <div *ngIf="expanded" class="classifierDetail">
-    <div>
-        <app-parameter *ngFor="let p of classifier.parameters" [parameter]="p"></app-parameter>
+<div>
+    <div id="header">
+        <div>
+            Select one or more classifiers...
+        </div>
+        <input type="button" value="OK" />
+        <input type="button" value="Cancel" />
     </div>
-</div> -->
+    <mat-table #table [dataSource]="this.data">
+        <ng-container matColumnDef="Title">
+            <th mat-header-cell *matHeaderCellDef>Title</th>
+            <td class="cell" mat-cell *matCellDef="let element" (click)="open(element)">{{element.name}}</td>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="['Title']"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: ['Title']">
+        </mat-row>
+    </mat-table>
+</div>
+    
