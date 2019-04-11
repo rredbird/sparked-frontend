@@ -1,7 +1,19 @@
-<li (click)="toggleSelected()" [ngClass]="validationMethod.selected ? 'selected' : ''">{{validationMethod.name}}</li>
+<div class="floating">
+    <div id="header">
+        <div>
+            Select one or more classifiers...
+        </div>
+        <input type="button" value="OK" (click)="this.navigatorService.floating='none'"/>
+        <input type="button" value="Cancel" (click)="this.navigatorService.floating='none'" />
+    </div>
+    <mat-table #table [dataSource]="this.data">
+        <ng-container matColumnDef="Title">
+            <th mat-header-cell *matHeaderCellDef>Title</th>
+            <td class="cell" mat-cell *matCellDef="let element">{{element.name}}</td>
+        </ng-container>
 
-<!--
-<div>
-<app-parameter *ngFor="let p of validationMethod.parameters" [parameter]="p"></app-parameter>
+        <mat-header-row *matHeaderRowDef="['Title']">Name</mat-header-row>
+        <mat-row *matRowDef="let row; columns: ['Title']" [ngClass]="{'selected':row.selected}" (click)="select(row)">
+        </mat-row>
+    </mat-table>
 </div>
--->

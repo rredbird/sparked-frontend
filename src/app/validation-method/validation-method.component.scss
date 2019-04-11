@@ -1,18 +1,17 @@
+@import '../../variables';
 
-li {
-    margin:0;
-    padding-bottom: 0.5em;
-    padding-top: 0.5em;
-    cursor: pointer;
-
-    &:hover {
-        background-color: orange;
-        -webkit-transition: background-color 500ms linear;
-        -ms-transition: background-color 500ms linear;
-        transition: background-color 500ms linear;
-    }
+#header {
+    border-bottom: 1px solid black;
 }
 
 .selected {
-    background-color: green;
+    background-color: orange;
+}
+
+.floating {
+    background-color: white;
+    box-shadow: $shadow;
+    border: 1px solid black;
+    width: 20em;
+    margin:auto;
 }

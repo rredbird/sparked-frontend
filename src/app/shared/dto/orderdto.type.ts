@@ -4,7 +4,7 @@ import { identifierModuleUrl } from '@angular/compiler';
 export class OrderDto {
     id: String;
     name: String;
-    orderStatus: String;
+    status: String;
     labels: String[];
     classifiers: ClassifierDto[];
 }

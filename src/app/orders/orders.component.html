@@ -1,13 +1,30 @@
-<content>
+<div class="header">
+    <div>
+        Open one of the orders.
+        <div>
+            <label for="search">Search</label>
+            <input type="text" />
+        </div>
+    </div>
+</div>
+
+<div class="table">
     <mat-table #table [dataSource]="this.orders">
-        <ng-container matColumnDef="Title">
-            <th mat-header-cell *matHeaderCellDef>Title</th>
-            <td class="cell" mat-cell *matCellDef="let element" (click)="open(element)">{{element.name}}</td>
+        <ng-container class="container" matColumnDef="Order">
+            <td class="cell" mat-cell *matCellDef="let element">
+                <div class="template">
+                    <div style="float:left">{{element.name}}</div>
+                    <div style="float:right">{{element.status}}</div>
+                    <br>{{element.id}}
+                </div>
+            </td>
         </ng-container>
 
-        <mat-header-row *matHeaderRowDef="['Title']"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: ['Title']">
-        </mat-row>
+        <!-- <mat-header-row *matHeaderRowDef="['Title','Id']"></mat-header-row> -->
+        <mat-row class="row" *matRowDef="let row; columns: ['Order']" (click)="open(row)"></mat-row>
     </mat-table>
-</content>
+</div>
+
+  
+
     

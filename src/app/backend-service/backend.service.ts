@@ -49,4 +49,8 @@ export class BackendService {
     public validationmethods() {
         return this.http.get<ValidationMethodDto[]>(this.endpoint + 'validationmethods');
     }
+
+    public result(id : String) {
+        return this.http.get<ValidationMethodDto[]>(this.endpoint + 'orders/' + id + '/result');
+    }
 }

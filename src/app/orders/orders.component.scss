@@ -1,5 +1,53 @@
-content {
-    width:30em;
+@import '../../variables';
+
+.table {
+    width:31em;
     margin:auto;
-    height: 100%;
+    height: 80vh;
+    overflow-y: scroll;
+    margin-top: 3em;
+}
+
+.header {
+    height: 4em;
+    border-bottom: 1px solid black;
+    box-shadow: $shadow;
+    div { 
+        width: 30em;
+        margin:auto;
+    }
+}
+
+td.mat-cell,th.mat-header-cell {
+    border-bottom-style:none!important;
+}
+
+.template {
+    width: 30em;
+    :hover {
+        background-color:orange;
+    }
+}
+.row {
+    margin:0.5em;
+    :hover {
+        background-color:orange;
+    }
+}
+
+.table::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+	background-color: #fff;
+}
+
+.table::-webkit-scrollbar
+{
+	width: 4px;
+	background-color: #fff;
+}
+
+.table::-webkit-scrollbar-thumb
+{
+	background-color: #000000;
 }

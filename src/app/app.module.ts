@@ -22,6 +22,7 @@ import { OrderGeneratorService } from './order-generator-service/order.generator
 import { TranslateService } from './translate-service/translate.service';
 import { SearchService } from './search-service/search.service';
 import { TranslatePipe } from './translate.pipe';
+import { ClipboardModule } from 'ngx-clipboard';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatAutocompleteModule,
   MatBadgeModule,
@@ -85,6 +86,7 @@ export function setupTranslateFactory(service : TranslateService) : Function {
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
+    ClipboardModule,
     MatAutocompleteModule,
     MatBadgeModule,
     MatBottomSheetModule,

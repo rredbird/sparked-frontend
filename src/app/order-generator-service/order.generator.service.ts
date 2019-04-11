@@ -35,7 +35,7 @@ export class OrderGeneratorService {
     this.order = new OrderDto();
     this.order.id = 'NEW_ID';
     this.order.name = '';
-    this.order.orderStatus = 'WAITING';
+    this.order.status = 'WAITING';
 
     return this.order;
   }

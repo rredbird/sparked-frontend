@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MetricDto } from '../shared/dto/metricdto.type';
 import { OrderGeneratorService } from '../order-generator-service/order.generator.service';
+import { NavigatorService } from '../navigator-service/navigator.service';
 
 @Component({
   selector: 'app-metric',
@@ -8,18 +9,21 @@ import { OrderGeneratorService } from '../order-generator-service/order.generato
   styleUrls: ['./metric.component.scss']
 })
 export class MetricComponent implements OnInit {
-  @Input() metric : MetricDto;
+  private data : MetricDto[];
 
-  constructor(private orderGeneratorService : OrderGeneratorService) { }
-
-  ngOnInit() {
+  constructor(public orderGeneratorService : OrderGeneratorService, private navigatorService : NavigatorService) { 
+    this.data = orderGeneratorService.metrics;
   }
 
-  public toggleSelected() : void {
-    if(!this.metric.selected) {
+  ngOnInit() {
+
+  }
+  
+  private select(row: MetricDto) {
+    if(!row.selected) {
       this.orderGeneratorService.deselectAll(this.orderGeneratorService.metrics);
     }
 
-    this.metric.selected = !this.metric.selected; 
+    row.selected = ! row.selected; 
   }
 }

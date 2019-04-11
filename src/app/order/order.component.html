@@ -1,15 +1,41 @@
-<header>
-    <h3>{{order.name}}</h3>
-    {{order.orderStatus}}
+<div class="header">
+    <span>{{order.name}}</span>
+    {{order.status}}
     <input type="button" value="edit" />
     <input type="button" value="clone" (click)="clone()" />
-</header>
+    <input type="button" value="close" (click)="close()" />
+</div>
 
 <div class="menu">
+    <span>
+        <div>
+            <h5>Order</h5>
+            <p>Id</p><p #copyTargetId>{{order.id}}</p>
+            <button (click)="copyIdToClipboard()">Copy</button>
+            <p>Status</p><p>{{order.status}}</p>
+            <p>Name</p><p>{{order.name}}</p>
+            <p>Labels</p><p>{{order.labels}}</p>
+            <div *ngIf="result != 'STOP'">
+                <p>Classifier</p>
+                <p>{{result.classifier.id}}</p>
+                
+                <p>Classifier Parameters</p>
+                <p *ngFor="let p of result.classifier.parameters">{{p.name}}</p>
+            
+                <p>Dataset</p><p>{{result.dataset.id}}</p>
+                <p>Validation Method</p><p>{{result.validationMethod.name}}</p>
+                <p>Validation Metric</p><p>{{result.validationMetric.name}}</p>
+            </div>
+        </div>
+    </span>
     <span>Configuration</span>
     <span class="selected">Evaluation</span>
 </div>
 
+<br>
+<br>
+<br>
+<br>
 <div class="details">
-    Hier kommt die Auswertung hin...
+    <canvas #lineChart>{{ chart }}</canvas>
 </div>

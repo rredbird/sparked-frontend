@@ -58,11 +58,9 @@
 
 #floating {
     position: fixed;
-    left:30vw;
-    right:30vw;
+    left:10vw;
+    right:10vw;
+    text-align: center;
     top:10vh;
-    bottom:10vh;
-    background-color: white;
-    box-shadow: 0px 10px 30px 0px #bbb;
-    border: 1px solid black;
+    min-height: 10vh;
 }

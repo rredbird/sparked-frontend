@@ -8,5 +8,13 @@
 <app-order-generator *ngIf="this.navigatorService.view=='create'">view specific order</app-order-generator>
 
 <div id="floating" *ngIf="this.navigatorService.floating!='none'">
-    <app-classifier *ngIf="this.navigatorService.floating=='classifiers'">view classifiers</app-classifier>
+    <div>
+        <app-classifier *ngIf="this.navigatorService.floating=='classifiers'">view classifiers</app-classifier>
+
+        <app-dataset *ngIf="this.navigatorService.floating=='datasets'">view datasets</app-dataset>
+
+        <app-metric *ngIf="this.navigatorService.floating=='metrics'">view metrics</app-metric>
+
+        <app-validation-method *ngIf="this.navigatorService.floating=='evaluators'">view evaluation methods</app-validation-method>
+    </div>
 </div>

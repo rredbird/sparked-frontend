@@ -45,8 +45,8 @@
         <span>An order consists of a dataset, one or more classifier, a metric and an evaluation method.</span>
     </div>
 
-    <div class="menu">Dataset</div>
+    <div class="menu" (click)="this.navigatorService.floating='datasets'">Dataset</div>
     <div class="menu" (click)="this.navigatorService.floating='classifiers'">Classifiers</div>
-    <div class="menu">Metric</div>
-    <div class="menu">Evaluation Method</div>
+    <div class="menu" (click)="this.navigatorService.floating='metrics'">Metric</div>
+    <div class="menu" (click)="this.navigatorService.floating='evaluators'">Evaluation Method</div>
 </div>

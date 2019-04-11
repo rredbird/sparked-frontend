@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DatasetDto } from '../shared/dto/datasetdto.type';
 import { OrderGeneratorService } from '../order-generator-service/order.generator.service';
+import { NavigatorService } from '../navigator-service/navigator.service';
 
 @Component({
   selector: 'app-dataset',
@@ -8,18 +9,21 @@ import { OrderGeneratorService } from '../order-generator-service/order.generato
   styleUrls: ['./dataset.component.scss']
 })
 export class DatasetComponent implements OnInit {
-    @Input() dataset : DatasetDto;
+  private data : DatasetDto[];
 
-    constructor(private orderGeneratorService : OrderGeneratorService) { }
+  constructor(public orderGeneratorService : OrderGeneratorService, private navigatorService : NavigatorService) { 
+    this.data = orderGeneratorService.datasets;
+  }
 
-    ngOnInit() {
-    }
+  ngOnInit() {
 
-    public toggleSelected() : void {
-      if(!this.dataset.selected) {
-        this.orderGeneratorService.deselectAll(this.orderGeneratorService.datasets);
-      }
+  }
   
-      this.dataset.selected = !this.dataset.selected; 
+  private select(row: DatasetDto) {
+    if(!row.selected) {
+      this.orderGeneratorService.deselectAll(this.orderGeneratorService.datasets);
     }
+
+    row.selected = ! row.selected; 
+  }
 }

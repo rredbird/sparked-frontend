@@ -1,3 +1,34 @@
+@import '../../variables';
+
 #header {
     border-bottom: 1px solid black;
+}
+
+.selected {
+    background-color: orange;
+}
+
+.table {
+    display: inline-block;
+}
+
+.detail {
+    display: inline-block;
+    height: 100%;
+}
+
+.wrapper {
+    text-align: center;
+}
+
+.floating {
+    background-color: white;
+    box-shadow: $shadow;
+    border: 1px solid black;
+    width: 20em;
+    margin:auto;
+}
+
+.selectParameters {
+    width: 80vw;
 }

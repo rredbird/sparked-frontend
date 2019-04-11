@@ -1,1 +1,19 @@
-<li (click)="toggleSelected()" [ngClass]="metric.selected ? 'selected' : ''" class="table">{{metric.id}}</li>
+<div class="floating">
+    <div id="header">
+        <div>
+            Select one or more classifiers...
+        </div>
+        <input type="button" value="OK" (click)="this.navigatorService.floating='none'"/>
+        <input type="button" value="Cancel" (click)="this.navigatorService.floating='none'" />
+    </div>
+    <mat-table #table [dataSource]="this.data">
+        <ng-container matColumnDef="Title">
+            <th mat-header-cell *matHeaderCellDef>Title</th>
+            <td class="cell" mat-cell *matCellDef="let element">{{element.id}}</td>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="['Title']">Id</mat-header-row>
+        <mat-row *matRowDef="let row; columns: ['Title']" [ngClass]="{'selected':row.selected}" (click)="select(row)">
+        </mat-row>
+    </mat-table>
+</div>

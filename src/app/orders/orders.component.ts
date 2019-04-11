@@ -19,6 +19,8 @@ console.log("loading orders...");
     this.backendService.orders().subscribe(
         data => { 
             this.orders = data;
+            var i = 0;
+            console.log(this.orders[0].id);
         },
         err => { console.error(err) },
         () => console.log('orders loaded...')

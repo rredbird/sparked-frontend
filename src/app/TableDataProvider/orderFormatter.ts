@@ -13,7 +13,7 @@ export class OrderFormatter implements tableDataFormatter<OrderDto> {
         switch(index) {
             case 0: return data.name;
             case 1: return data.id;
-            case 2: return data.orderStatus;
+            case 2: return data.status;
         }
     }
     public columnDisplayInformation(index: number) : String {

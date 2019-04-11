@@ -1,0 +1,17 @@
+@import '../../variables';
+
+#header {
+    border-bottom: 1px solid black;
+}
+
+.selected {
+    background-color: orange;
+}
+
+.floating {
+    background-color: white;
+    box-shadow: $shadow;
+    border: 1px solid black;
+    width: 20em;
+    margin:auto;
+}
