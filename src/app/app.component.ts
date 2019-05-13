@@ -72,7 +72,7 @@ export class AppComponent {
 
     private showClassifier() {
         if(this.order) {
-            this.data = this.order.classifiers
+            this.data = this.orderGenerator.classifiers;//this.order.classifiers///TODO
         } else {
             this.data = this.orderGenerator.classifiers;
         }

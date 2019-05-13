@@ -1,10 +1,7 @@
-import { ClassifierDto } from './classifierdto.type';
-import { identifierModuleUrl } from '@angular/compiler';
+import { TaskDto } from './taskdto.type';
 
 export class OrderDto {
     id: String;
     name: String;
-    status: String;
-    labels: String[];
-    classifiers: ClassifierDto[];
+    tasks: Array<TaskDto>
 }

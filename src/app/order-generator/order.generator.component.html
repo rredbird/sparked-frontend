@@ -26,7 +26,7 @@
 <header>
     <div>
         <label for="name">Name your order</label>
-        <input id="name" type="text" />
+        <input id="name" type="text" value="{{this.order.name}}" />
     </div>
     <div>
         <label for="tag">Tag your order</label>
@@ -34,7 +34,7 @@
     </div>
     <div>
         <input type="button" value="Cancel" (click)="cancel()" />
-        <input type="button" value="Create" /> <!--Show a popup with infos and ask to start the order... -->
+        <input type="button" value="Create" (click)="create()" /> <!--Show a popup with infos and ask to start the order... -->
     </div>
 </header>
 

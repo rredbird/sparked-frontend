@@ -6,6 +6,7 @@ import { DatasetDto } from '../shared/dto/datasetdto.type';
 import { ValidationMethodDto } from '../shared/dto/validationmethoddto.type';
 import { BackendService } from '../backend-service/backend.service';
 import { SearchService } from '../search-service/search.service';
+import { TaskDto } from '../shared/dto/taskdto.type';
 
 @Injectable()
 export class OrderGeneratorService {
@@ -35,7 +36,6 @@ export class OrderGeneratorService {
     this.order = new OrderDto();
     this.order.id = 'NEW_ID';
     this.order.name = '';
-    this.order.status = 'WAITING';
 
     return this.order;
   }
@@ -80,9 +80,22 @@ export class OrderGeneratorService {
         alert('name is empty');
         return;
     }
-    this.order.classifiers = this.classifiers.filter(function (classifier) {
+    this.classifiers.filter(function(classifier) {
         return classifier.selected == true;
+    }).forEach(element => {
+      let task : TaskDto;
+      task.classifier = element;
+      task.id = "EMPTY";
+      task.status = "new";
+
+      
+      this.order.tasks.push(task);
     });
+
+    this.order.tasks
+    // this.order.classifiers = this.classifiers.filter(function (classifier) {
+    //     return classifier.selected == true;
+    // });
     this.backendService.saveOrder(this.order).subscribe(
     data => this.order = data,
     err => console.error(err),

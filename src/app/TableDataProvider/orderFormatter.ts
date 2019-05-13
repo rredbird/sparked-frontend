@@ -8,19 +8,17 @@ export class OrderFormatter implements tableDataFormatter<OrderDto> {
     //     this.onClickDelegate(component, row);
     //     return;
     // }
-    public columnArray: String[] = ["Title","Index", "Order Status"];
+    public columnArray: String[] = ["Title","Index"];
     public column(data: OrderDto, index: number) : any {
         switch(index) {
             case 0: return data.name;
             case 1: return data.id;
-            case 2: return data.status;
         }
     }
     public columnDisplayInformation(index: number) : String {
         switch(index) {
             case 0: return "String";
             case 1: return "String";
-            case 2: return "String";
         }
     }
 }

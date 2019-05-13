@@ -22,17 +22,16 @@ export class OrderComponent implements OnInit {
     this.result = "STOP";
     this.order = navigatorService.order;
     this.backendService = backendService;
-    console.log(this.order.id + " = " + this.order.status);
-    if(this.order.status == "COMPLETED") {
-      this.backendService.result(this.order.id).subscribe(
-        data => { 
-            this.result = data;
-            this.showChart();
-        },
-        err => { console.error(err) },
-        () => console.log('result loaded...')
-        );
-    }
+    console.log(this.order.id + " = " + this.order.name);
+    ///TODO run with task support
+    this.backendService.result(this.order.id).subscribe(
+    data => { 
+        this.result = data;
+        this.showChart();
+    },
+    err => { console.error(err) },
+    () => console.log('result loaded...')
+    );
   }
 
   ngOnInit() {

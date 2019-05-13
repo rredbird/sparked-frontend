@@ -16,6 +16,8 @@ import { SearchService } from '../search-service/search.service';
 })
 export class OrderGeneratorComponent implements OnInit {
 
+    order: OrderDto;
+
     constructor(private navigatorService: NavigatorService, private orderGeneratorService: OrderGeneratorService) {
     }
 
@@ -24,5 +26,9 @@ export class OrderGeneratorComponent implements OnInit {
 
     private cancel() {
       this.navigatorService.view='orders';
+    }
+
+    private create() {
+      this.orderGeneratorService.createOrder();
     }
 }
