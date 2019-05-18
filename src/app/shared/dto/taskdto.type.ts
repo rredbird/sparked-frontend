@@ -10,5 +10,5 @@ export class TaskDto {
     classifier: ClassifierDto;
     dataset: DatasetDto;
     validationMehtod: ValidationMethodDto;
-    metric: MetricDto   ;
+    metric: MetricDto;
 }

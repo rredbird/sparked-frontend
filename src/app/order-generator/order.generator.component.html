@@ -1,52 +1,60 @@
-<!-- <header>
-    <label for="name">Name your order</label>
-    <input id="name" type="text" />
 
-    <label for="tag">Tag your order</label>
-    <input id="tag" type="text" />
+<div class="grid">
+    <header>
+        Coda
+    </header>
+    <div class="summary flexbox-vertical">
+        <div>
+            <label for="titel">Title</label><br>
+            <input id="title" type="text" value="{{this.order.name}}" />
 
-    <input type="button" value="Cancel" (click)="cancel()" />
-    <input type="button" value="Create" /> <!--Show a popup with infos and ask to start the order... -->
-<!-- </header>
+            <div class="button" (click)="this.selector='dataset'">
+                <div>Dataset</div>
+                <div *ngIf="this.dataset != undefined">Dataset: {{this.dataset.id}}</div>
+            </div>
+            <div class="button" (click)="this.selector='classifiers'">Classifiers</div>
+            <div class="button" (click)="this.selector='metric'">Metric</div>
+            <div class="button" (click)="this.selector='validation'">Validation Method</div>
+        </div>
 
-<content>
-    LOLCATS
-    Please give your order a name... -->
-    <!-- <div id=text>
-        <span>Please give your order a name.</span>
-        <span>You may tag all your orders, to find them later on.</span>
-        <span>An order consists of a dataset, one or more classifier, a metric and an evaluation method.</span>
+        <div>
+            <div class="button" (click)="this.create()">Create</div>
+            <div class="button" (click)="this.cancel()">Cancel</div>
+        </div>
     </div>
-    <div class="menu">Dataset</div>
-    <div class="menu">Classifiers</div>
-    <div class="menu">Metric</div>
-    <div class="menu">Evaluation Method</div> -->
-<!-- </content> -->
-
-<header>
-    <div>
-        <label for="name">Name your order</label>
-        <input id="name" type="text" value="{{this.order.name}}" />
+    <div class="work">
+        <div class="main scrollable" *ngIf="this.selector=='dataset'">
+            <div *ngFor="let dataset of this.orderGeneratorService.datasets" (click)="this.dataset=dataset;">{{dataset.id}}</div>
+        </div>
+        <div class="flexbox-vertical" *ngIf="this.selector=='classifiers'">
+            <div>
+                <div>Hallo</div>
+            </div>
+    
+            <div>
+                <div class="button bottom" (click)="this.selector='main'">Back</div>
+            </div>
+        </div>
+        <div class="flexbox-vertical" *ngIf="this.selector=='metric'">
+            <div>
+                <div>Hallo</div>
+            </div>
+    
+            <div>
+                <div class="button bottom" (click)="this.selector='main'">Back</div>
+            </div>
+        </div>
+        <div class="flexbox-vertical" *ngIf="this.selector=='validation'">
+            <div>
+                <div>Hallo</div>
+            </div>
+    
+            <div>
+                <div class="button bottom" (click)="this.selector='main'">Back</div>
+            </div>
+        </div>
     </div>
-    <div>
-        <label for="tag">Tag your order</label>
-        <input id="tag" type="text" />
+    <div class="detail" *ngIf="this.detail=='classifier'">
+        Properties...
     </div>
-    <div>
-        <input type="button" value="Cancel" (click)="cancel()" />
-        <input type="button" value="Create" (click)="create()" /> <!--Show a popup with infos and ask to start the order... -->
-    </div>
-</header>
-
-<div class="details">
-    <div id=text>
-        <span>Please give your order a name.</span>
-        <span>You may tag all your orders, to find them later on.</span>
-        <span>An order consists of a dataset, one or more classifier, a metric and an evaluation method.</span>
-    </div>
-
-    <div class="menu" (click)="this.navigatorService.floating='datasets'">Dataset</div>
-    <div class="menu" (click)="this.navigatorService.floating='classifiers'">Classifiers</div>
-    <div class="menu" (click)="this.navigatorService.floating='metrics'">Metric</div>
-    <div class="menu" (click)="this.navigatorService.floating='evaluators'">Evaluation Method</div>
 </div>

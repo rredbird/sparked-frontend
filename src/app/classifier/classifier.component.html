@@ -20,15 +20,9 @@
     </div>
     <div class="detail" *ngIf="this.detailRow != null">
         <div *ngFor="let parameter of this.detailRow.parameters">
-            <span>{{parameter.name}}</span>
-            <span>{{parameter.doc}}</span>
-            <span>{{parameter.javaType}}</span>
-            <input type="text" value="{{parameter.value}}" />
+            <span>{{parameter.name}}</span><input type="text" value="{{parameter.value}}" />
+            <!-- <span>{{parameter.javaType}}</span>
+            <span>{{parameter.doc}}</span> -->
         </div>
     </div>
 </div>
-<!--name: String;
-    doc: String;
-    value: String;
-    paramType: String;
-    javaType: String; -->

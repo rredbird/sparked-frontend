@@ -21,8 +21,8 @@ export class OrderGeneratorService {
     this.metrics = new Array<MetricDto>();
     this.datasets = new Array<DatasetDto>();
     this.validationMethods = new Array<ValidationMethodDto>();
-    this.order = new OrderDto();
-
+    this.order = this.newOrder();
+    
     this.backendService.createOrder().subscribe(
       data => this.order = data,
       err => console.error(err),
@@ -34,7 +34,7 @@ export class OrderGeneratorService {
 
   public newOrder() : OrderDto {
     this.order = new OrderDto();
-    this.order.id = 'NEW_ID';
+    this.order.id = '00000000-0000-0000-0000-000000000000';
     this.order.name = '';
 
     return this.order;
@@ -80,14 +80,14 @@ export class OrderGeneratorService {
         alert('name is empty');
         return;
     }
+    this.order.tasks = new Array<TaskDto>();
     this.classifiers.filter(function(classifier) {
         return classifier.selected == true;
     }).forEach(element => {
       let task : TaskDto;
       task.classifier = element;
-      task.id = "EMPTY";
+      task.id = '00000000-0000-0000-0000-000000000000';
       task.status = "new";
-
       
       this.order.tasks.push(task);
     });

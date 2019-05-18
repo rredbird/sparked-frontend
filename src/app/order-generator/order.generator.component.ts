@@ -17,8 +17,12 @@ import { SearchService } from '../search-service/search.service';
 export class OrderGeneratorComponent implements OnInit {
 
     order: OrderDto;
+    selector: String = "main";
+    dataset: DatasetDto = undefined;
 
     constructor(private navigatorService: NavigatorService, private orderGeneratorService: OrderGeneratorService) {
+      this.order = orderGeneratorService.order;
+      this.order.name = "LOLCATS";
     }
 
     ngOnInit() {
@@ -29,6 +33,7 @@ export class OrderGeneratorComponent implements OnInit {
     }
 
     private create() {
+      this.orderGeneratorService.order = this.order;
       this.orderGeneratorService.createOrder();
     }
 }
