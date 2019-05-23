@@ -33,11 +33,12 @@ export class OrderGeneratorService {
   }
 
   public newOrder() : OrderDto {
-    this.order = new OrderDto();
-    this.order.id = '00000000-0000-0000-0000-000000000000';
-    this.order.name = '';
+    let order = new OrderDto();
+    order.id = '00000000-0000-0000-0000-000000000000';
+    order.name = '';
+    order.tasks = new Array<TaskDto>();
 
-    return this.order;
+    return order;
   }
 
   public idOfSelected<T extends { selected : Boolean, id : String }>(list : Array<T>) : String {
@@ -75,32 +76,30 @@ export class OrderGeneratorService {
     return null;
   }
 
-  public createOrder(): void {
-    if (this.order.name === '') {
-        alert('name is empty');
-        return;
-    }
-    this.order.tasks = new Array<TaskDto>();
-    this.classifiers.filter(function(classifier) {
-        return classifier.selected == true;
-    }).forEach(element => {
-      let task : TaskDto;
-      task.classifier = element;
-      task.id = '00000000-0000-0000-0000-000000000000';
-      task.status = "new";
-      
-      this.order.tasks.push(task);
-    });
+  public createOrder(title:String, dataset: DatasetDto, classifiers:Array<ClassifierDto>,
+        metric:MetricDto, method:ValidationMethodDto): void {
+    this.order = this.newOrder();
 
-    this.order.tasks
-    // this.order.classifiers = this.classifiers.filter(function (classifier) {
-    //     return classifier.selected == true;
-    // });
-    this.backendService.saveOrder(this.order).subscribe(
-    data => this.order = data,
-    err => console.error(err),
-    () => console.log('order created...')
-    );
+    if(classifiers != undefined && classifiers.length > 0) {
+      classifiers.forEach(element => {
+        let task = new TaskDto();
+        task.classifier = element;
+        task.id = '00000000-0000-0000-0000-000000000000';
+        task.status = "new";
+        task.metric = metric;
+        task.validationMethod = method; 
+        task.dataset = dataset;
+        
+        this.order.tasks.push(task);
+      });
+    
+
+      this.backendService.saveOrder(this.order).subscribe(
+      data => this.order = data,
+      err => console.error(err),
+      () => console.log('order created...')
+      );
+    }
   }
 
   public step: Number = 0;

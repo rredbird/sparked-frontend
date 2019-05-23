@@ -1,7 +1,32 @@
-<div>
-  <h1>Wellcome to Coda</h1>
-  <p>This is Coda, an AutoML </p>
-  <input type="button" value="Show Orders" (click)="navigator.view = 'orders'" />
+<div class="grid">
+  <header>
+
+  </header>
+
+  <div class="full_width">
+    <div class="title">
+      <h1>CODA</h1>
+      <p>
+        Wellcome to Coda, an automated machine learning program.
+      </p>
+    </div>
+    <div class="flexbox_horizontal justify_center">  
+      <div class="flexitem hoverable big_item square_on_hover video_holder" (click)="create()">
+        <div>
+          Create your own<br>Order.
+        </div>
+      </div>
+      <div class="flexitem hoverable big_item square_on_hover" (click)="navigator.view = 'orders'">
+        <div>
+          View existing<br>Orders.
+        </div>
+      </div>
+      <div class="flexitem hoverable big_item square_on_hover">
+        <div class="flexitem">About Coda &<br>Settings</div>
+      </div>
+    </div>
+  </div>
+  <!-- <input type="button" value="Show Orders" (click)="navigator.view = 'orders'" />
   <input type="button" value="Help" (click)="navigator.view = 'help'"/>
-  <input type="button" value="Create Orders" (click)="create()"/>
+  <input type="button" value="Create Orders" (click)="create()"/> -->
 </div>

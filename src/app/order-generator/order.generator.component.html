@@ -1,60 +1,281 @@
+<div class="grid">
+    <header>
+    
+    </header>
+    
 
+<!-- BUBBLE MENU -->
+
+    <div class="full_width" *ngIf="this.workflow == 'order'">
+        <div class="title">
+            <h1>Create a new Order</h1>
+            <p>
+                Please give your Order a title, so that you may find it again later!
+            </p>
+            <input type="text" class="title_input" [(ngModel)]="this.title" />
+        </div>
+        <div class="flexbox_horizontal justify_center">  
+<!-- DATASET -->
+            <div class="flexitem hoverable big_item button-wobble" (click)="this.workflow = 'dataset'; this.detail = 'list';">
+                <div class="title_item">
+                    Dataset
+                </div>
+                <div class="list_item">
+                    {{this.dataset == undefined ? '' : this.dataset.id}}
+                </div>
+            </div>
+<!-- CLASSIFERS -->
+            <div class="flexitem hoverable big_item show_on_hover square_on_hover"  
+                    (click)="this.workflow='classifier'; this.detail = 'list';">
+                <div class="title_item">
+                    Classifiers
+                </div>
+                <div class="hidden_without_hover">
+                    <div class="hoverable list_item" (click)="this.workflow='classifier'; this.detail = 'list';">
+                        Add new classifier
+                    </div>
+                    <div *ngFor="let classifier of this.classifiers" class="hoverable list_item">
+                        {{this.shorten(classifier.id)}}<button>asfd</button>
+                    </div>
+                </div>
+            </div>
+<!-- METRIC -->
+            <div class="flexitem hoverable big_item button-wobble" (click)="this.workflow = 'metric'; this.detail = 'list';">
+                <div class="title_item">
+                    Metric    
+                </div>
+                <div class="list_item">
+                    {{this.metric == undefined ? '' : this.shorten(this.metric.id)}}
+                </div>
+            </div>
+<!-- VALIDATION METHOD -->
+            <div class="flexitem hoverable big_item show_on_hover square_on_hover">
+                <div class="title_item">
+                    Validation Method
+                </div>
+                <div class="hidden_without_hover">
+                    <div *ngFor="let method of this.orderGeneratorService.validationMethods" class="hoverable list_item" 
+                            (click)="setMethod(method)" [ngClass]="{'active': this.isSelected(method)}">
+                        {{this.shorten(method.id)}}
+                    </div>
+                </div>
+                <div class="hidden_with_hover">
+                    <div class="list_item">
+                        {{this.shorten(this.method == undefined ? '' : this.method.id)}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- END BUBBLE MENU -->
+
+<!-- LIST ELEMENTS -->
+
+
+    <div class="work scrollable" *ngIf="this.detail == 'list'">
+        <div *ngIf="this.workflow == 'dataset'">
+            <div *ngFor="let dataset of this.orderGeneratorService.datasets" class="list_item hoverable" 
+                    (click)="setDataset(dataset)" [ngClass]="{'active': this.isSelected(dataset)}">
+                {{dataset.id}}
+            </div>
+        </div>
+        <div *ngIf="this.workflow == 'classifier'">
+            <div *ngFor="let classifier of this.orderGeneratorService.classifiers" class="flexitem hoverable" 
+                    (click)="this.cloneClassifier(classifier); this.detail = 'parameters'; this.classifier = classifier;">
+                {{this.shorten(classifier.id)}}
+            </div>
+        </div>
+        <div *ngIf="this.workflow == 'metric'">
+            <div *ngFor="let metric of this.orderGeneratorService.metrics" class="list_item hoverable" 
+                    (click)="setMetric(metric)" [ngClass]="{'active': isSelected(metric)}">
+                {{this.shorten(metric.id)}}
+            </div>
+        </div>
+    </div>
+    <div class="work scrollable" *ngIf="this.detail == 'parameters' && this.workflow == 'classifier'">
+        <div *ngFor="let element of this.classifier.parameters">
+            <div class="flexbox_horizontal" 
+                    [ngClass]="{'selected': this.parameter.name == element.name}"
+                    (mouseenter)="mouseoverParameter(element)">
+                <div class="parameter key">{{element.name}}</div>
+                <input class="parameter value" type="text" [(ngModel)]="element.value" />
+            </div>
+        </div>
+    </div>
+    
+<!-- END LIST ELEMENTS -->
+
+<!-- LEFT PANNEL -->
+
+    <div class="summary">
+        <div *ngIf="this.workflow == 'dataset' && this.detail == 'list'" 
+                class="item" (click)="this.workflow='order'; this.detail='main';">
+            OK
+        </div>
+        <div *ngIf="this.workflow == 'metric' && this.detail == 'list'" 
+                class="item" (click)="this.workflow='order'; this.detail='main';">
+            OK
+        </div>
+    </div>
+    
+    <div class="summary" *ngIf="this.detail=='parameters' && this.classifier != undefined">
+        <div class="item" (click)="this.workflow='order'; this.detail='main'; this.addClassifier()">
+            OK
+        </div>
+        <div class="item" (click)="this.workflow='order'; this.detail='main';">
+            Cancel
+        </div>
+    </div>
+
+<!-- END LEFT PANEL -->
+
+<!-- RIGHT PANEL -->
+
+    <div id="classifier_parameter_infopanel" class="detail" *ngIf="this.detail=='parameters' && this.classifier != undefined">
+        <div class="item">Info</div>
+        <div class="parameter documentation">
+            {{this.parameter.doc}}
+        </div>     
+    </div>
+
+<!-- END RIGHT PANEL -->
+
+</div>
+
+<!-- 
 <div class="grid">
     <header>
         Coda
     </header>
-    <div class="summary flexbox-vertical">
-        <div>
-            <label for="titel">Title</label><br>
-            <input id="title" type="text" value="{{this.order.name}}" />
+    <div id="order_creation_side_bar" class="summary sized">
+        <div class="scrollable flexbox_vertical">
+            <div>
+                <div class="button item" (click)="this.selector='main'">
+                    <div>Title</div>
+                    <div *ngIf="this.title != undefined" class="indented">{{this.title}}</div>
+                </div>
+                <div class="button item" 
+                        [ngClass]="{'valid-selection':validDatasetSelection(dataset)==1, 'invalid-selection':validDatasetSelection(dataset)==2}"  
+                        (click)="this.workflow='dataset'">
+                    <div>Dataset</div>
+                    <div *ngIf="this.dataset != undefined" class="indented">{{this.dataset.id}}</div>
+                </div>
+                <div class="button item" 
+                        [ngClass]="{'valid-selection':validClassifierSelection(dataset)==1, 'invalid-selection':validClassifierSelection(dataset)==2}"  
+                        (click)="this.workflow='classifier'">
+                    <div>Classifiers</div>
+                    <div *ngFor="let classifier of this.classifiers" class="indented item" 
+                            (click)="selectClassifier(classifier)">
+                        {{this.shorten(classifier.id)}}
+                    </div>
+                </div>
+                <div class="button item"
+                        [ngClass]="{'valid-selection':validMetricSelection()==1, 'invalid-selection':validMetricSelection(dataset)==2}" 
+                        (click)="this.workflow='metric'">
+                    <div>Metric</div>
+                    <div *ngIf="this.metric != undefined" class="indented">{{this.shorten(this.metric.id)}}</div>
+                </div>
+                <div class="button item" 
+                        [ngClass]="{'valid-selection':validMethodSelection()==1, 'invalid-selection':validMethodSelection(dataset)==2}" 
+                        (click)="this.workflow='validation'">
+                    <div>Validation Method</div>
+                    <div *ngIf="this.method != undefined" class="indented">{{this.shorten(this.method.id)}}</div>
+                </div>
+            </div>
 
-            <div class="button" (click)="this.selector='dataset'">
-                <div>Dataset</div>
-                <div *ngIf="this.dataset != undefined">Dataset: {{this.dataset.id}}</div>
+            <div>
+                <div *ngIf="this.selector != 'main' " class="button bottom item" (click)="back()">Back</div>
+                <div *ngIf="this.selector == 'classifiers' && this.classifier != undefined && !isSelected(this.classifier)" 
+                        class="button bottom item" (click)="addClassifier()">Add</div>
+                <div *ngIf="this.selector == 'classifiers' && this.classifier != undefined && isSelected(this.classifier)" 
+                        class="button bottom item" (click)="addClassifier()">OK</div>
+                <div *ngIf="this.selector == 'classifiers' && this.classifier != undefined && isSelected(this.classifier)" 
+                        class="button bottom item" (click)="addClassifier()">Remove</div>
+                <div class="button item create" (click)="this.create()">Create</div>
+                <div class="button item cancel" (click)="this.cancel()">Cancel</div>
             </div>
-            <div class="button" (click)="this.selector='classifiers'">Classifiers</div>
-            <div class="button" (click)="this.selector='metric'">Metric</div>
-            <div class="button" (click)="this.selector='validation'">Validation Method</div>
         </div>
-
+    </div>
+    <div id="order_creation_main_list" class="work sized">
+        <div class="scrollable" *ngIf="this.workflow=='dataset'">
+            <div *ngFor="let dataset of this.orderGeneratorService.datasets" class="list_item hoverable" 
+                    (click)="setDataset(dataset)" [ngClass]="{'active': this.isSelected(dataset)}">
+                {{dataset.id}}
+            </div>    
+        </div>
+        <div  *ngIf="this.workflow=='classifier' && this.selector == 'main'">
+            
+        </div>
+        <div class="scrollable" *ngIf="this.selector=='createClassifier' && this.detail != 'classifier'">
+            <p>Create and configure a classifier!</p>
+            <p>Please select a base classifier.</p>
+            <div *ngFor="let classifier of this.orderGeneratorService.classifiers" class="list_item hoverable" 
+                    (click)="cloneClassifier(classifier)">
+                {{this.shorten(classifier.id)}}
+            </div>
+        </div>
+        <div class="scrollable" *ngIf="this.selector=='showClassifiers'">
+            <p>Create and configure a classifier!</p>
+            <p>Please select a base classifier.</p>
+            <div *ngFor="let classifier of this.classifiers" class="list_item hoverable flexbox_horizontal">
+                <div>{{this.shorten(classifier.id)}}</div>
+                <div class="button" (click)="openClassifier(classifier)">Edit</div>
+                <div class="button" (click)="cloneClassifier(classifier)">Clone</div>
+                <div class="button" (click)="deleteClassifier(classifier)">Delete</div>
+            </div>
+        </div>
+        <div class="scrollable" *ngIf="this.workflow=='metric'">
+            <div *ngFor="let metric of this.orderGeneratorService.metrics" class="list_item hoverable" 
+                    (click)="setMetric(metric)" [ngClass]="{'active': isSelected(metric)}">
+                {{this.shorten(metric.id)}}
+            </div>
+        </div>
+        <div class="scrollable" *ngIf="this.workflow=='validation'">
+            <div *ngFor="let method of this.orderGeneratorService.validationMethods" class="list_item hoverable" 
+                    (click)="setMethod(method)" [ngClass]="{'active': this.isSelected(method)}">
+                {{this.shorten(method.id)}}
+            </div>
+        </div>
+    </div>
+    <div id="order_creation_landingpage" class="full_content sized" *ngIf="this.selector=='main'">
+        <div class="item">Create an Order...</div>
+        <div class="text">
+            <p>
+                Hey handsome, please select a dataset, for maximum pleasure. 
+                One or more classifiers may get you to new heights. 
+                At the end you will be able to start a new job on Coda!
+            </p>
+            <p>
+                Why don't you select a title first, to find your order later on?
+            </p>
+            <p>
+                <input type="text" class="title_input" [(ngModel)]="this.title" />
+            </p>
+        </div>
         <div>
-            <div class="button" (click)="this.create()">Create</div>
-            <div class="button" (click)="this.cancel()">Cancel</div>
+
         </div>
     </div>
-    <div class="work">
-        <div class="main scrollable" *ngIf="this.selector=='dataset'">
-            <div *ngFor="let dataset of this.orderGeneratorService.datasets" (click)="this.dataset=dataset;">{{dataset.id}}</div>
+    <div id="classifier_detail" class="work sized scrollable" 
+            *ngIf="this.workflow == 'classifiers' && this.detail=='classifier' && this.classifier != undefined">
+        <div class="item">
+            {{this.shorten(this.classifier.id)}}
         </div>
-        <div class="flexbox-vertical" *ngIf="this.selector=='classifiers'">
-            <div>
-                <div>Hallo</div>
-            </div>
-    
-            <div>
-                <div class="button bottom" (click)="this.selector='main'">Back</div>
-            </div>
-        </div>
-        <div class="flexbox-vertical" *ngIf="this.selector=='metric'">
-            <div>
-                <div>Hallo</div>
-            </div>
-    
-            <div>
-                <div class="button bottom" (click)="this.selector='main'">Back</div>
-            </div>
-        </div>
-        <div class="flexbox-vertical" *ngIf="this.selector=='validation'">
-            <div>
-                <div>Hallo</div>
-            </div>
-    
-            <div>
-                <div class="button bottom" (click)="this.selector='main'">Back</div>
+        <div id="classifier_list" class="line" *ngFor="let element of this.classifier.parameters">
+            <div class="flexbox_horizontal" 
+                    [ngClass]="{'selected': this.parameter.name == element.name}"
+                    (mouseenter)="mouseoverParameter(element)">
+                <div class="parameter key">{{element.name}}</div>
+                <input class="parameter value" type="text" [(ngModel)]="element.value" />
             </div>
         </div>
     </div>
-    <div class="detail" *ngIf="this.detail=='classifier'">
-        Properties...
+    <div id="classifier_parameter_infopanel" class="detail sized parameter documentation" 
+            *ngIf="this.detail=='classifier' && this.classifier != undefined">
+        <div class="item">Info</div>
+        <div class="parameter documentation">
+            {{this.parameter.doc}}
+        </div>     
     </div>
-</div>
+</div> -->

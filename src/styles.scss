@@ -5,6 +5,8 @@ body {
     margin:0px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: white;
+    font-size: 28px;
+    font-weight: 300;
 }
 
 a {
@@ -13,7 +15,7 @@ a {
 
 input {
     border-color: transparent;
-    border-bottom-color: darkgray;
+    //border-bottom-color: darkgray;
     border-bottom-width: 1px;
     box-shadow: none;
     &:focus {
@@ -60,4 +62,132 @@ li.table {
 ::-webkit-scrollbar-thumb
 {
 	background-color: #000000;
+}
+
+.hoverable:hover {
+    background-color: antiquewhite;
+}
+
+.big_item.hoverable:hover {
+    background-color: lightgray;
+    background-image: none;
+}
+
+.list_item {
+    font-weight: 400;
+    font-size: 24px;
+    color: black;
+    cursor: pointer;
+    padding: .2em;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.item {
+    width: 90%;
+    margin: 2px;
+    padding: 0.5em;
+    font-weight: 300;
+    font-size: 28px;
+    color: black;
+    cursor: pointer;
+    background-image: linear-gradient(to right, lightgray, white 50%);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: [summary-column] 15em [null-column-left] auto [work-column] 30em [null-column-right] auto [detail-column] 15em;
+    grid-template-rows: [header-row] 6em [content-row] auto [footer-row] 2px;
+
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+header {
+    grid-column-start: summary-column;
+    grid-column-end: detail-column;
+    grid-row: header-row; 
+}
+
+.summary {
+    grid-column: summary-column;
+    grid-row: content-row;
+}
+
+.work {
+    grid-column: work-column;
+    grid-row: content-row;
+    text-align: center;
+}
+.full_content {
+    grid-column: work-column / span 3;
+    grid-row: content-row;
+}
+
+.full_width {
+    grid-column: summary-column / span 4;
+    grid-row: content-row;
+    width: 100vw;
+}
+
+.detail {
+    grid-column: detail-column;
+    grid-row: content-row;
+}
+
+.flexbox_vertical {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.flexbox_horizontal {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.flexitem {
+    text-align: center;
+}
+
+.justify_center {
+    justify-content: center;
+}
+
+.big_item {
+    height: 6.8em;
+    width: 10em;
+    border-color:gray;
+    border-width: 3px;
+    border-style: ridge;
+    border-radius: 5em;
+    cursor: pointer;
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+    padding-top: 3.2em;
+    transition: 1.2s;
+}
+
+.big_item.square_on_hover:hover {
+    border-radius: 0.5em;
+    width: 14em;
+    height: 10em;
+}
+
+.title {
+    text-align: center;
+    width: 100vw;
+    h1 {
+        height: 2em;
+        font-size: 40px;
+        font-weight: 400;
+    }
+    p {
+        height: 3em;
+        font-size: 28px;
+        font-weight: 300;
+    }
 }

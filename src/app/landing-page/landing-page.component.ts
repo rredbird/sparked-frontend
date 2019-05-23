@@ -16,6 +16,6 @@ export class LandingPageComponent implements OnInit {
 
   private create() {
     this.navigator.view = 'create';
-    this.navigator.order = this.orderGenerator.newOrder();
+    this.orderGenerator.newOrder();
   }
 }

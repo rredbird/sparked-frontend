@@ -1,47 +1,188 @@
 @import '../../variables';
 
-.grid {
-    display: grid;
-    grid-template-columns: [summary-column] 20em [work-column] 40em [detail-column] auto;
-    grid-template-rows: [header-row] 6em [content-row] auto;
-
-    height: 100vh;
-    width: 100vw;
+.hidden_without_hover {
+    opacity: 0;
+    transition: 0.6s;
+    transition-delay: 0.1s;
+    overflow: hidden;
+    height: 0%;
+}
+.hidden_with_hover {
+    opacity: 1;
+    transition: 0.6s;
+    transition-delay: 0.1s;
+    overflow: hidden;
+    height: 2em;
 }
 
-header {
-    grid-column-start: summary-column;
-    grid-column-end: detail-column;
-    grid-row: header-row; 
-}
-
-.summary {
-    grid-column: summary-column;
-    grid-row: content-row;
-    background-color: red;
-}
-
-.work {
-    grid-column: work-column;
-    grid-row: content-row;
-    background-color: orange;
-}
-
-.detail {
-    grid-column: detail-column;
-    grid-row: content-row;
-    background-color: yellow;
-}
-
-.flexbox-vertical {
+.show_on_hover:hover > .hidden_without_hover {
+    opacity: 1;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+}
+.show_on_hover:hover > .hidden_with_hover {
+    opacity: 0;
+    height: 0em;
+    
+}
+
+.active {
+    background-color: lightblue;
+}
+
+.title_item {
+    margin-bottom: .2em;
+}
+
+.button-wobble:hover {
+    animation: wobble 3s ease-in-out alternate infinite;
+}
+  
+@keyframes wobble {
+    10% {
+        border-radius: 4em / 4em;
+    }
+    40% {
+      border-radius: 750px 550px 350px 750px /
+                     350px 750px 550px 450px;
+    }
+    70% {
+        border-radius: 250px 400px 550px 550px /
+                       550px 750px 550px 550px;
+    }
+    100% {
+      border-radius: 750px 250px 750px 250px /
+                     250px 750px 250px 750px;
+    }
 }
 
 .scrollable {
-    height: 90vh;
-    overflow-y: scroll;
+    height: calc(100%-6em);
+    overflow-y: auto;
     overflow-x: hidden;
 }
+
+#classifier_parameter_infopanel {
+    text-align: right;
+    width: 10em;
+}
+
+// .flexbox_vertical {
+//     height: 100%;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: space-between;
+// }
+// .flexbox_horizontal {
+//     width: 100%;
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: space-between;
+// }
+
+
+// .sized {
+//     // height: 100vh;
+//     margin-top: -6em;
+//     padding-top: 6em;
+//     -moz-box-sizing: border-box;
+//     box-sizing: border-box;
+// }
+
+// .scrollable-with-buttons {
+//     height: 80vh;
+//     overflow-y: scroll;
+//     overflow-x: hidden;
+// }
+
+
+// .indented {
+//     padding-left:1em;
+// }
+
+// .item.button:hover {
+//     background-image: linear-gradient(to right, cornflowerblue, white);
+// }
+
+// .active {    
+//     background-image: linear-gradient(to right, white, lightblue, white);
+// }
+// .item.active:hover {    
+//     background-image: linear-gradient(to right, white, blue, white);
+// }
+// .button.create {
+//     background-image: linear-gradient(to right, lightgreen, white);
+// }
+// .button.cancel {
+//     background-image: linear-gradient(to right, orange, white);
+// }
+// .button {
+//     background-image: linear-gradient(to right, lightgray, white 50%);
+// }
+// .button.back {
+//     background-image: linear-gradient(to right, gray, white);
+// }
+
+// .valid-selection {
+//     border-color: green;
+//     // border-width: 3px;
+//     // border-style: solid;
+// }
+// .invalid-selection {
+//     border-color: orange;
+//     // border-width: 3px;
+//     // border-style: solid;
+// }
+
+// .parameter.key {
+//     width: 40%;
+//     margin: 2px;
+//     padding: 0em;
+//     font-weight: 400;
+//     font-size: 24px;
+//     color: black;
+// }
+
+// .parameter.value {
+//     width: 40%;
+//     margin: 2px;
+//     padding: 0em;
+//     font-weight: 200;
+//     font-size: 24px;
+//     color: black;
+//     background-color: transparent;
+// }
+
+// .parameter.documentation {
+//     padding-left: 1em;
+//     padding-right: 1em;
+// }
+
+// .line {
+//     margin: 0.5em;
+//     padding: 0.5em;
+// }
+// .line::after {
+//     content: " ";
+//     display: block;
+//     height: 1px;
+//     width: 100%;
+//     background-color: gray;    
+// }
+// .line.selected {
+//     background-image: linear-gradient(to right, white, lightgray, white);
+// }
+
+// .text {
+//     padding-left: 1em;
+//     padding-right: 1em;
+// }
+
+// input.title_input {
+//     font-size: 26px;
+//     text-align: center;
+//     margin-left: 10vw;
+// }
+
+// .indented.item:hover {
+//     background-image: none;
+// }

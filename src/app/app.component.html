@@ -1,4 +1,3 @@
-
 <app-landing-page *ngIf="this.navigatorService.view=='start'">loading landing page...</app-landing-page>
 
 <app-orders *ngIf="this.navigatorService.view=='orders'">view all orders</app-orders>
@@ -6,7 +5,7 @@
 <app-order *ngIf="this.navigatorService.view=='order'">view specific order</app-order>
 
 <app-order-generator *ngIf="this.navigatorService.view=='create'">view specific order</app-order-generator>
-
+<!-- 
 <div id="floating" *ngIf="this.navigatorService.floating!='none'">
     <div>
         <app-classifier *ngIf="this.navigatorService.floating=='classifiers'">view classifiers</app-classifier>
@@ -17,4 +16,4 @@
 
         <app-validation-method *ngIf="this.navigatorService.floating=='evaluators'">view evaluation methods</app-validation-method>
     </div>
-</div>
+</div> -->

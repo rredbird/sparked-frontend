@@ -28,7 +28,7 @@ export class AppComponent {
 
     constructor(private translateService : TranslateService, public navigatorService: NavigatorService, 
         private orderGenerator: OrderGeneratorService, private backendService : BackendService) { 
-
+            
             this.loadOrders();
             translateService.use('en').then(() => { });
     }

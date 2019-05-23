@@ -9,6 +9,6 @@ export class TaskDto {
     status: String;
     classifier: ClassifierDto;
     dataset: DatasetDto;
-    validationMehtod: ValidationMethodDto;
+    validationMethod: ValidationMethodDto;
     metric: MetricDto;
 }
