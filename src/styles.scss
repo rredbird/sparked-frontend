@@ -3,10 +3,10 @@
 
 body {
     margin:0px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: $font-family;
     background-color: white;
-    font-size: 28px;
-    font-weight: 300;
+    font-size: $font-size-medium;
+    font-weight: $font-weight-thin;
 }
 
 a {
@@ -74,21 +74,35 @@ li.table {
 }
 
 .list_item {
-    font-weight: 400;
-    font-size: 24px;
     color: black;
     cursor: pointer;
     padding: .2em;
     margin-left: 1em;
     margin-right: 1em;
+
+    -ms-word-break: break-all;
+    word-break: break-all;
+
+    word-break: break-word;
+
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+
+    font-size: $font-size-small;
+}
+
+.title_item {
+    margin-bottom: .2em;
+    font-size: $font-size-medium;
+    font-weight: $bold;
 }
 
 .item {
     width: 90%;
     margin: 2px;
     padding: 0.5em;
-    font-weight: 300;
-    font-size: 28px;
     color: black;
     cursor: pointer;
     background-image: linear-gradient(to right, lightgray, white 50%);
@@ -104,10 +118,24 @@ li.table {
     overflow: hidden;
 }
 
-header {
-    grid-column-start: summary-column;
+.header {
+    grid-column-start: work-column;
     grid-column-end: detail-column;
+    grid-row: header-row;
+    background-color: red;
+}
+
+.icon-header {
+    cursor: pointer;
+    position: fixed;
+    left: 1em;
+    top: 1em;
+    grid-column: summary-column;
     grid-row: header-row; 
+    background-image: url('./assets/logo_coda_88px.png');
+    background-size: contain;
+    height: 3.3em;
+    width: 3.0em;
 }
 
 .summary {
@@ -158,12 +186,12 @@ header {
 }
 
 .big_item {
-    height: 6.8em;
-    width: 10em;
+    height: $circle-diameter-vertical;
+    width: $circle-diameter-horizontal;
     border-color:gray;
-    border-width: 3px;
+    border-width: 2px;
     border-style: ridge;
-    border-radius: 5em;
+    border-radius: $border-radius;
     cursor: pointer;
     margin-left: 1.5em;
     margin-right: 1.5em;
@@ -173,8 +201,6 @@ header {
 
 .big_item.square_on_hover:hover {
     border-radius: 0.5em;
-    width: 14em;
-    height: 10em;
 }
 
 .title {
@@ -182,12 +208,33 @@ header {
     width: 100vw;
     h1 {
         height: 2em;
-        font-size: 40px;
-        font-weight: 400;
+        font-size: $font-size-big;
+        font-weight: $bold;
     }
     p {
         height: 3em;
-        font-size: 28px;
-        font-weight: 300;
     }
+}
+
+.edit_button{
+    background-image: url("../src//assets/icons/edit.png");
+    background-size: cover;
+}
+
+.add_button{
+    background-image: url("../src//assets/icons/add.png");
+    background-size: cover;
+    max-width: 0.8em;
+    max-height: 0.8em;
+}
+
+.icon_button {
+    min-width: 0em;
+    min-height: 0em;
+    margin-left: 0em;
+    align-self: right;
+}
+
+.inline {
+    display: inline-block;
 }

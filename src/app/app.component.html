@@ -1,3 +1,6 @@
+
+<div class="icon-header" (click)="this.navigatorService.view = 'start';"></div>
+
 <app-landing-page *ngIf="this.navigatorService.view=='start'">loading landing page...</app-landing-page>
 
 <app-orders *ngIf="this.navigatorService.view=='orders'">view all orders</app-orders>

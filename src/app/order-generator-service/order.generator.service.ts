@@ -77,7 +77,7 @@ export class OrderGeneratorService {
   }
 
   public createOrder(title:String, dataset: DatasetDto, classifiers:Array<ClassifierDto>,
-        metric:MetricDto, method:ValidationMethodDto): void {
+        metric:MetricDto, method:ValidationMethodDto, callback : Function): void {
     this.order = this.newOrder();
 
     if(classifiers != undefined && classifiers.length > 0) {
@@ -90,14 +90,14 @@ export class OrderGeneratorService {
         task.validationMethod = method; 
         task.dataset = dataset;
         
-        this.order.tasks.push(task);
+        //this.order.tasks.push(task);
       });
     
 
       this.backendService.saveOrder(this.order).subscribe(
       data => this.order = data,
       err => console.error(err),
-      () => console.log('order created...')
+      () => callback()
       );
     }
   }

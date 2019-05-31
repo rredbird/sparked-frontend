@@ -48,7 +48,17 @@ export class OrderGeneratorComponent implements OnInit {
 
     private create() {
       this.orderGeneratorService.order = this.order;
-      this.orderGeneratorService.createOrder(this.title, this.dataset, this.classifiers, this.metric, this.method);
+      this.orderGeneratorService.createOrder(this.title, 
+        this.dataset, 
+        this.classifiers, 
+        this.metric, 
+        this.method,
+        this.orderCreated);
+    }
+
+    public orderCreated() {
+      console.log('order created...');
+      this.workflow = '';
     }
 
     private setDataset(value : DatasetDto) {
@@ -74,12 +84,15 @@ export class OrderGeneratorComponent implements OnInit {
       retVal = retVal.replace("per", "per ");
       retVal = retVal.replace("true", "true ");
       retVal = retVal.replace("false", "false ");
+      retVal = retVal.replace("  ", " ");
 
       return retVal;
     }
 
     private addClassifier() {
-      this.classifiers.push(this.classifier);
+      if(this.classifiers.indexOf(this.classifier) < 0) {
+        this.classifiers.push(this.classifier);
+      }
     }
 
     private selectClassifier(value : ClassifierDto) {
