@@ -5,5 +5,4 @@ export class ClassifierDto {
     name: String;
     description: String;
     parameters: ParameterDto[];
-    selected : Boolean;
 }

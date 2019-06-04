@@ -13,7 +13,6 @@ import { OrderGeneratorComponent } from './order-generator/order.generator.compo
 import { TaskComponent } from './task/task.component';
 import { ClassifierComponent } from './classifier/classifier.component';
 // import { MetricComponent } from './old/metric/metric.component';
-import { DatasetComponent } from './dataset/dataset.component';
 // import { ValidationMethodComponent } from './old/validation-method/validation-method.component';
 // import { ParameterComponent } from './old/parameter/parameter.component';
 import { NavigatorService } from './navigator-service/navigator.service';
@@ -76,7 +75,6 @@ export function setupTranslateFactory(service : TranslateService) : Function {
     // ParameterComponent,
     ClassifierComponent,
     // MetricComponent,
-    DatasetComponent,
     // ValidationMethodComponent,
     LandingPageComponent,
     TranslatePipe,

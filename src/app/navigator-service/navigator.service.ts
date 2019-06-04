@@ -8,7 +8,6 @@ export class NavigatorService {
   public floating: String = 'none';
   public title: String = 'Welcome';
   public subtitle: String = '';
-  public order: OrderDto;
   
   constructor() { }
 }

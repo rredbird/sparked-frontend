@@ -17,7 +17,6 @@ import { ParameterDto } from '../shared/dto/parameterdto.type';
 })
 export class OrderGeneratorComponent implements OnInit {
 
-    order: OrderDto;
     title: String = "LOLCATS3";
     // selector: String = "main";
     workflow: String = "order";
@@ -36,7 +35,14 @@ export class OrderGeneratorComponent implements OnInit {
     };
 
     constructor(private navigatorService: NavigatorService, private orderGeneratorService: OrderGeneratorService) {
-      this.order = orderGeneratorService.order;
+    }
+
+    private order() : OrderDto {
+      return this.orderGeneratorService.order;
+    }
+
+    public loadOrder() {
+      this.dataset = this.order().dataset;
     }
 
     ngOnInit() {
@@ -47,18 +53,18 @@ export class OrderGeneratorComponent implements OnInit {
     }
 
     private create() {
-      this.orderGeneratorService.order = this.order;
+      this.navigatorService.view = 'order';
+
+      function orderCreated() {
+        console.log('order created...');
+      }
+      
       this.orderGeneratorService.createOrder(this.title, 
         this.dataset, 
         this.classifiers, 
         this.metric, 
         this.method,
-        this.orderCreated);
-    }
-
-    public orderCreated() {
-      console.log('order created...');
-      this.workflow = '';
+        orderCreated);
     }
 
     private setDataset(value : DatasetDto) {
@@ -75,8 +81,11 @@ export class OrderGeneratorComponent implements OnInit {
     }
 
     private shorten(value : String) : String {
-      var retVal = value.replace("org.apache.spark.ml.classification.", "");
-      retVal = retVal.replace("com.gt_arc.coda.ml.validation.", "");
+      var retVal = value.replace("org.apache.spark.ml.", "");
+      retVal = retVal.replace("com.gt_arc.coda.ml.", "");
+      retVal = retVal.replace("validation.", "");
+      retVal = retVal.replace("classification.", "");
+      retVal = retVal.replace("classifiers.", "");
       retVal = retVal.replace("_", " ");
       retVal = retVal.replace("avg", "average ");
       retVal = retVal.replace("min", "minimum ");

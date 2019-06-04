@@ -6,7 +6,6 @@ import { MetricDto } from './metricdto.type';
 
 export class TaskDto {
     id: String;
-    status: String;
     classifier: ClassifierDto;
     dataset: DatasetDto;
     validationMethod: ValidationMethodDto;

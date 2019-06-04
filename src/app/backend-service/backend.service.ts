@@ -27,7 +27,12 @@ export class BackendService {
     }
 
     public saveOrder(order: OrderDto){
-        return this.http.post<OrderDto>(this.endpoint + 'orders/save', order);
+        const httpOptions = {
+            headers: new HttpHeaders({
+              'Content-Type':  'application/json'
+            })
+          };
+        return this.http.post<OrderDto>(this.endpoint + 'orders/save', order, httpOptions);
     }
 
     public createOrder() {

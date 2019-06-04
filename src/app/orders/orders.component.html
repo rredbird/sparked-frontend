@@ -8,24 +8,18 @@
         </div>
     </div>
 </div> -->
-
-<div class="table">
-    <mat-table #table [dataSource]="this.orders">
-        <ng-container class="container" matColumnDef="Order">
-            <td class="cell" mat-cell *matCellDef="let element">
-                <div class="template">
-                    <div style="float:left">{{element.name}}</div>
-                    <div style="float:right">{{element.status}}</div>
-                    <br>{{element.id}}
-                </div>
-            </td>
-        </ng-container>
-
-        <!-- <mat-header-row *matHeaderRowDef="['Title','Id']"></mat-header-row> -->
-        <mat-row class="row" *matRowDef="let row; columns: ['Order']" (click)="open(row)"></mat-row>
-    </mat-table>
+    <div class="work">
+        <div class="hoverable" *ngFor="let order of this.orders" (click)="open(order)">
+            <div *ngIf="order.name.length > 0">{{order.name}}</div>
+            <div *ngIf="order.name.length == 0">{{order.id}}</div>
+            <div>{{order.tasks.length}}</div>
+            <div *ngFor="let task of order.tasks">
+                <div>{{task.dataset.id}}</div>
+            </div>
+            <!-- <div>{{order.status}}</div> -->
+        </div>
+    </div>
 </div>
-
   
 
     

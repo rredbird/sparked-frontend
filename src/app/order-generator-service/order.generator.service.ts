@@ -80,17 +80,19 @@ export class OrderGeneratorService {
         metric:MetricDto, method:ValidationMethodDto, callback : Function): void {
     this.order = this.newOrder();
 
+    this.order.status = "new";
+    this.order.name = title;
+    
     if(classifiers != undefined && classifiers.length > 0) {
       classifiers.forEach(element => {
         let task = new TaskDto();
         task.classifier = element;
         task.id = '00000000-0000-0000-0000-000000000000';
-        task.status = "new";
         task.metric = metric;
         task.validationMethod = method; 
         task.dataset = dataset;
         
-        //this.order.tasks.push(task);
+        this.order.tasks.push(task);
       });
     
 

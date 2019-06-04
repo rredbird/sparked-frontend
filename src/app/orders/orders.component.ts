@@ -19,11 +19,10 @@ console.log("loading orders...");
     this.backendService.orders().subscribe(
         data => { 
             this.orders = data;
-            var i = 0;
-            console.log(this.orders[0].id);
+            console.log(this.orders.length + " orders loaded.");
         },
         err => { console.error(err) },
-        () => console.log('orders loaded...')
+        () => console.log('...orders loaded.')
         );
 }
 

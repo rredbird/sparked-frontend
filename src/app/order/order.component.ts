@@ -4,6 +4,7 @@ import { NavigatorService } from '../navigator-service/navigator.service';
 import { BackendService } from '../backend-service/backend.service';
 import { Chart } from 'chart.js';
 import { ClipboardService } from 'ngx-clipboard';
+import { OrderGeneratorService } from '../order-generator-service/order.generator.service';
 
 @Component({
   selector: 'app-order',
@@ -14,17 +15,23 @@ export class OrderComponent implements OnInit {
   @ViewChild('lineChart') private chartRef;
   chart: any;
 
-  order : OrderDto;
+  private order() : OrderDto {
+    return this.orderGeneratorService.order;
+  }
+
   result;
   output : String = "";  
 
-  constructor(private backendService : BackendService, private navigatorService : NavigatorService, private _clipboardService: ClipboardService) { 
+  constructor(private backendService : BackendService, 
+      private navigatorService : NavigatorService,
+      private orderGeneratorService : OrderGeneratorService, 
+      private _clipboardService: ClipboardService) { 
+    
     this.result = "STOP";
-    this.order = navigatorService.order;
     this.backendService = backendService;
-    console.log(this.order.id + " = " + this.order.name);
+    console.log(this.order().id + " = " + this.order.name);
     ///TODO run with task support
-    this.backendService.result(this.order.id).subscribe(
+    this.backendService.result(this.order().id).subscribe(
     data => { 
         this.result = data;
         this.showChart();
@@ -38,12 +45,15 @@ export class OrderComponent implements OnInit {
   }
 
   copyIdToClipboard() {
-    this._clipboardService.copyFromContent(this.order.id.toString());
+    this._clipboardService.copyFromContent(this.order().id.toString());
   }
 
   private showChart() {
     var labels : String[] = new Array<String>();
     var meanData : Number[] = new Array<Number>();
+    if(this.result == null) {
+      return;
+    }
     this.result.bestConfiguration.metrics.forEach(metric => {
       meanData.push(metric.mean[0]);
       labels.push(metric.id);
@@ -84,12 +94,11 @@ export class OrderComponent implements OnInit {
 
   private clone() {
     this.navigatorService.view = "create";
-    this.navigatorService.order = this.order;
   }
 
   private close() {
     this.navigatorService.view = "orders";
-    this.navigatorService.order = null;
+    this.orderGeneratorService.order = null;
   }
 }
 

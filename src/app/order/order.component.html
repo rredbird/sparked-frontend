@@ -1,41 +1,21 @@
-<div class="header">
-    <span>{{order.name}}</span>
-    {{order.status}}
-    <input type="button" value="edit" />
-    <input type="button" value="clone" (click)="clone()" />
-    <input type="button" value="close" (click)="close()" />
-</div>
+<div class="grid">
 
-<div class="menu">
-    <span>
+    <div class="work">
         <div>
-            <h5>Order</h5>
-            <p>Id</p><p #copyTargetId>{{order.id}}</p>
-            <button (click)="copyIdToClipboard()">Copy</button>
-            <p>Status</p><p>{{order.status}}</p>
-            <p>Name</p><p>{{order.name}}</p>
-            <p>Labels</p><p>{{order.labels}}</p>
-            <div *ngIf="result != 'STOP'">
-                <p>Classifier</p>
-                <p>{{result.classifier.id}}</p>
-                
-                <p>Classifier Parameters</p>
-                <p *ngFor="let p of result.classifier.parameters">{{p.name}}</p>
-            
-                <p>Dataset</p><p>{{result.dataset.id}}</p>
-                <p>Validation Method</p><p>{{result.validationMethod.name}}</p>
-                <p>Validation Metric</p><p>{{result.validationMetric.name}}</p>
-            </div>
+            <span>{{order.name}}</span>
+            Status: {{order.status}}
         </div>
-    </span>
-    <span>Configuration</span>
-    <span class="selected">Evaluation</span>
+    </div>
+    <div class="summary">
+        <div class="hoverable" *ngIf="order().status == 'new' || order().status == ''">
+            Start Evaluation
+        </div>
+        <div class="item">edit</div>
+        <div class="item" (click)="clone()">clone</div>
+        <div class="item" (click)="close()">close</div>
+    </div>
 </div>
 
-<br>
-<br>
-<br>
-<br>
 <div class="details">
     <canvas #lineChart>{{ chart }}</canvas>
 </div>
