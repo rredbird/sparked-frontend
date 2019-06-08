@@ -21,31 +21,35 @@ export class OrderComponent implements OnInit {
 
   result;
   output : String = "";  
+  view : String = 'info';
 
   constructor(private backendService : BackendService, 
       private navigatorService : NavigatorService,
       private orderGeneratorService : OrderGeneratorService, 
       private _clipboardService: ClipboardService) { 
     
+    console.log("show order " + this.order().evaluationId);
+    
     this.result = "STOP";
     this.backendService = backendService;
-    console.log(this.order().id + " = " + this.order.name);
+    console.log(this.order().evaluationId + " = " + this.order().name);
     ///TODO run with task support
-    this.backendService.result(this.order().id).subscribe(
-    data => { 
+    if(this.order().status == "completed") {
+      this.backendService.result(this.order().evaluationId).subscribe(
+      data => { 
         this.result = data;
-        this.showChart();
-    },
-    err => { console.error(err) },
-    () => console.log('result loaded...')
-    );
+      },
+      err => { console.error(err) },
+      () => console.log('result loaded...')
+      );
+    }
   }
 
   ngOnInit() {
   }
 
   copyIdToClipboard() {
-    this._clipboardService.copyFromContent(this.order().id.toString());
+    this._clipboardService.copyFromContent(this.order().evaluationId.toString());
   }
 
   private showChart() {
@@ -90,6 +94,10 @@ export class OrderComponent implements OnInit {
       }
     });
     this.output += "finish showChart\n";
+  }
+
+  private start() {
+    this.orderGeneratorService.start();
   }
 
   private clone() {

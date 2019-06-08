@@ -1,8 +1,9 @@
 import { TaskDto } from './taskdto.type';
 
 export class OrderDto {
-    id: String;
+    evaluationId: String;
+    _id: String;
     name: String;
     status: String;
-    tasks: Array<TaskDto>
+    tasks: Array<TaskDto>;
 }

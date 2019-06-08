@@ -1,21 +1,42 @@
 <div class="grid">
 
-    <div class="work">
-        <div>
-            <span>{{order.name}}</span>
-            Status: {{order.status}}
-        </div>
+    <!-- HEADER -->
+    <div class="header">
+        <h3>{{order().name}}</h3>
     </div>
+
+    <div class="work">
+        <div *ngIf="this.view == 'info'">
+            <div>{{order().tasks[0].dataset.id}}</div>
+            <div>_Id: {{order()._id}}</div>
+            <div>Evaluation Id: {{order().evaluationId}}</div>
+            <div>Tasks: </div>
+            <div *ngFor="let task of order().tasks">
+                <div>Classifier: {{task.classifier.id}}</div>
+            </div>
+        </div>
+<!-- 
+        <div *ngIf="this.view == 'evaluation'" class="details">
+            <canvas #lineChart>{{ chart }}</canvas>
+        </div> -->
+    </div>
+
+
+
+
     <div class="summary">
-        <div class="hoverable" *ngIf="order().status == 'new' || order().status == ''">
+        <div class="item hoverable" *ngIf="order().status == 'new'" (click)="start()">
             Start Evaluation
         </div>
-        <div class="item">edit</div>
-        <div class="item" (click)="clone()">clone</div>
-        <div class="item" (click)="close()">close</div>
+        <!-- <div class="item">edit</div> -->
+        <!-- <div class="item" (click)="clone()">clone</div> -->
+        <div class="item" *ngIf="this.view != 'evaluation' && this.order().status == 'completed'" 
+                (click)="this.view = 'evaluation'">show evaluation</div>
+        
+        <div class="item" *ngIf="this.view != 'info'" 
+                (click)="this.view = 'info'">show order details</div>
+
+        <div class="item" (click)="close()">close order</div>
     </div>
 </div>
 
-<div class="details">
-    <canvas #lineChart>{{ chart }}</canvas>
-</div>

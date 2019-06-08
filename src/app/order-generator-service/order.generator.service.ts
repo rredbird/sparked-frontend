@@ -34,50 +34,25 @@ export class OrderGeneratorService {
 
   public newOrder() : OrderDto {
     let order = new OrderDto();
-    order.id = '00000000-0000-0000-0000-000000000000';
+    order.evaluationId = '00000000-0000-0000-0000-000000000000';
+    order._id = '00000000-0000-0000-0000-000000000000';
     order.name = '';
     order.tasks = new Array<TaskDto>();
+    order.status = "new";
 
     return order;
   }
 
-  public idOfSelected<T extends { selected : Boolean, id : String }>(list : Array<T>) : String {
-    var selected = this.selected<T>(list);
-    if (selected) {
-        return selected.id;
-    }
-    return "";
-  }
-
-  public nameOfSelected<T extends { selected : Boolean, name : String }>(list : Array<T>) : String {
-    var selected = this.selected<T>(list);
-    if (selected) {
-        return selected.name;
-    }
-    return "";
-  }
-
-  public namesOfSelected<T extends { selected : Boolean, name : String }>(list : Array<T>) : Array<String> {
-    var selected = new Array<String>();
-    for(var i = 0; i < list.length; ++i) {
-      if(list[i].selected) {
-        selected.push(list[i].name);
-      }
-    }
-    return selected;
-  }
-
-  private selected<T extends { selected : Boolean }>(list : Array<T>) : T {
-    for(var i = 0; i < list.length; ++i) {
-      if(list[i].selected) {
-        return list[i];
-      }
-    }
-    return null;
+  public start() {
+    this.backendService.startOrder(this.order).subscribe(
+      data => this.order = data,
+      err => console.error(err),
+      () => console.log("order started")
+      );
   }
 
   public createOrder(title:String, dataset: DatasetDto, classifiers:Array<ClassifierDto>,
-        metric:MetricDto, method:ValidationMethodDto, callback : Function): void {
+        metric:MetricDto, method:ValidationMethodDto): void {
     this.order = this.newOrder();
 
     this.order.status = "new";
@@ -91,29 +66,21 @@ export class OrderGeneratorService {
         task.metric = metric;
         task.validationMethod = method; 
         task.dataset = dataset;
+        task.status = "new";
         
         this.order.tasks.push(task);
       });
     
-
+      console.log(this.order.status);
       this.backendService.saveOrder(this.order).subscribe(
       data => this.order = data,
       err => console.error(err),
-      () => callback()
+      () => console.log("order saved: " + this.order.evaluationId)
       );
     }
   }
 
   public step: Number = 0;
-  
-  public deselectAll<T extends { selected : Boolean }>(list : Array<T>) {
-    if (!list) {
-      return;
-    }
-    for(var i = 0; i < list.length; ++i) {
-      list[i].selected = false;
-    }
-  }
 
   private loadData() {
     this.backendService.classifiers().subscribe(

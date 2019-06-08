@@ -5,6 +5,7 @@ import { MetricDto } from '../shared/dto/metricdto.type';
 import { ClassifierDto } from '../shared/dto/classifierdto.type';
 import { DatasetDto } from '../shared/dto/datasetdto.type';
 import { ValidationMethodDto } from '../shared/dto/validationmethoddto.type';
+import { OrderResultDto } from '../shared/dto/orderresultdto.type';
 
 @Injectable()
 export class BackendService {
@@ -35,6 +36,15 @@ export class BackendService {
         return this.http.post<OrderDto>(this.endpoint + 'orders/save', order, httpOptions);
     }
 
+    public startOrder(order: OrderDto){
+        const httpOptions = {
+            headers: new HttpHeaders({
+              'Content-Type':  'application/json'
+            })
+          };
+        return this.http.post<OrderDto>(this.endpoint + 'orders/start', order, httpOptions);
+    }
+
     public createOrder() {
         return this.http.get<OrderDto>(this.endpoint + 'orders/new');
     }
@@ -56,6 +66,6 @@ export class BackendService {
     }
 
     public result(id : String) {
-        return this.http.get<ValidationMethodDto[]>(this.endpoint + 'orders/' + id + '/result');
+        return this.http.get<OrderResultDto>(this.endpoint + 'orders/' + id + '/result');
     }
 }

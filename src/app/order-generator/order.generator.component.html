@@ -35,7 +35,7 @@
                 </div>
                 <div>
                     <div *ngFor="let classifier of this.classifiers" class="hoverable list_item">
-                        <div class="inline" (click)="this.workflow = 'classifier'; this.detail = 'parameters'; this.order = classifier">
+                        <div class="inline" (click)="this.classifier = classifier; this.workflow = 'classifier'; this.detail = 'parameters';">
                             {{this.shorten(classifier.id)}}
                         </div>
                     </div>
@@ -83,9 +83,9 @@
             </div>
         </div>
         <div *ngIf="this.workflow == 'classifier'">
-            <div *ngFor="let classifier of this.orderGeneratorService.classifiers" class="flexitem hoverable" 
-                    (click)="this.cloneClassifier(classifier); this.detail = 'parameters'; this.classifier = classifier;">
-                {{this.shorten(classifier.id)}}
+            <div *ngFor="let c of this.orderGeneratorService.classifiers" class="flexitem hoverable" 
+                    (click)="this.classifier = this.cloneClassifier(c); this.detail = 'parameters';">
+                {{this.shorten(c.id)}}
             </div>
         </div>
         <div *ngIf="this.workflow == 'metric'">
@@ -96,6 +96,7 @@
         </div>
     </div>
     <div class="work scrollable" *ngIf="this.detail == 'parameters' && this.workflow == 'classifier'">
+        <div *ngIf="this.classifier == undefined">NULL</div>
         <div *ngFor="let element of this.classifier.parameters">
             <div class="flexbox_horizontal hoverable" 
                     [ngClass]="{'selected': this.parameter.name == element.name}"

@@ -18,7 +18,6 @@ import { ParameterDto } from '../shared/dto/parameterdto.type';
 export class OrderGeneratorComponent implements OnInit {
 
     title: String = "LOLCATS3";
-    // selector: String = "main";
     workflow: String = "order";
     detail: String = "main";
     dataset: DatasetDto = undefined;
@@ -42,7 +41,14 @@ export class OrderGeneratorComponent implements OnInit {
     }
 
     public loadOrder() {
-      this.dataset = this.order().dataset;
+      if(this.order().tasks.length > 0) {
+        this.dataset = this.order().tasks[0].dataset;
+        this.metric = this.order().tasks[0].metric;
+        this.method = this.order().tasks[0].validationMethod;
+        this.order().tasks.forEach(task => {
+          this.classifiers.push(task.classifier);
+        });
+      }
     }
 
     ngOnInit() {
@@ -54,17 +60,12 @@ export class OrderGeneratorComponent implements OnInit {
 
     private create() {
       this.navigatorService.view = 'order';
-
-      function orderCreated() {
-        console.log('order created...');
-      }
       
       this.orderGeneratorService.createOrder(this.title, 
         this.dataset, 
         this.classifiers, 
         this.metric, 
-        this.method,
-        orderCreated);
+        this.method);
     }
 
     private setDataset(value : DatasetDto) {
@@ -98,37 +99,15 @@ export class OrderGeneratorComponent implements OnInit {
       return retVal;
     }
 
-    private addClassifier() {
-      if(this.classifiers.indexOf(this.classifier) < 0) {
-        this.classifiers.push(this.classifier);
-      }
+    public addClassifier() {
+      this.classifiers.push(this.classifier);
     }
 
-    private selectClassifier(value : ClassifierDto) {
-      this.classifier = this.cloneClassifierObject(value);
-      this.detail = "classifier";
-    }
-
-    private openClassifier(value : ClassifierDto) {
-      this.classifier = value;
-      this.detail = "classifier";
-    }
-
-    private cloneClassifier(value : ClassifierDto) {
-      this.classifier = this.cloneClassifierObject(value);
-      this.detail = "classifier";
-    }
-
-    private deleteClassifier(value : ClassifierDto) {
-      this.classifiers.splice(this.classifiers.indexOf(this.classifier), 1);
-      // this.selector='showClassifiers';
-    }
-
-    private cloneClassifierObject(value : ClassifierDto) : ClassifierDto {
+    public cloneClassifier(value : ClassifierDto) : ClassifierDto {
       var classifier : ClassifierDto = new ClassifierDto();
       classifier.id = value.id;
       classifier.description = value.description;
-      classifier.name = value.description;
+      classifier.name = value.name;
       classifier.parameters = new Array<ParameterDto>();
 
       value.parameters.forEach(element => {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../backend-service/backend.service';
 import { OrderDto } from '../shared/dto/orderdto.type';
 import { NavigatorService } from '../navigator-service/navigator.service';
+import { OrderGeneratorService } from '../order-generator-service/order.generator.service';
 
 @Component({
   selector: 'app-orders',
@@ -10,7 +11,7 @@ import { NavigatorService } from '../navigator-service/navigator.service';
 })
 export class OrdersComponent implements OnInit {
 
-constructor(private backendService:BackendService, private navigatorService:NavigatorService) { 
+constructor(private backendService:BackendService, private orderGeneratorService: OrderGeneratorService, private navigatorService:NavigatorService) { 
     this.loadOrders();
 }
 
@@ -30,7 +31,7 @@ console.log("loading orders...");
   }
 
   public open(order : OrderDto) {
-    this.navigatorService.order = order;
+    this.orderGeneratorService.order = order;
     this.navigatorService.view = 'order';
   }
 
