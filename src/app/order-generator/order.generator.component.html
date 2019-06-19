@@ -1,9 +1,9 @@
 <div class="grid">
     
 <!-- HEADER -->
-    <!-- <div class="header">
-        <h1>Create a new Order</h1>        
-    </div> -->
+    <div class="header">
+        <h1>Create Order</h1>
+    </div>
 
 <!-- BUBBLE MENU -->
 
@@ -13,7 +13,7 @@
                 Please give your Order a title, so that you may find it again later!
             </p>
             <p>
-                <input type="text" class="title_input" [(ngModel)]="this.title" />
+                <input type="text" class="title_input" (click)="this.title = (this.title == 'Please rename me'? '' : this.title)" [(ngModel)]="this.title" />
             </p>
         </div>
         <div class="flexbox_horizontal justify_center">  
@@ -34,9 +34,9 @@
                     Classifiers
                 </div>
                 <div>
-                    <div *ngFor="let classifier of this.classifiers" class="hoverable list_item">
-                        <div class="inline" (click)="this.classifier = classifier; this.workflow = 'classifier'; this.detail = 'parameters';">
-                            {{this.shorten(classifier.id)}}
+                    <div *ngFor="let cc of this.classifiers" class="hoverable list_item">
+                        <div class="inline" (click)="this.classifier = cc; this.workflow = 'classifier'; this.detail = 'parameters';">
+                            {{this.shorten(cc.id)}}
                         </div>
                     </div>
                 </div>
@@ -82,8 +82,9 @@
                 {{dataset.id}}
             </div>
         </div>
+        <!--Classifier list-->
         <div *ngIf="this.workflow == 'classifier'">
-            <div *ngFor="let c of this.orderGeneratorService.classifiers" class="flexitem hoverable" 
+            <div *ngFor="let c of this.orderGeneratorService.classifiers" class="list_item hoverable" 
                     (click)="this.classifier = this.cloneClassifier(c); this.detail = 'parameters';">
                 {{this.shorten(c.id)}}
             </div>
@@ -95,6 +96,7 @@
             </div>
         </div>
     </div>
+    <!--Classifier Parameters-->
     <div class="work scrollable" *ngIf="this.detail == 'parameters' && this.workflow == 'classifier'">
         <div *ngIf="this.classifier == undefined">NULL</div>
         <div *ngFor="let element of this.classifier.parameters">
@@ -110,20 +112,19 @@
 <!-- END LIST ELEMENTS -->
 
 <!-- LEFT PANNEL -->
-<!-- Main Buttons For Order Creation -->
     <div class="summary">
+<!-- Main Buttons For Order Creation -->
         <div *ngIf="this.workflow == 'order' && this.detail == 'main'" 
-                class="item" (click)="this.create();">
-            OK
+                class="item" >
+            <div (click)="this.validateOrder()">
+                OK
+            </div>
         </div>
         <div *ngIf="this.workflow == 'order' && this.detail == 'main'" 
                 class="item" (click)="this.workflow=''; this.cancel();">
             Cancel
         </div>
-    </div>
-
 <!-- Select Dataset -->
-    <div class="summary">
         <div *ngIf="this.workflow == 'dataset' && this.detail == 'list'" 
                 class="item" (click)="this.workflow='order'; this.detail='main';">
             OK
@@ -132,34 +133,23 @@
                 class="item" (click)="this.workflow='order'; this.detail='main';">
             OK
         </div>
-    </div>
     
-<!-- Edit Parameters -->
-    <div class="summary" *ngIf="this.detail=='parameters' && this.classifier != undefined">
-        <div class="item" (click)="this.workflow='order'; this.detail='main'; this.addClassifier()">
-            OK
-        </div>
-        <div class="item" (click)="this.workflow='order'; this.detail='main';">
-            Cancel
-        </div>
-    </div>
-
-<!-- Classifier List -->
-    <div class="summary flexbox_vertical" *ngIf="this.detail=='list' && this.workflow == 'classifier'">
-        <div class="flexitem item">
-            Add a classifier
-        </div>
-        <div class="flexitem">
-            Create a new classifier by selecting a base on the right or edit one of the exiting classifiers below.
-        </div>
-        <div class="flexitem ">
-            <div *ngFor="let classifier of this.classifiers" class="hoverable" 
-                    (click)="this.detail = 'parameters'; this.classifier = classifier;">
-                {{this.shorten(classifier.id)}}
+    
+<!-- Classifier Parameters -->
+        <div *ngIf="this.detail=='parameters' && this.classifier != undefined">
+            <div class="item" (click)="this.workflow='order'; this.detail='main'; this.addClassifier()">
+                OK
+            </div>
+            <div class="item" (click)="this.workflow='order'; this.detail='main';">
+                Cancel
             </div>
         </div>
-        <div class="flexitem item" (click)="this.workflow='order'; this.detail='main';">
-            Cancel
+
+    <!-- Classifier List -->
+        <div *ngIf="this.detail=='list' && this.workflow == 'classifier'">
+            <div class="item" (click)="this.workflow='order'; this.detail='main';">
+                Cancel
+            </div>
         </div>
     </div>
 
@@ -175,5 +165,22 @@
     </div>
 
 <!-- END RIGHT PANEL -->
+
+<!-- FLOATING -->
+    <div *ngIf="this.workflow == 'order' && (this.detail == 'confirm-creation' || this.detail == 'error-on-creation')" class="floating-grayout"></div>
+    <div *ngIf="this.workflow == 'order' && this.detail == 'confirm-creation'" id="confirm-start-order" class="floating">
+        <h2>Start the order</h2>
+        <div class="downward-spacing">You have created a new order. Do you want the order to be evaluated?</div>
+
+        <div class="hoverable item" (click)="this.start();">Yes, run it now!</div>
+        <div class="hoverable item" (click)="this.create();">No, I will start it later</div>
+        <div class="hoverable item" (click)="this.detail = 'main'">Wait! Let me check that order again...</div>
+    </div>
+    <div *ngIf="this.workflow == 'order' && this.detail == 'error-on-creation'" id="error-start-order" class="floating">
+        <h2>Ups!</h2>
+        <div class="downward-spacing">There is some data missing. Please fill out all the bubbles.</div>
+
+        <div class="hoverable item" (click)="this.detail = 'main'">OK</div>
+    </div>
 
 </div>

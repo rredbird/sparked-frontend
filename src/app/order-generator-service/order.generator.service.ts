@@ -43,12 +43,33 @@ export class OrderGeneratorService {
     return order;
   }
 
-  public start() {
-    this.backendService.startOrder(this.order).subscribe(
+  public startOrder(title:String, dataset: DatasetDto, classifiers:Array<ClassifierDto>,
+    metric:MetricDto, method:ValidationMethodDto): void {
+    this.order = this.newOrder();
+
+    this.order.status = "starting";
+    this.order.name = title;
+
+    if(classifiers != undefined && classifiers.length > 0) {
+      classifiers.forEach(element => {
+        let task = new TaskDto();
+        task.classifier = element;
+        task.id = '00000000-0000-0000-0000-000000000000';
+        task.metric = metric;
+        task.validationMethod = method; 
+        task.dataset = dataset;
+        task.status = "new";
+        
+        this.order.tasks.push(task);
+      });
+
+      console.log(this.order.status);
+      this.backendService.saveOrder(this.order).subscribe(
       data => this.order = data,
       err => console.error(err),
-      () => console.log("order started")
+      () => console.log("order saved: " + this.order.evaluationId)
       );
+    }
   }
 
   public createOrder(title:String, dataset: DatasetDto, classifiers:Array<ClassifierDto>,

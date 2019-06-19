@@ -15,26 +15,39 @@
                 <div>Classifier: {{task.classifier.id}}</div>
             </div>
         </div>
-<!-- 
+
         <div *ngIf="this.view == 'evaluation'" class="details">
+            
+        </div>
+        <div [ngClass]="{'chart_invisible' : this.view != 'evaluation', 'chart_visible' : this.view == 'evaluation'}">
             <canvas #lineChart>{{ chart }}</canvas>
-        </div> -->
+        </div>
+        <div *ngIf="this.view == 'metrics'" class="details scrollable">
+            <div class="hoverable list_item" 
+                    *ngFor="let metric of this.metrics()"
+                    (click)="this.flipShowMetric(metric); this.view = 'info';">
+                {{metric.id}}
+            </div>
+        </div>
     </div>
 
 
 
 
     <div class="summary">
-        <div class="item hoverable" *ngIf="order().status == 'new'" (click)="start()">
+        <div class="item hoverable" *ngIf="order().status == 'new'" (click)="this.start()">
             Start Evaluation
         </div>
         <!-- <div class="item">edit</div> -->
         <!-- <div class="item" (click)="clone()">clone</div> -->
         <div class="item" *ngIf="this.view != 'evaluation' && this.order().status == 'completed'" 
-                (click)="this.view = 'evaluation'">show evaluation</div>
+                (click)="this.view = 'evaluation'; this.showChart();">show evaluation</div>
         
         <div class="item" *ngIf="this.view != 'info'" 
                 (click)="this.view = 'info'">show order details</div>
+
+        <div class="item" *ngIf="this.view != 'info'" 
+                (click)="this.view = 'metrics'">add metric chart</div>
 
         <div class="item" (click)="close()">close order</div>
     </div>

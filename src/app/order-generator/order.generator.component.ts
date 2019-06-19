@@ -17,7 +17,7 @@ import { ParameterDto } from '../shared/dto/parameterdto.type';
 })
 export class OrderGeneratorComponent implements OnInit {
 
-    title: String = "LOLCATS3";
+    title: String = "Please rename me";
     workflow: String = "order";
     detail: String = "main";
     dataset: DatasetDto = undefined;
@@ -58,10 +58,40 @@ export class OrderGeneratorComponent implements OnInit {
       this.navigatorService.view='orders';
     }
 
+    private validateOrder() {
+      if(this.method == null || this.method == undefined) {
+        this.detail = 'error-on-creation';
+        return;
+      }
+      if(this.dataset == null || this.dataset == undefined) {
+        this.detail = 'error-on-creation';
+        return;
+      }
+      if(this.metric == null || this.metric == undefined) {
+        this.detail = 'error-on-creation';
+        return;
+      }
+      if(this.classifiers == null || this.classifiers == undefined || this.classifiers .length == 0) {
+        this.detail = 'error-on-creation';
+        return;
+      }
+      this.detail = 'confirm-creation';
+    }
+
     private create() {
       this.navigatorService.view = 'order';
       
       this.orderGeneratorService.createOrder(this.title, 
+        this.dataset, 
+        this.classifiers, 
+        this.metric, 
+        this.method);
+    }
+
+    private start() {
+      this.navigatorService.view = 'order';
+      
+      this.orderGeneratorService.startOrder(this.title, 
         this.dataset, 
         this.classifiers, 
         this.metric, 
@@ -100,7 +130,9 @@ export class OrderGeneratorComponent implements OnInit {
     }
 
     public addClassifier() {
-      this.classifiers.push(this.classifier);
+      if(this.classifiers.indexOf(this.classifier) < 0) {
+        this.classifiers.push(this.classifier);
+      }
     }
 
     public cloneClassifier(value : ClassifierDto) : ClassifierDto {

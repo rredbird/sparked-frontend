@@ -1,6 +1,8 @@
 <div class="grid">
-        <!-- <div class="header">
-    <div>
+    <div class="header">
+        <h1>Open Order</h1>
+    </div>
+    <!--<div>
         Open one of the orders.
         <div>
             <label for="search">Search</label>
@@ -8,16 +10,25 @@
         </div>
     </div>
 </div> -->
-    <div class="work">
-        <div class="hoverable" *ngFor="let order of this.orders" (click)="open(order)">
-            <div *ngIf="order.name.length > 0">{{order.name}}</div>
+    <div class="work scrollable">
+        <div class="hoverable list_item bottom-border" *ngFor="let order of this.orders" (click)="open(order)">
+            <h2 *ngIf="order.name.length > 0">{{order.name}}</h2>
             <div *ngIf="order.name.length == 0">{{order._id}}</div>
             <div>Order Status: {{order.status}}</div>
             <div *ngFor="let task of order.tasks">
-                <div>{{task.classifier.name}}, {{task.dataset.id}}</div>
+                <div>{{task.classifier.name}}</div>
             </div>
-            <!-- <div>{{order.status}}</div> -->
+            <div>
+                {{order.tasks[0].dataset.id}}
+            </div>
+            <div>
+                {{order.tasks[0].metric.id}}
+            </div>
+            <div>
+                {{order.tasks[0].validationMethod.name}}
+            </div>
         </div>
+        <div class="downward-spacing">&nbsp;</div>
     </div>
 </div>
   

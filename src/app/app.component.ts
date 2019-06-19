@@ -4,7 +4,6 @@ import { TranslateService } from './translate-service/translate.service';
 import { OrderGeneratorService } from './order-generator-service/order.generator.service';
 import { BackendService } from './backend-service/backend.service';
 import { OrderDto } from './shared/dto/orderdto.type';
-import { tableDataFormatter } from './interfaces/tableDataFormatter';
 // import { OrderFormatter } from './old/TableDataProvider/orderFormatter';
 // import { DatasetFormatter } from './old/TableDataProvider/datasetFormatter';
 // import { MetricFormatter } from './old/TableDataProvider/metricFormatter';
@@ -55,7 +54,7 @@ export class AppComponent {
         this.data = this.orders;
         // this.dataFormatter = new OrderFormatter();
         // this.dataFormatter.onClickDelegate = this.openOrder;
-        this.caption = "LOLCATS";
+        // this.caption = "LOLCATS";
     }
 
     // private showDatasets() {

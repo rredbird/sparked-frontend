@@ -2,9 +2,12 @@ import { Component, OnInit, ViewChild, Input, Output } from '@angular/core';
 import { OrderDto } from '../shared/dto/orderdto.type';
 import { NavigatorService } from '../navigator-service/navigator.service';
 import { BackendService } from '../backend-service/backend.service';
-import { Chart } from 'chart.js';
 import { ClipboardService } from 'ngx-clipboard';
 import { OrderGeneratorService } from '../order-generator-service/order.generator.service';
+import { Chart, ChartData } from 'chart.js';
+import { removeDebugNodeFromIndex } from '@angular/core/src/debug/debug_node';
+// import 'chartjs-chart-box-and-violin-plot';
+
 
 @Component({
   selector: 'app-order',
@@ -52,52 +55,190 @@ export class OrderComponent implements OnInit {
     this._clipboardService.copyFromContent(this.order().evaluationId.toString());
   }
 
-  private showChart() {
-    var labels : String[] = new Array<String>();
-    var meanData : Number[] = new Array<Number>();
-    if(this.result == null) {
-      return;
+  private metrics() : [] {
+    if(this.result == undefined) {
+      return [];
     }
-    this.result.bestConfiguration.metrics.forEach(metric => {
-      meanData.push(metric.mean[0]);
-      labels.push(metric.id);
+    if(this.result.evaluation_results == undefined) {
+      return [];
+    }
+    return this.result.evaluation_results[0].evaluation.results.bestConfiguration.metrics;
+  }
+
+  private visibleMetricIndexes = [];
+
+  public flipShowMetric(metric) {
+    let index = this.result.evaluation_results[0].evaluation.results.bestConfiguration.metrics.indexOf(metric);
+    this.visibleMetricIndexes.push(index);
+    this.showChart();
+  }
+
+  private showScatterChart() {
+    let datasets = []; 
+    console.log ("showChart()");
+    this.visibleMetricIndexes.forEach(index => {
+      let mean = [];
+      var i = 1;
+      this.result.evaluation_results.forEach(evaluation_result => {
+        let value = evaluation_result.evaluation.results.bestConfiguration.metrics[index].mean;
+        mean.push({x : i, y : value});
+        i++;
+      });
+      datasets.push({
+        data: mean,
+        label: this.result.evaluation_results[0].evaluation.results.bestConfiguration.metrics[index].id,
+        borderColor: 'FF0000',
+        fill: true
+      })
     });
 
-    //let meanData = [3,2];    
-    //let labels = [ 1,2 ];
-
-    this.output += "showChart\n";
-    this.chart = new Chart(this.chartRef.nativeElement, {
-      type: 'line',
+    var myChart = new Chart(this.chartRef.nativeElement, {
+      type: 'scatter',
       data: {
-        labels: labels,
-        datasets: [
-          {
-            data: meanData, // your data array
-            borderColor: '#00AEFF',
-            fill: false
-          }
-        ]
+        datasets: datasets,
       },
       options: {
-        legend: {
-          display: false
-        },
         scales: {
-          xAxes: [{
-            display: true
+          xAxes: [{ 
+            gridLines : {
+              display : false
+            }
           }],
-          yAxes: [{
-            display: true
-          }],
+          yAxes: [{ 
+            gridLines : {
+              display : false
+            } 
+          }]
         }
       }
     });
+  }
+
+  private showBoxPlot() {
+    // this.chart = new Chart(this.chartRef.nativeElement, {
+    //   type: 'boxplot',
+    //   data: this.boxPlotData,
+    //   options: {
+    //     responsive: true,
+    //     legend: {
+    //       display: true
+    //     },
+    //     scales: {
+    //       xAxes: [{
+    //         display: true
+    //       }],
+    //       yAxes: [{
+    //         display: true
+    //       }],
+    //     }
+    //   }
+    // });
+  }
+
+  showLineChart() {
+    // let datasets = []; 
+    console.log ("showChart()");
+
+    // if(this.visibleMetricIndexes.length == 0) {
+    //   return;
+    // }
+    // var errorBars =  {
+    //   '1': {plus: 0.1, minus: -0.1},
+    //   '2': {plus: 0.1, minus: -0.2},
+    //   '3': {plus: 0.1, minus: -0.4},
+    //   '4': {plus: 0.1, minus: -0.3}
+    // };
+
+    // this.result.evaluation_results.forEach(evaluation_result => {
+    //   let mean = [];
+    //   var labels = [];
+    //   var i = 0;
+      
+
+    //   this.visibleMetricIndexes.forEach(index => {
+    //     i++;
+    //     let value = evaluation_result.evaluation.results.bestConfiguration.metrics[index].mean[0];
+    //     let label = "" + i; //evaluation_result.evaluation.results.bestConfiguration.metrics[index].id;
+
+    //     mean.push(value);
+    //     labels.push(label);
+        
+    //   });
+      
+    //   datasets.push({
+    //     data: mean,
+    //     labels : labels,
+    //     errorBars: errorBars,
+    //     borderColor: 'FF0000',
+    //     fill: false
+    //   })
+
+    // });
+    var color = Chart.helpers.color;
+    var barChartData = {
+      labels: ['Value', 'Value 2', 'Value 3', 'Value 4'],
+      datasets: [{
+        label: 'Dataset 1',
+        //backgroundColor: '#d95f02',
+        borderColor: '#d95f02',
+        borderWidth: 1,
+        data: [
+          50,
+          100, 
+          130,
+          0
+        ],
+        errorBars: {
+          'Value': {plus: 20, minus: -30},
+          'Value 2': {plus: 20, minus: -30},
+          'Value 3': {plus: 20, minus: -30},
+          'Value 4': {plus: 20, minus: -30}
+        }
+      }]
+  
+    };
+  
+
+    var myChart = new Chart(this.chartRef.nativeElement, {
+      type: 'bar',
+      data: barChartData,
+      options: {
+        scales: {
+          xAxes: [{ 
+            gridLines : {
+              display : false
+            }
+          }],
+          yAxes: [{ 
+            gridLines : {
+              display : false
+            } 
+          }]
+        },
+        plugins: {
+          chartJsPluginErrorBars: {
+            width: '60%',
+            //color: 'darkgray'
+          }
+        }
+      }
+    });
+  }
+
+  private showChart() {
+    this.showLineChart();
+
     this.output += "finish showChart\n";
   }
 
   private start() {
-    this.orderGeneratorService.start();
+    console.log("starting order...");
+    this.backendService.startOrder(this.order()).subscribe(
+      data => this.orderGeneratorService.order = data,
+      err => console.error(err),
+      () => console.log("order started: " + this.order().evaluationId)
+      );
+    this.order().status = "starting";
   }
 
   private clone() {

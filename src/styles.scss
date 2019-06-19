@@ -4,7 +4,7 @@
 body {
     margin:0px;
     font-family: $font-family;
-    background-color: white;
+    background-color: $background-color;
     font-size: $font-size-medium;
     font-weight: $font-weight-thin;
 }
@@ -15,36 +15,21 @@ a {
 
 input {
     border-color: transparent;
-    //border-bottom-color: darkgray;
+    background-color: $background-color;
+    border-bottom-color: $focus-color;
     border-bottom-width: 1px;
     box-shadow: none;
     &:focus {
         outline: none;
     }
+
+    font-family: $font-family;
+    font-size: $font-size-medium;
+    font-weight: $font-weight-thin;
 }
 
 ul {
     list-style-type: none;
-}
-
-
-li.table {
-    margin:0;
-    padding-bottom: 0.5em;
-    padding-top: 0.5em;
-    cursor: pointer;
-
-    &:hover {
-        background-color: orange;
-        -webkit-transition: background-color 500ms linear;
-        -ms-transition: background-color 500ms linear;
-        transition: background-color 500ms linear;
-    }
-
-    
-    &.selected {
-        background-color: green;
-    }
 }
 
 ::-webkit-scrollbar-track
@@ -64,12 +49,21 @@ li.table {
 	background-color: #000000;
 }
 
+.scrollable {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
 .hoverable:hover {
-    background-color: antiquewhite;
+    background-color: $light-highlight-color;
+}
+
+.active {
+    background-color: $highlight-color;
 }
 
 .big_item.hoverable:hover {
-    background-color: lightgray;
+    background-color: $light-highlight-color;
     background-image: none;
 }
 
@@ -105,13 +99,13 @@ li.table {
     padding: 0.5em;
     color: black;
     cursor: pointer;
-    background-image: linear-gradient(to right, lightgray, white 50%);
+    background-image: linear-gradient(to right, $light-highlight-color, $background-color 50%);
 }
 
 .grid {
     display: grid;
     grid-template-columns: [summary-column] 15em [null-column-left] auto [work-column] 30em [null-column-right] auto [detail-column] 15em;
-    grid-template-rows: [header-row] 6em [content-row] auto [footer-row] 2px;
+    grid-template-rows: [header-row] 4.5em [content-row] auto [footer-row] 2px;
 
     height: 100vh;
     width: 100vw;
@@ -119,22 +113,38 @@ li.table {
 }
 
 .header {
-    grid-column-start: work-column;
+    grid-column-start: summary-column;
     grid-column-end: detail-column;
     grid-row: header-row;
+
+    border-bottom-color: $focus-color;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    //padding-left: 15em;
+    text-align: center;
 }
 
 .icon-header {
     cursor: pointer;
     position: fixed;
     left: 1em;
-    top: 1em;
+    top: 0.5em;
     grid-column: summary-column;
     grid-row: header-row; 
     background-image: url('./assets/logo_coda_88px.png');
     background-size: contain;
     height: 3.3em;
     width: 3.0em;
+}
+
+h1 {
+    font-size: 1.6em;
+    font-weight: 400;
+}
+
+h2 {
+    font-size: 1.4em;
+    font-weight: 400;
 }
 
 .summary {
@@ -187,8 +197,8 @@ li.table {
 .big_item {
     height: $circle-diameter-vertical;
     width: $circle-diameter-horizontal;
-    border-color:gray;
-    border-width: 2px;
+    border-color:$focus-color;
+    border-width: 3px;
     border-style: ridge;
     border-radius: $border-radius;
     cursor: pointer;
@@ -205,11 +215,6 @@ li.table {
 .title {
     text-align: center;
     width: 100vw;
-    h1 {
-        height: 2em;
-        font-size: $font-size-big;
-        font-weight: $bold;
-    }
     p {
         height: 3em;
     }
@@ -236,4 +241,30 @@ li.table {
 
 .inline {
     display: inline-block;
+}
+
+.floating-grayout {
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    background-color: $focus-color;
+    opacity: 0.2;
+}
+.floating {
+    position: fixed;
+    left: 10vw;
+    right: 10vw;
+    top: 10vw;
+    border-color: $focus-color;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 2em;
+    padding-left: 5em;
+    padding-right: 5em;
+    padding-top: 1em;
+    padding-bottom: 3em;
+
+    background-color: $background-color;
 }
