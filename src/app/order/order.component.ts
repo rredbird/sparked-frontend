@@ -36,7 +36,7 @@ export class OrderComponent implements OnInit {
     this.result = "STOP";
     this.backendService = backendService;
     console.log(this.order().evaluationId + " = " + this.order().name);
-    ///TODO run with task support
+    
     if(this.order().status == "completed") {
       this.backendService.result(this.order().evaluationId).subscribe(
       data => { 

@@ -9,10 +9,6 @@ import { AppService } from './app.service';
 import { OrdersComponent } from './orders/orders.component';
 import { OrderComponent } from './order/order.component';
 import { OrderGeneratorComponent } from './order-generator/order.generator.component';
-import { TaskComponent } from './task/task.component';
-// import { MetricComponent } from './old/metric/metric.component';
-// import { ValidationMethodComponent } from './old/validation-method/validation-method.component';
-// import { ParameterComponent } from './old/parameter/parameter.component';
 import { NavigatorService } from './navigator-service/navigator.service';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { OrderGeneratorService } from './order-generator-service/order.generator.service';
@@ -21,7 +17,6 @@ import { SearchService } from './search-service/search.service';
 import { TranslatePipe } from './translate.pipe';
 import { ClipboardModule } from 'ngx-clipboard';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
-// import { ChartModule } from "angular2-chartjs";
 import "chartjs-chart-box-and-violin-plot/build/Chart.BoxPlot.js";
 
 export function setupTranslateFactory(service : TranslateService) : Function {
@@ -35,7 +30,6 @@ export function setupTranslateFactory(service : TranslateService) : Function {
     OrdersComponent,
     OrderComponent,
     OrderGeneratorComponent,
-    TaskComponent,
     LandingPageComponent,
     TranslatePipe,
   ],
@@ -45,7 +39,6 @@ export function setupTranslateFactory(service : TranslateService) : Function {
     BrowserAnimationsModule,
     FormsModule,
     ClipboardModule,
-    // ChartModule
   ],
   providers: [BackendService, AppService, TranslateService, NavigatorService, OrderGeneratorService, SearchService, {
     provide: APP_INITIALIZER,
