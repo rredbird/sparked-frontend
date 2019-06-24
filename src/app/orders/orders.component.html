@@ -2,14 +2,7 @@
     <div class="header">
         <h1>Open Order</h1>
     </div>
-    <!--<div>
-        Open one of the orders.
-        <div>
-            <label for="search">Search</label>
-            <input type="text" />
-        </div>
-    </div>
-</div> -->
+    
     <div class="work scrollable">
         <div class="hoverable list_item bottom-border" *ngFor="let order of this.orders" (click)="open(order)">
             <h2 *ngIf="order.name.length > 0">{{order.name}}</h2>

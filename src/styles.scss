@@ -1,5 +1,4 @@
 @import 'variables';
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 body {
     margin:0px;
@@ -113,8 +112,7 @@ ul {
 }
 
 .header {
-    grid-column-start: summary-column;
-    grid-column-end: detail-column;
+    grid-column-start: summary-column / span 5;
     grid-row: header-row;
 
     border-bottom-color: $focus-color;
@@ -122,6 +120,7 @@ ul {
     border-bottom-width: 1px;
     //padding-left: 15em;
     text-align: center;
+    width: 100vw;
 }
 
 .icon-header {
@@ -153,7 +152,8 @@ h2 {
 }
 
 .work {
-    grid-column: work-column;
+    grid-column: work-column / span 1;
+    
     grid-row: content-row;
     text-align: center;
 }

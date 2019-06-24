@@ -2,31 +2,45 @@
 
     <!-- HEADER -->
     <div class="header">
-        <h3>{{order().name}}</h3>
+        <h1>{{order().name}}</h1>
     </div>
 
-    <div class="work">
-        <div *ngIf="this.view == 'info'">
-            <div>{{order().tasks[0].dataset.id}}</div>
-            <div>_Id: {{order()._id}}</div>
-            <div>Evaluation Id: {{order().evaluationId}}</div>
-            <div>Tasks: </div>
-            <div *ngFor="let task of order().tasks">
-                <div>Classifier: {{task.classifier.id}}</div>
-            </div>
-        </div>
-
-        <div *ngIf="this.view == 'evaluation'" class="details">
-            
-        </div>
-        <div [ngClass]="{'chart_invisible' : this.view != 'evaluation', 'chart_visible' : this.view == 'evaluation'}">
+    <div class="work scrollable">
+        <div>
             <canvas #lineChart>{{ chart }}</canvas>
         </div>
+        <div>
+            <h2>Dataset</h2>
+            <div>{{order().tasks[0].dataset.id}}</div>
+            <h2>CODA Id</h2>
+            <div>{{order().evaluationId}}</div>
+            <h2>Classifier</h2>
+            <div class="hoverable" *ngFor="let task of order().tasks; let i = index">
+                <div (mouseenter)="this.detailId = task.id">{{i + 1}} - {{task.classifier.name}}</div>
+            </div>
+            <h2>Validation Method</h2>
+            <div>{{order().tasks[0].validationMethod.name}}</div>
+            <h2>Target Metric</h2>
+            <div>{{order().tasks[0].metric.id}}</div>
+        </div>
+        <!--[ngClass]="{'chart_invisible' : this.view != 'evaluation', 'chart_visible' : this.view == 'evaluation'}"-->
+        
         <div *ngIf="this.view == 'metrics'" class="details scrollable">
             <div class="hoverable list_item" 
                     *ngFor="let metric of this.metrics()"
                     (click)="this.flipShowMetric(metric); this.view = 'info';">
                 {{metric.id}}
+            </div>
+        </div>
+    </div>
+    
+    <div class="detail">
+        <div *ngFor="let task of order().tasks">
+            <div [ngClass]="{'detail_invisible' : task.id != this.detailId, 'detail_visible' : task.id == this.detailId}">
+                <h2>{{task.classifier.name}}</h2>
+                <div *ngFor="let param of task.classifier.parameters">
+                    <div>{{param.name}} : {{param.value}}</div>
+                </div>
             </div>
         </div>
     </div>
@@ -40,14 +54,8 @@
         </div>
         <!-- <div class="item">edit</div> -->
         <!-- <div class="item" (click)="clone()">clone</div> -->
-        <div class="item" *ngIf="this.view != 'evaluation' && this.order().status == 'completed'" 
-                (click)="this.view = 'evaluation'; this.showChart();">show evaluation</div>
-        
-        <div class="item" *ngIf="this.view != 'info'" 
-                (click)="this.view = 'info'">show order details</div>
 
-        <div class="item" *ngIf="this.view != 'info'" 
-                (click)="this.view = 'metrics'">add metric chart</div>
+        <!-- <div class="item" (click)="this.view = 'metrics'">add metric chart</div> -->
 
         <div class="item" (click)="close()">close order</div>
     </div>

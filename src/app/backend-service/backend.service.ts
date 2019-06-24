@@ -16,7 +16,7 @@ export class BackendService {
     public postFile(fileToUpload: File) {
         const formData: FormData = new FormData();
         formData.append('file', fileToUpload, fileToUpload.name);
-        return this.http.post(this.endpoint + '/upload', formData);
+        return this.http.post(this.endpoint + 'upload', formData);
     }
 
     public orders() {

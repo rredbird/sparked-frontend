@@ -18,6 +18,8 @@ export class OrderComponent implements OnInit {
   @ViewChild('lineChart') private chartRef;
   chart: any;
 
+  detailId : String = "";
+
   private order() : OrderDto {
     return this.orderGeneratorService.order;
   }
@@ -41,6 +43,7 @@ export class OrderComponent implements OnInit {
       this.backendService.result(this.order().evaluationId).subscribe(
       data => { 
         this.result = data;
+        this.flipShowMetric(this.order().tasks[0].metric);
       },
       err => { console.error(err) },
       () => console.log('result loaded...')
@@ -64,12 +67,20 @@ export class OrderComponent implements OnInit {
     }
     return this.result.evaluation_results[0].evaluation.results.bestConfiguration.metrics;
   }
-
+  
   private visibleMetricIndexes = [];
 
   public flipShowMetric(metric) {
-    let index = this.result.evaluation_results[0].evaluation.results.bestConfiguration.metrics.indexOf(metric);
-    this.visibleMetricIndexes.push(index);
+    let index = 0;
+    
+    this.result.evaluation_results[0].evaluation.results.bestConfiguration.metrics.forEach(element => {
+      if(element.id == metric.id) {
+        this.visibleMetricIndexes.push(index);
+        return;
+      }
+      index++;
+    });
+    
     this.showChart();
   }
 
@@ -87,7 +98,8 @@ export class OrderComponent implements OnInit {
       datasets.push({
         data: mean,
         label: this.result.evaluation_results[0].evaluation.results.bestConfiguration.metrics[index].id,
-        borderColor: 'FF0000',
+        borderColor: '00CC00',
+        fillColor: '0000CC', 
         fill: true
       })
     });
@@ -114,66 +126,53 @@ export class OrderComponent implements OnInit {
     });
   }
 
-  private showBoxPlot() {
-    // this.chart = new Chart(this.chartRef.nativeElement, {
-    //   type: 'boxplot',
-    //   data: this.boxPlotData,
-    //   options: {
-    //     responsive: true,
-    //     legend: {
-    //       display: true
-    //     },
-    //     scales: {
-    //       xAxes: [{
-    //         display: true
-    //       }],
-    //       yAxes: [{
-    //         display: true
-    //       }],
-    //     }
-    //   }
-    // });
+  private showBarChart() {
+    console.log ("showChart()");
+
+    let l = [];
+    let i = 0;
+    this.order().tasks.forEach(task => {
+      i++;
+      l.push("" + i);
+    });
+    let d = [];
+    if(this.visibleMetricIndexes.length < 1) {
+      return;
+    }
+    let index = this.visibleMetricIndexes[0];
+    this.result.evaluation_results.forEach(evaluation_result => {
+      let value = evaluation_result.evaluation.results.bestConfiguration.metrics[index].mean;
+      d.push(value);
+    });
+
+    let dd = {
+      labels: l,
+      datasets: [
+        {
+          label: "",
+          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+          data: d
+        }
+      ]
+    }
+    
+    this.chart = new Chart(this.chartRef.nativeElement, {
+      type: 'bar',
+      data: dd,
+      options: {
+        legend: { display: false },
+        title: {
+          display: true,
+          text: "" + this.order().tasks[0].metric.id
+        }
+      }
+    });
   }
 
   showLineChart() {
     // let datasets = []; 
-    console.log ("showChart()");
+    
 
-    // if(this.visibleMetricIndexes.length == 0) {
-    //   return;
-    // }
-    // var errorBars =  {
-    //   '1': {plus: 0.1, minus: -0.1},
-    //   '2': {plus: 0.1, minus: -0.2},
-    //   '3': {plus: 0.1, minus: -0.4},
-    //   '4': {plus: 0.1, minus: -0.3}
-    // };
-
-    // this.result.evaluation_results.forEach(evaluation_result => {
-    //   let mean = [];
-    //   var labels = [];
-    //   var i = 0;
-      
-
-    //   this.visibleMetricIndexes.forEach(index => {
-    //     i++;
-    //     let value = evaluation_result.evaluation.results.bestConfiguration.metrics[index].mean[0];
-    //     let label = "" + i; //evaluation_result.evaluation.results.bestConfiguration.metrics[index].id;
-
-    //     mean.push(value);
-    //     labels.push(label);
-        
-    //   });
-      
-    //   datasets.push({
-    //     data: mean,
-    //     labels : labels,
-    //     errorBars: errorBars,
-    //     borderColor: 'FF0000',
-    //     fill: false
-    //   })
-
-    // });
     var color = Chart.helpers.color;
     var barChartData = {
       labels: ['Value', 'Value 2', 'Value 3', 'Value 4'],
@@ -226,7 +225,8 @@ export class OrderComponent implements OnInit {
   }
 
   private showChart() {
-    this.showLineChart();
+    console.log ("showChart()");
+    this.showBarChart();
 
     this.output += "finish showChart\n";
   }
