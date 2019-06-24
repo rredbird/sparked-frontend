@@ -20,7 +20,7 @@ export class OrderComponent implements OnInit {
 
   detailId : String = "";
 
-  private order() : OrderDto {
+  public order() : OrderDto {
     return this.orderGeneratorService.order;
   }
 
@@ -241,11 +241,11 @@ export class OrderComponent implements OnInit {
     this.order().status = "starting";
   }
 
-  private clone() {
+  public clone() {
     this.navigatorService.view = "create";
   }
 
-  private close() {
+  public close() {
     this.navigatorService.view = "orders";
     this.orderGeneratorService.order = null;
   }

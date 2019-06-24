@@ -9,7 +9,7 @@ import { OrderResultDto } from '../shared/dto/orderresultdto.type';
 
 @Injectable()
 export class BackendService {
-    private endpoint  : String = 'http://localhost:8080/';
+    private endpoint  : String = 'http://10.0.2.10:8080/';
 
     constructor(private http: HttpClient) { }
 

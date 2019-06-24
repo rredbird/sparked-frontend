@@ -9,12 +9,12 @@ import { OrderGeneratorService } from '../order-generator-service/order.generato
 })
 export class LandingPageComponent implements OnInit {
 
-  constructor(private navigator : NavigatorService, private orderGenerator : OrderGeneratorService) { }
+  constructor(public navigator : NavigatorService, private orderGenerator : OrderGeneratorService) { }
 
   ngOnInit() {
   }
 
-  private create() {
+  public create() {
     this.navigator.view = 'create';
     this.orderGenerator.newOrder();
   }
