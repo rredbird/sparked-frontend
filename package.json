@@ -31,7 +31,7 @@
     "core-js": "^2.5.7",
     "jquery": "^3.3.1",
     "ngx-clipboard": "^12.0.0",
-    "npm": "^6.1.0",
+    "npm": "^9.6.5",
     "popper.js": "^1.14.3",
     "rxjs": "^6.4.0",
     "rxjs-compat": "^6.0.0-rc.0",
@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.11.0",
-    "@angular/cli": "^7.3.0",
+    "@angular/cli": "^15.2.6",
     "@angular/compiler-cli": "^7.2.3",
     "@angular/language-service": "^7.2.3",
     "@types/jasmine": "~2.8.8",
